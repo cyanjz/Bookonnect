@@ -1,2 +1,2 @@
-# SSAFY_PJT1_BOOK
-SSAFY PJT1 - books
+# Book Store Project
+
