@@ -24,9 +24,8 @@ class Thread(models.Model):
     book = models.ForeignKey("books.Book", on_delete=models.CASCADE)    # fk name -> model name
     thread_title = models.CharField(max_length=40)  # max_length 20 -> 40
     thread_content = models.TextField()
-    thread_book_review_rank = models.IntegerField(default=0)
-    thread_book_read_date = models.DateField()
-    thread_cover_img = models.CharField(max_length=50)
+    thread_book_review_rank = models.FloatField(default=0.0)
+    thread_cover_img = models.CharField(max_length=50, blank=True)
     thread_created_at = models.DateTimeField(auto_now_add=True)
     thread_updated_at = models.DateTimeField(auto_now=True)
     # ThreadLikeUser -> thread_like_users

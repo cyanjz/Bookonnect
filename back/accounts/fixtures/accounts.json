@@ -1,0 +1,59 @@
+[
+  {
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+      "username": "alice",
+      "password": "pbkdf2_sha256$600000$dummy$hash",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "email": "alice@example.com",
+      "first_name": "Alice",
+      "last_name": "Anderson",
+      "date_joined": "2025-01-01T10:00:00Z",
+      "user_age": 28,
+      "user_banner_img": "alice_banner.jpg",
+      "user_introduction": "Hi, I'm Alice. I love classic literature!",
+      "user_profile_img": "alice_profile.jpg"
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+      "username": "bob",
+      "password": "pbkdf2_sha256$600000$dummy$hash",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "email": "bob@example.com",
+      "first_name": "Bob",
+      "last_name": "Baker",
+      "date_joined": "2025-02-15T11:00:00Z",
+      "user_age": 35,
+      "user_banner_img": "bob_banner.jpg",
+      "user_introduction": "History nerd & science enthusiast.",
+      "user_profile_img": "bob_profile.jpg"
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 3,
+    "fields": {
+      "username": "charlie",
+      "password": "pbkdf2_sha256$600000$dummy$hash",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "email": "charlie@example.com",
+      "first_name": "Charlie",
+      "last_name": "Clark",
+      "date_joined": "2025-03-10T09:00:00Z",
+      "user_age": 42,
+      "user_banner_img": "charlie_banner.jpg",
+      "user_introduction": "Book reviewer and tech lover.",
+      "user_profile_img": "charlie_profile.jpg"
+    }
+  }
+]
