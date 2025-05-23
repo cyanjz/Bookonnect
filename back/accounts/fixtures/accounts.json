@@ -3,57 +3,180 @@
     "model": "accounts.user",
     "pk": 1,
     "fields": {
-      "username": "alice",
-      "password": "pbkdf2_sha256$600000$dummy$hash",
+      "password": "pbkdf2_sha256$260000$testhash$yXzV8Y4qJkQfXqF6V+F8q8QkU8Qw8Qk8Qw8Qk8Qk8Qk=",
+      "last_login": null,
       "is_superuser": false,
+      "username": "user01",
+      "email": "user01@example.com",
       "is_staff": false,
       "is_active": true,
-      "email": "alice@example.com",
-      "first_name": "Alice",
-      "last_name": "Anderson",
-      "date_joined": "2025-01-01T10:00:00Z",
-      "user_age": 28,
-      "user_banner_img": "alice_banner.jpg",
-      "user_introduction": "Hi, I'm Alice. I love classic literature!",
-      "user_profile_img": "alice_profile.jpg"
+      "date_joined": "2024-01-01T10:00:00Z",
+      "user_age": 25,
+      "user_introduction": "Hello, I am user01.",
+      "user_profile_img": "profile01.jpg",
+      "user_banner_img": "banner01.jpg"
     }
   },
   {
     "model": "accounts.user",
     "pk": 2,
     "fields": {
-      "username": "bob",
-      "password": "pbkdf2_sha256$600000$dummy$hash",
+      "password": "pbkdf2_sha256$260000$testhash$yXzV8Y4qJkQfXqF6V+F8q8QkU8Qw8Qk8Qw8Qk8Qk8Qk=",
+      "last_login": null,
       "is_superuser": false,
+      "username": "user02",
+      "email": "user02@example.com",
       "is_staff": false,
       "is_active": true,
-      "email": "bob@example.com",
-      "first_name": "Bob",
-      "last_name": "Baker",
-      "date_joined": "2025-02-15T11:00:00Z",
-      "user_age": 35,
-      "user_banner_img": "bob_banner.jpg",
-      "user_introduction": "History nerd & science enthusiast.",
-      "user_profile_img": "bob_profile.jpg"
+      "date_joined": "2024-01-02T10:00:00Z",
+      "user_age": 28,
+      "user_introduction": "Hello, I am user02.",
+      "user_profile_img": "profile02.jpg",
+      "user_banner_img": "banner02.jpg"
     }
   },
   {
     "model": "accounts.user",
     "pk": 3,
     "fields": {
-      "username": "charlie",
-      "password": "pbkdf2_sha256$600000$dummy$hash",
+      "password": "pbkdf2_sha256$260000$testhash$yXzV8Y4qJkQfXqF6V+F8q8QkU8Qw8Qk8Qw8Qk8Qk8Qk=",
+      "last_login": null,
       "is_superuser": false,
+      "username": "user03",
+      "email": "user03@example.com",
       "is_staff": false,
       "is_active": true,
-      "email": "charlie@example.com",
-      "first_name": "Charlie",
-      "last_name": "Clark",
-      "date_joined": "2025-03-10T09:00:00Z",
-      "user_age": 42,
-      "user_banner_img": "charlie_banner.jpg",
-      "user_introduction": "Book reviewer and tech lover.",
-      "user_profile_img": "charlie_profile.jpg"
+      "date_joined": "2024-01-03T10:00:00Z",
+      "user_age": 30,
+      "user_introduction": "Hello, I am user03.",
+      "user_profile_img": "profile03.jpg",
+      "user_banner_img": "banner03.jpg"
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$testhash$yXzV8Y4qJkQfXqF6V+F8q8QkU8Qw8Qk8Qw8Qk8Qk8Qk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user04",
+      "email": "user04@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-01-04T10:00:00Z",
+      "user_age": 22,
+      "user_introduction": "Hello, I am user04.",
+      "user_profile_img": "profile04.jpg",
+      "user_banner_img": "banner04.jpg"
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$testhash$yXzV8Y4qJkQfXqF6V+F8q8QkU8Qw8Qk8Qw8Qk8Qk8Qk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user05",
+      "email": "user05@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-01-05T10:00:00Z",
+      "user_age": 27,
+      "user_introduction": "Hello, I am user05.",
+      "user_profile_img": "profile05.jpg",
+      "user_banner_img": "banner05.jpg"
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$testhash$yXzV8Y4qJkQfXqF6V+F8q8QkU8Qw8Qk8Qw8Qk8Qk8Qk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user06",
+      "email": "user06@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-01-06T10:00:00Z",
+      "user_age": 24,
+      "user_introduction": "Hello, I am user06.",
+      "user_profile_img": "profile06.jpg",
+      "user_banner_img": "banner06.jpg"
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$testhash$yXzV8Y4qJkQfXqF6V+F8q8QkU8Qw8Qk8Qw8Qk8Qk8Qk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user07",
+      "email": "user07@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-01-07T10:00:00Z",
+      "user_age": 29,
+      "user_introduction": "Hello, I am user07.",
+      "user_profile_img": "profile07.jpg",
+      "user_banner_img": "banner07.jpg"
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$testhash$yXzV8Y4qJkQfXqF6V+F8q8QkU8Qw8Qk8Qw8Qk8Qk8Qk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user08",
+      "email": "user08@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-01-08T10:00:00Z",
+      "user_age": 26,
+      "user_introduction": "Hello, I am user08.",
+      "user_profile_img": "profile08.jpg",
+      "user_banner_img": "banner08.jpg"
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$testhash$yXzV8Y4qJkQfXqF6V+F8q8QkU8Qw8Qk8Qw8Qk8Qk8Qk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user09",
+      "email": "user09@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-01-09T10:00:00Z",
+      "user_age": 31,
+      "user_introduction": "Hello, I am user09.",
+      "user_profile_img": "profile09.jpg",
+      "user_banner_img": "banner09.jpg"
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$testhash$yXzV8Y4qJkQfXqF6V+F8q8QkU8Qw8Qk8Qw8Qk8Qk8Qk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user10",
+      "email": "user10@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-01-10T10:00:00Z",
+      "user_age": 23,
+      "user_introduction": "Hello, I am user10.",
+      "user_profile_img": "profile10.jpg",
+      "user_banner_img": "banner10.jpg"
     }
   }
 ]
