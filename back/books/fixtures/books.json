@@ -1,0 +1,180 @@
+[
+  {
+    "model": "books.category",
+    "pk": 1,
+    "fields": { "category_name": "Fiction" }
+  },
+  {
+    "model": "books.category",
+    "pk": 2,
+    "fields": { "category_name": "Non-Fiction" }
+  },
+  {
+    "model": "books.category",
+    "pk": 3,
+    "fields": { "category_name": "Science" }
+  },
+
+  {
+    "model": "books.author",
+    "pk": 1,
+    "fields": {
+      "author_name": "Jane Austen",
+      "author_info": "British novelist known for romantic fiction.",
+      "author_profile_img": "austen.jpg",
+      "author_info_mp3": "austen.mp3"
+    }
+  },
+  {
+    "model": "books.author",
+    "pk": 2,
+    "fields": {
+      "author_name": "Isaac Newton",
+      "author_info": "Father of classical physics.",
+      "author_profile_img": "newton.jpg",
+      "author_info_mp3": "newton.mp3"
+    }
+  },
+  {
+    "model": "books.author",
+    "pk": 3,
+    "fields": {
+      "author_name": "Malcolm Gladwell",
+      "author_info": "Writer and journalist, author of 'Outliers'.",
+      "author_profile_img": "gladwell.jpg",
+      "author_info_mp3": "gladwell.mp3"
+    }
+  },
+
+  {
+    "model": "books.book",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "author": 1,
+      "book_title": "Pride and Prejudice",
+      "book_description": "A classic romantic novel.",
+      "book_ISBN13": "9781111111111",
+      "book_cover_img": "pride.jpg",
+      "book_publisher": "Penguin",
+      "book_pub_date": "1813-01-28",
+      "book_customer_review_rank": 5
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 2,
+    "fields": {
+      "category": 3,
+      "author": 2,
+      "book_title": "Philosophiæ Naturalis Principia Mathematica",
+      "book_description": "A work in three books by Isaac Newton.",
+      "book_ISBN13": "9782222222222",
+      "book_cover_img": "principia.jpg",
+      "book_publisher": "Royal Society",
+      "book_pub_date": "1687-07-05",
+      "book_customer_review_rank": 5
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 3,
+    "fields": {
+      "category": 2,
+      "author": 3,
+      "book_title": "Outliers",
+      "book_description": "Explores the factors of high levels of success.",
+      "book_ISBN13": "9783333333333",
+      "book_cover_img": "outliers.jpg",
+      "book_publisher": "Little, Brown",
+      "book_pub_date": "2008-11-18",
+      "book_customer_review_rank": 4
+    }
+  },
+
+  {
+    "model": "books.thread",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "book": 1,
+      "thread_title": "My Favorite Classic",
+      "thread_content": "Absolutely loved it!",
+      "thread_book_review_rank": 5,
+      "thread_book_read_date": "2024-01-01",
+      "thread_cover_img": "thread1.jpg",
+      "thread_created_at": "2025-05-01T10:00:00Z",
+      "thread_updated_at": "2025-05-01T10:00:00Z",
+      "thread_like_users": [2, 3]
+    }
+  },
+  {
+    "model": "books.thread",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "book": 2,
+      "thread_title": "Dense but Brilliant",
+      "thread_content": "Took me a while to read.",
+      "thread_book_review_rank": 4,
+      "thread_book_read_date": "2024-03-15",
+      "thread_cover_img": "thread2.jpg",
+      "thread_created_at": "2025-05-02T11:00:00Z",
+      "thread_updated_at": "2025-05-02T11:00:00Z",
+      "thread_like_users": [1]
+    }
+  },
+  {
+    "model": "books.thread",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "book": 3,
+      "thread_title": "Interesting Ideas",
+      "thread_content": "Makes you think differently.",
+      "thread_book_review_rank": 4,
+      "thread_book_read_date": "2024-06-10",
+      "thread_cover_img": "thread3.jpg",
+      "thread_created_at": "2025-05-03T12:00:00Z",
+      "thread_updated_at": "2025-05-03T12:00:00Z",
+      "thread_like_users": [1, 2]
+    }
+  },
+
+  {
+    "model": "books.comment",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "thread": 1,
+      "comment_content": "Totally agree!",
+      "comment_created_at": "2025-05-01T12:00:00Z",
+      "comment_updated_at": "2025-05-01T12:00:00Z",
+      "comment_like_users": [1]
+    }
+  },
+  {
+    "model": "books.comment",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "thread": 2,
+      "comment_content": "It was tough but rewarding.",
+      "comment_created_at": "2025-05-02T13:00:00Z",
+      "comment_updated_at": "2025-05-02T13:00:00Z",
+      "comment_like_users": [3]
+    }
+  },
+  {
+    "model": "books.comment",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "thread": 3,
+      "comment_content": "I love Gladwell's work.",
+      "comment_created_at": "2025-05-03T14:00:00Z",
+      "comment_updated_at": "2025-05-03T14:00:00Z",
+      "comment_like_users": [1, 2]
+    }
+  }
+]
