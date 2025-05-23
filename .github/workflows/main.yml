@@ -1,0 +1,17 @@
+# .github/workflows/merge-guard.yml
+name: Merge Guard
+
+on:
+  pull_request_target:
+    branches: [ "master" ]  # master 브랜치를 타겟으로 하는 PR 발생 시 실행
+    types: [ opened, reopened, synchronize ]
+
+jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Source Branch
+        if: github.head_ref != 'dev'  # dev 브랜치가 아닌 경우 실패
+        run: |
+          echo "❌ 병합은 dev 브랜치에서만 가능합니다."
+          exit 1
