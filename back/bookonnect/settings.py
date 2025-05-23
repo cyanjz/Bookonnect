@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    # corsheaders
+    'corsheaders',
 ]
 
 SITE_ID = 1
@@ -64,6 +66,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+  'http://127.0.0.1:5173',
+  'http://localhost:5173'
 ]
 
 ROOT_URLCONF = 'bookonnect.urls'
