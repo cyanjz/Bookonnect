@@ -1,0 +1,1607 @@
+{
+	"info": {
+		"_postman_id": "a4594a0c-822c-4150-a1e6-03eac55746bb",
+		"name": "Bookonnect API",
+		"description": "## **시작하기**\n\n| Method | Name | URL | 기능 요약 |\n| --- | --- | --- | --- |\n| GET | BookList | `/api/v1/books/` | 전체 도서 목록 조회 |\n| GET | BookDetail | `/api/v1/books/{book_pk}/` | 특정 도서 상세 조회 |\n| GET | Thread List | `/api/v1/books/{book_pk}/threads/` | 도서별 스레드 목록 조회 |\n| POST | Thread Create | `/api/v1/books/{book_pk}/threads/create/` | 도서에 스레드 생성 |\n| GET | ThreadDetail Read | `/api/v1/books/{book_pk}/threads/{thread_pk}/` | 특정 스레드 상세 조회 |\n| PUT | ThreadDetail Update | `/api/v1/books/{book_pk}/threads/{thread_pk}/update/` | 특정 스레드 수정 |\n| DELETE | ThreadDetail Delete | `/api/v1/books/{book_pk}/threads/{thread_pk}/update/` | 특정 스레드 삭제 |\n| POST | ThreadLike | `/api/v1/books/{book_pk}/threads/{thread_pk}/likes/` | 특정 스레드 좋아요/취소 |\n| GET | Comment List | `/api/v1/books/{book_pk}/threads/{thread_pk}/comments/` | 스레드의 댓글 목록 조회 |\n| POST | Comment Create | `/api/v1/books/{book_pk}/threads/{thread_pk}/comments/` | 스레드에 댓글 작성 |\n| PUT | Comment Update | `/api/v1/books/{book_pk}/threads/{thread_pk}/comments/{comment_pk}/` | 특정 댓글 수정 |\n| DELETE | Comment Delete | `/api/v1/books/{book_pk}/threads/{thread_pk}/comments/{comment_pk}/` | 특정 댓글 삭제 |\n| POST | Comment Like | `/api/v1/books/{book_pk}/threads/{thread_pk}/comments/{comment_pk}/likes/` | 특정 댓글 좋아요/취소 |\n\n## 인증 시스템\n\nToken 인증 시스템을 사용합니다.\n\nPOST, PUT, DELETE와 같은 요청을 보낼 때는 header에 Token 정보를 포함하여 요청해야합니다.\n\nHeaders의 `Authorization` 필드에 `Token {token}` 을 포함해야 합니다.\n\n### 인증 실패 응답\n\nIf an API key is missing, malformed, or invalid, you will receive an HTTP 401 Unauthorized response code.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44129886",
+		"_collection_link": "https://cyan-5934020.postman.co/workspace/Cyan's-Workspace~1fadc64f-fd11-4f86-8a3d-77781101dcd1/collection/44129886-a4594a0c-822c-4150-a1e6-03eac55746bb?action=share&source=collection_link&creator=44129886"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [],
+			"description": "The `/me` endpoints let you manage information about the authenticated user."
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "BookList",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 01:32:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, OPTIONS"
+								},
+								{
+									"key": "Content-Length",
+									"value": "310"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"book_cover_img\": \"pride.jpg\",\n        \"book_title\": \"Pride and Prejudice\",\n        \"book_customer_review_rank\": 5\n    },\n    {\n        \"book_cover_img\": \"principia.jpg\",\n        \"book_title\": \"Philosophiæ Naturalis Principia Mathematica\",\n        \"book_customer_review_rank\": 5\n    },\n    {\n        \"book_cover_img\": \"outliers.jpg\",\n        \"book_title\": \"Outliers\",\n        \"book_customer_review_rank\": 4\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "BookDetail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 01:35:40 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, GET"
+								},
+								{
+									"key": "Content-Length",
+									"value": "366"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"book_title\": \"Pride and Prejudice\",\n    \"book_cover_img\": \"pride.jpg\",\n    \"book_description\": \"A classic romantic novel.\",\n    \"book_ISBN13\": \"9781111111111\",\n    \"book_pub_date\": \"1813-01-28\",\n    \"book_customer_review_rank\": 5,\n    \"author\": {\n        \"author_name\": \"Jane Austen\",\n        \"author_profile_img\": \"austen.jpg\",\n        \"author_info\": \"British novelist known for romantic fiction.\",\n        \"author_info_mp3\": \"austen.mp3\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "도서 정보를 가져올 때 쓰이는 API.\n\nthread, book, comment 정보를 불러오고, 관리합니다."
+		},
+		{
+			"name": "Threads",
+			"item": [
+				{
+					"name": "Thread List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1",
+								"threads",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"1",
+										"threads",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 01:50:14 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, OPTIONS"
+								},
+								{
+									"key": "Content-Length",
+									"value": "253"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"thread_title\": \"My Favorite Classic\",\n        \"thread_content\": \"Absolutely loved it!\",\n        \"thread_cover_img\": \"thread1.jpg\",\n        \"thread_book_review_rank\": 5,\n        \"num_likes\": 2,\n        \"num_comments\": 1,\n        \"liked\": false,\n        \"user\": {\n            \"username\": \"alice\",\n            \"user_profile_img\": \"alice_profile.jpg\"\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Thread Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token  152db311ac92471cc1ad987cce1d240bbf9dc420",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "thread_title",
+									"value": "test title",
+									"type": "text"
+								},
+								{
+									"key": "thread_content",
+									"value": "test content",
+									"type": "text"
+								},
+								{
+									"key": "thread_book_review_rank",
+									"value": "3.4",
+									"type": "text"
+								},
+								{
+									"key": "Authorization",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/create/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1",
+								"threads",
+								"create",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token  152db311ac92471cc1ad987cce1d240bbf9dc420",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "thread_title",
+											"value": "test title",
+											"type": "text"
+										},
+										{
+											"key": "thread_content",
+											"value": "test content",
+											"type": "text"
+										},
+										{
+											"key": "thread_book_review_rank",
+											"value": "3.4",
+											"type": "text"
+										},
+										{
+											"key": "Authorization",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"1",
+										"threads",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 02:11:55 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS, GET"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "ThreadDetail Read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1",
+								"threads",
+								"1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"1",
+										"threads",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 03:00:02 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, OPTIONS, DELETE"
+								},
+								{
+									"key": "Content-Length",
+									"value": "420"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"thread_title\": \"My Favorite Classic\",\n    \"thread_content\": \"Absolutely loved it!\",\n    \"thread_updated_at\": \"2025-05-01T10:00:00Z\",\n    \"user\": {\n        \"username\": \"alice\",\n        \"user_profile_img\": \"alice_profile.jpg\"\n    },\n    \"comments\": [\n        {\n            \"comment_content\": \"Totally agree!\",\n            \"comment_updated_at\": \"2025-05-01T12:00:00Z\",\n            \"num_likes\": 1\n        }\n    ],\n    \"book\": {\n        \"book_title\": \"Pride and Prejudice\",\n        \"book_cover_img\": \"pride.jpg\",\n        \"book_pub_date\": \"1813-01-28\",\n        \"avg_review_rank\": 4.2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "ThreadDetail Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "thread_title",
+									"value": "edited thread title 1",
+									"type": "text"
+								},
+								{
+									"key": "thread_content",
+									"value": "edited thread content 1",
+									"type": "text"
+								},
+								{
+									"key": "thread_book_review_rank",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/update/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1",
+								"threads",
+								"1",
+								"update",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"1",
+										"threads",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 03:00:02 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, OPTIONS, DELETE"
+								},
+								{
+									"key": "Content-Length",
+									"value": "420"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"thread_title\": \"My Favorite Classic\",\n    \"thread_content\": \"Absolutely loved it!\",\n    \"thread_updated_at\": \"2025-05-01T10:00:00Z\",\n    \"user\": {\n        \"username\": \"alice\",\n        \"user_profile_img\": \"alice_profile.jpg\"\n    },\n    \"comments\": [\n        {\n            \"comment_content\": \"Totally agree!\",\n            \"comment_updated_at\": \"2025-05-01T12:00:00Z\",\n            \"num_likes\": 1\n        }\n    ],\n    \"book\": {\n        \"book_title\": \"Pride and Prejudice\",\n        \"book_cover_img\": \"pride.jpg\",\n        \"book_pub_date\": \"1813-01-28\",\n        \"avg_review_rank\": 4.2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "ThreadDetail Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/update/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1",
+								"threads",
+								"1",
+								"update",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"1",
+										"threads",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 03:00:02 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, OPTIONS, DELETE"
+								},
+								{
+									"key": "Content-Length",
+									"value": "420"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"thread_title\": \"My Favorite Classic\",\n    \"thread_content\": \"Absolutely loved it!\",\n    \"thread_updated_at\": \"2025-05-01T10:00:00Z\",\n    \"user\": {\n        \"username\": \"alice\",\n        \"user_profile_img\": \"alice_profile.jpg\"\n    },\n    \"comments\": [\n        {\n            \"comment_content\": \"Totally agree!\",\n            \"comment_updated_at\": \"2025-05-01T12:00:00Z\",\n            \"num_likes\": 1\n        }\n    ],\n    \"book\": {\n        \"book_title\": \"Pride and Prejudice\",\n        \"book_cover_img\": \"pride.jpg\",\n        \"book_pub_date\": \"1813-01-28\",\n        \"avg_review_rank\": 4.2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "ThreadDetail Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/update/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1",
+								"threads",
+								"1",
+								"update",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"1",
+										"threads",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 03:00:02 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, OPTIONS, DELETE"
+								},
+								{
+									"key": "Content-Length",
+									"value": "420"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"thread_title\": \"My Favorite Classic\",\n    \"thread_content\": \"Absolutely loved it!\",\n    \"thread_updated_at\": \"2025-05-01T10:00:00Z\",\n    \"user\": {\n        \"username\": \"alice\",\n        \"user_profile_img\": \"alice_profile.jpg\"\n    },\n    \"comments\": [\n        {\n            \"comment_content\": \"Totally agree!\",\n            \"comment_updated_at\": \"2025-05-01T12:00:00Z\",\n            \"num_likes\": 1\n        }\n    ],\n    \"book\": {\n        \"book_title\": \"Pride and Prejudice\",\n        \"book_cover_img\": \"pride.jpg\",\n        \"book_pub_date\": \"1813-01-28\",\n        \"avg_review_rank\": 4.2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "ThreadLike",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 152db311ac92471cc1ad987cce1d240bbf9dc420",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/likes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1",
+								"threads",
+								"1",
+								"likes",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Comment List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/comments/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1",
+								"threads",
+								"1",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/comments/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"1",
+										"threads",
+										"1",
+										"comments",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 05:15:24 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, GET, POST"
+								},
+								{
+									"key": "Content-Length",
+									"value": "426"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"pk\": 1,\n        \"comment_content\": \"Updated content\",\n        \"comment_created_at\": \"2025-05-01T12:00:00Z\",\n        \"comment_updated_at\": \"2025-05-23T05:14:45.826642Z\",\n        \"num_likes\": 1,\n        \"user\": {\n            \"username\": \"bob\",\n            \"user_profile_img\": \"bob_profile.jpg\"\n        }\n    },\n    {\n        \"pk\": 4,\n        \"comment_content\": \"test comment\",\n        \"comment_created_at\": \"2025-05-23T05:06:11.572872Z\",\n        \"comment_updated_at\": \"2025-05-23T05:06:11.572872Z\",\n        \"num_likes\": 0,\n        \"user\": {\n            \"username\": \"admin\",\n            \"user_profile_img\": \"\"\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Comment Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 152db311ac92471cc1ad987cce1d240bbf9dc420",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "comment",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "comment_content",
+									"value": "test comment",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/comments/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1",
+								"threads",
+								"1",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 152db311ac92471cc1ad987cce1d240bbf9dc420",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "comment",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "comment_content",
+											"value": "test comment",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/comments/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"1",
+										"threads",
+										"1",
+										"comments",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 05:06:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS, GET"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Comment Like",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 152db311ac92471cc1ad987cce1d240bbf9dc420",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/comments/1/likes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1",
+								"threads",
+								"1",
+								"comments",
+								"1",
+								"likes",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 152db311ac92471cc1ad987cce1d240bbf9dc420",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/comments/1/likes/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"1",
+										"threads",
+										"1",
+										"comments",
+										"1",
+										"likes",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 05:09:00 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"liked\": true,\n    \"num_likes\": 2\n}"
+						},
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 152db311ac92471cc1ad987cce1d240bbf9dc420",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/comments/1/likes/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"1",
+										"threads",
+										"1",
+										"comments",
+										"1",
+										"likes",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 05:15:18 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "Content-Length",
+									"value": "29"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"liked\": false,\n    \"num_likes\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Comment Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 152db311ac92471cc1ad987cce1d240bbf9dc420",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "comment_content",
+									"value": "Updated content",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/comments/1/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1",
+								"threads",
+								"1",
+								"comments",
+								"1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 152db311ac92471cc1ad987cce1d240bbf9dc420",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "comment_content",
+											"value": "Updated content",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/comments/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"books",
+										"1",
+										"threads",
+										"1",
+										"comments",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 23 May 2025 05:14:45 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.13"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "DELETE, OPTIONS, PUT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"comment_content\": \"Updated content\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Comment Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/books/1/threads/1/comments/2/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"1",
+								"threads",
+								"1",
+								"comments",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://farming-simulator.pstmn.io"
+		}
+	]
+}
