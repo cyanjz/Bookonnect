@@ -54,8 +54,24 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-ACCOUNT_SIGNUP_FIELDS = ["username*", "password1*", "password2*"]
-ACCOUNT_LOGIN_METHODS = {"username"}
+# ACCOUNT 정보 설정
+ACCOUNT_SIGNUP_FIELDS = ["username*", "password1*", "password2*", "email*"]
+ACCOUNT_LOGIN_METHODS = {'email'}
+ACCOUNT_UNIQUE_EMAIL = True              # 이메일 중복 불가
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Django 에서 이메일을 보낼 때 어떤 방식을 사용할지 결정.
+# SMTP 서버가 없거나 실제로 메일을 보내고 싶지 않을 때 사용.
+# 이메일 인증을 구현하기 위해서는 추가적인 로직을 작성해야 할 듯 함.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# settings.py
+REST_AUTH = {
+    'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+}
 
 REST_FRAMEWORK = {
     # Authentication - TokenAuthentication을 사용.
@@ -76,9 +92,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 CORS_ALLOWED_ORIGINS = [
