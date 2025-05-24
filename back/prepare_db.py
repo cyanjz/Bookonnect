@@ -79,19 +79,29 @@ def fetchAladin(QueryType='Bestseller'):
         for idx, category_element in enumerate(category_list):
             if cid in category_element['cid']:
                 category_instance = Category.objects.get(pk=idx+1)
-        book = Book.objects.create(
+        book = Book(
             category=category_instance,
             author=Author.objects.get(author_name=author_name),
             book_title=item['title'],
             book_description=item['description'],
             book_ISBN13=item['isbn13'],
-            book_cover_img=item['cover'],
             book_publisher=item['publisher'],
             book_pub_date=item['pubDate'],
             book_customer_review_rank=None,
             book_embedding= None,
             book_ranking= item['bestRank'],
         )
+        book_cover_img_url = item['cover']
+        if book_cover_img_url:
+            try:
+                buffer = BytesIO()
+                response = requests.get(book_cover_img_url, stream=True)
+                image = Image.open(response.raw)
+                image.save(buffer, format='png')
+                image_bytes = buffer.getvalue()
+                book.book_cover_img.save(f"{book.book_title[:10]}_cover.jpg", ContentFile(image_bytes))
+            except Exception as e:
+                print(f'도서 커버를 저장하는데 실패했습니다. - {e}')
         book.save()
 
 
@@ -100,25 +110,6 @@ def save_author(img_url, author_info, author_name):
         author_name=author_name,
     )
     # image
-    # if img_url:
-    #     try:
-    #         response = requests.get(img_url, stream=True)
-    #         response.raise_for_status()
-
-    #         image_bytes = BytesIO(response.content)
-
-    #         with Image.open(image_bytes) as img:
-    #             img.verify()
-    #             image_bytes.seek(0)
-
-    #             author.author_profile_img.save(f"{author_name}_profile.jpg", 
-    #                                            ContentFile(image_bytes))
-    #     except requests.exceptions.RequestException as e:
-    #         print(f"이미지 다운로드 실패: {str(e)}")
-    #     except Image.UnidentifiedImageError:
-    #         print("손상되거나 지원하지 않는 이미지 형식.")
-    #     except Exception as e:
-    #         print(f'에러 발생! : {str(e)}')
     if img_url:
         try:
             buffer = BytesIO()
