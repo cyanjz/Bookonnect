@@ -1,177 +1,2218 @@
 [
-  {
-    "model": "books.category",
-    "pk": 1,
-    "fields": { "category_name": "Fiction" }
-  },
-  {
-    "model": "books.category",
-    "pk": 2,
-    "fields": { "category_name": "Non-Fiction" }
-  },
-  {
-    "model": "books.category",
-    "pk": 3,
-    "fields": { "category_name": "Science" }
-  },
-
-  {
-    "model": "books.author",
-    "pk": 1,
-    "fields": {
-      "author_name": "Jane Austen",
-      "author_info": "British novelist known for romantic fiction.",
-      "author_profile_img": "austen.jpg",
-      "author_info_mp3": "austen.mp3"
-    }
-  },
-  {
-    "model": "books.author",
-    "pk": 2,
-    "fields": {
-      "author_name": "Isaac Newton",
-      "author_info": "Father of classical physics.",
-      "author_profile_img": "newton.jpg",
-      "author_info_mp3": "newton.mp3"
-    }
-  },
-  {
-    "model": "books.author",
-    "pk": 3,
-    "fields": {
-      "author_name": "Malcolm Gladwell",
-      "author_info": "Writer and journalist, author of 'Outliers'.",
-      "author_profile_img": "gladwell.jpg",
-      "author_info_mp3": "gladwell.mp3"
-    }
-  },
-
-  {
-    "model": "books.book",
-    "pk": 1,
-    "fields": {
-      "category": 1,
-      "author": 1,
-      "book_title": "Pride and Prejudice",
-      "book_description": "A classic romantic novel.",
-      "book_ISBN13": "9781111111111",
-      "book_cover_img": "pride.jpg",
-      "book_publisher": "Penguin",
-      "book_pub_date": "1813-01-28",
-      "book_customer_review_rank": 5
-    }
-  },
-  {
-    "model": "books.book",
-    "pk": 2,
-    "fields": {
-      "category": 3,
-      "author": 2,
-      "book_title": "Philosophiæ Naturalis Principia Mathematica",
-      "book_description": "A work in three books by Isaac Newton.",
-      "book_ISBN13": "9782222222222",
-      "book_cover_img": "principia.jpg",
-      "book_publisher": "Royal Society",
-      "book_pub_date": "1687-07-05",
-      "book_customer_review_rank": 5
-    }
-  },
-  {
-    "model": "books.book",
-    "pk": 3,
-    "fields": {
-      "category": 2,
-      "author": 3,
-      "book_title": "Outliers",
-      "book_description": "Explores the factors of high levels of success.",
-      "book_ISBN13": "9783333333333",
-      "book_cover_img": "outliers.jpg",
-      "book_publisher": "Little, Brown",
-      "book_pub_date": "2008-11-18",
-      "book_customer_review_rank": 4
-    }
-  },
-
-  {
-    "model": "books.thread",
-    "pk": 1,
-    "fields": {
-      "user": 1,
-      "book": 1,
-      "thread_title": "My Favorite Classic",
-      "thread_content": "Absolutely loved it!",
-      "thread_book_review_rank": 5,
-      "thread_cover_img": "thread1.jpg",
-      "thread_created_at": "2025-05-01T10:00:00Z",
-      "thread_updated_at": "2025-05-01T10:00:00Z",
-      "thread_like_users": [2, 3]
-    }
-  },
-  {
-    "model": "books.thread",
-    "pk": 2,
-    "fields": {
-      "user": 2,
-      "book": 2,
-      "thread_title": "Dense but Brilliant",
-      "thread_content": "Took me a while to read.",
-      "thread_book_review_rank": 4,
-      "thread_cover_img": "thread2.jpg",
-      "thread_created_at": "2025-05-02T11:00:00Z",
-      "thread_updated_at": "2025-05-02T11:00:00Z",
-      "thread_like_users": [1]
-    }
-  },
-  {
-    "model": "books.thread",
-    "pk": 3,
-    "fields": {
-      "user": 3,
-      "book": 3,
-      "thread_title": "Interesting Ideas",
-      "thread_content": "Makes you think differently.",
-      "thread_book_review_rank": 4,
-      "thread_cover_img": "thread3.jpg",
-      "thread_created_at": "2025-05-03T12:00:00Z",
-      "thread_updated_at": "2025-05-03T12:00:00Z",
-      "thread_like_users": [1, 2]
-    }
-  },
-
-  {
-    "model": "books.comment",
-    "pk": 1,
-    "fields": {
-      "user": 2,
-      "thread": 1,
-      "comment_content": "Totally agree!",
-      "comment_created_at": "2025-05-01T12:00:00Z",
-      "comment_updated_at": "2025-05-01T12:00:00Z",
-      "comment_like_users": [1]
-    }
-  },
-  {
-    "model": "books.comment",
-    "pk": 2,
-    "fields": {
-      "user": 1,
-      "thread": 2,
-      "comment_content": "It was tough but rewarding.",
-      "comment_created_at": "2025-05-02T13:00:00Z",
-      "comment_updated_at": "2025-05-02T13:00:00Z",
-      "comment_like_users": [3]
-    }
-  },
-  {
-    "model": "books.comment",
-    "pk": 3,
-    "fields": {
-      "user": 3,
-      "thread": 3,
-      "comment_content": "I love Gladwell's work.",
-      "comment_created_at": "2025-05-03T14:00:00Z",
-      "comment_updated_at": "2025-05-03T14:00:00Z",
-      "comment_like_users": [1, 2]
-    }
+{
+  "model": "books.category",
+  "pk": 1,
+  "fields": {
+    "category_name": "소설/시/희곡"
   }
+},
+{
+  "model": "books.category",
+  "pk": 2,
+  "fields": {
+    "category_name": "경제/경영"
+  }
+},
+{
+  "model": "books.category",
+  "pk": 3,
+  "fields": {
+    "category_name": "자기계발"
+  }
+},
+{
+  "model": "books.category",
+  "pk": 4,
+  "fields": {
+    "category_name": "인문/교양"
+  }
+},
+{
+  "model": "books.category",
+  "pk": 5,
+  "fields": {
+    "category_name": "취미/실용"
+  }
+},
+{
+  "model": "books.category",
+  "pk": 6,
+  "fields": {
+    "category_name": "어린이/청소년"
+  }
+},
+{
+  "model": "books.category",
+  "pk": 7,
+  "fields": {
+    "category_name": "과학"
+  }
+},
+{
+  "model": "books.book",
+  "pk": 1,
+  "fields": {
+    "category": 4,
+    "author": 1,
+    "book_title": "청춘의 독서 (특별증보판) - 세상을 바꾼 위험하고 위대한 생각들",
+    "book_description": "혼탁한 정국마다 명료한 통찰을 전하며 ‘신경안정제’ 역할을 해준 우리 시대의 지식인 유시민. 그의 대표작 중 하나로 2009년 처음 출간되어 오랜 시간 사랑받아온 『청춘의 독서』가 고급 양장 제본의 특별증보판으로 독자들과 새롭게 만난다.",
+    "book_ISBN13": "9788901294742",
+    "book_cover_img": "books/book_covers/청춘의_독서_특별_cover.jpg",
+    "book_publisher": "웅진지식하우스",
+    "book_pub_date": "2025-04-30",
+    "book_customer_review_rank": null,
+    "book_ranking": 1,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 2,
+  "fields": {
+    "category": 5,
+    "author": 2,
+    "book_title": "괴수 8호 15 (트리플 특장판) - 아크릴 일러스트 보드 + 아시로 미나 일러스트 카드 + 방위대 일러스트 카드",
+    "book_description": "어린 시절의 약속을 지켜, 아시로 미나의 옆에서 괴수 9호를 토벌하기 위해 움직이는 카프카. 격렬한 공방 중에 폭주 상태인 8호의 힘을 맞부딪쳐 9호의 실드를 깨고 핵을 꿰뚫자, 9호의 안에서 그 힘의 근원이 나타나는데…?!",
+    "book_ISBN13": "9791142801778",
+    "book_cover_img": "books/book_covers/괴수_8호_15__cover.jpg",
+    "book_publisher": "서울미디어코믹스(서울문화사)",
+    "book_pub_date": "2025-05-29",
+    "book_customer_review_rank": null,
+    "book_ranking": 2,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 3,
+  "fields": {
+    "category": 4,
+    "author": 3,
+    "book_title": "단 한 번의 삶",
+    "book_description": "김영하가 산문 『단 한 번의 삶』을 출간했다. 60만 명이 넘는 독자의 사랑을 받은 『여행의 이유』 이후 6년 만에 선보이는 산문집으로, 유료 이메일 구독 서비스 '영하의 날씨'에 2024년 연재되었던 글을 대폭 수정하고 다듬어 묶었다. '영하의 날씨'는 초기 구독자의 초대로만 가입이 가능한 서비스로 화제를 모으며 연재 당시 뜨거운 호응을 얻었다.",
+    "book_ISBN13": "9791191114768",
+    "book_cover_img": "books/book_covers/단_한_번의_삶_cover.jpg",
+    "book_publisher": "복복서가",
+    "book_pub_date": "2025-04-06",
+    "book_customer_review_rank": null,
+    "book_ranking": 3,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 4,
+  "fields": {
+    "category": 6,
+    "author": 4,
+    "book_title": "어린이는 멀리 간다",
+    "book_description": "오랜 시간 빛나는 지성과 따스한 진심으로 어린이와 문학을 이야기해 온 김지은 평론가가 첫 번째 에세이 『어린이는 멀리 간다』를 펴낸다. 이 책은 김지은 평론가가 2020년부터 2023년까지 4년간 경향신문에 연재한 칼럼을 비롯해 다양한 지면을 통해 발표한 산문을 엄선해 묶었다.",
+    "book_ISBN13": "9788936448943",
+    "book_cover_img": "books/book_covers/어린이는_멀리_간다_cover.jpg",
+    "book_publisher": "창비",
+    "book_pub_date": "2025-05-23",
+    "book_customer_review_rank": null,
+    "book_ranking": 4,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 5,
+  "fields": {
+    "category": 1,
+    "author": 5,
+    "book_title": "혼모노",
+    "book_description": "작품마다 치밀한 취재와 정교한 구성을 바탕으로 한 개성적인 캐릭터와 강렬하고도 서늘한 서사로 평단과 독자의 주목을 고루 받으며 새로운 세대의 리얼리즘을 열어가고 있다 평가받는 작가 성해나가 두번째 소설집 『혼모노』를 선보인다.",
+    "book_ISBN13": "9788936439743",
+    "book_cover_img": "books/book_covers/혼모노_cover.jpg",
+    "book_publisher": "창비",
+    "book_pub_date": "2025-03-28",
+    "book_customer_review_rank": null,
+    "book_ranking": 5,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 6,
+  "fields": {
+    "category": 4,
+    "author": 6,
+    "book_title": "빛과 실 - 2024 노벨문학상 수상 강연문 수록, 2024 노벨문학상 수상작가",
+    "book_description": "“역사적 트라우마를 정면으로 마주하고 인간 삶의 연약함을 드러내는 강렬하고 시적인 산문”이라는 선정 이유와 함께 2024년 노벨문학상을 수상한 작가 한강의 신작 『빛과 실』(2025)이 문학과지성사 산문 시리즈 &lt;문지 에크리&gt;의 아홉번째 책으로 출간되었다.",
+    "book_ISBN13": "9788932043562",
+    "book_cover_img": "books/book_covers/빛과_실_-_202_cover.jpg",
+    "book_publisher": "문학과지성사",
+    "book_pub_date": "2025-04-18",
+    "book_customer_review_rank": null,
+    "book_ranking": 6,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 7,
+  "fields": {
+    "category": 1,
+    "author": 6,
+    "book_title": "소년이 온다 - 2024 노벨문학상 수상작가",
+    "book_description": "섬세한 감수성과 치밀한 문장으로 인간 존재의 본질을 탐구해온 작가 한강의 여섯번째 장편소설. '상처의 구조에 대한 투시와 천착의 서사'를 통해 한강만이 풀어낼 수 있는 방식으로 1980년 5월을 새롭게 조명한다.",
+    "book_ISBN13": "9788936434120",
+    "book_cover_img": "books/book_covers/소년이_온다_-_2_cover.jpg",
+    "book_publisher": "창비",
+    "book_pub_date": "2014-05-19",
+    "book_customer_review_rank": null,
+    "book_ranking": 7,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 8,
+  "fields": {
+    "category": 4,
+    "author": 7,
+    "book_title": "퀴어 디플로머시 - 국제 외교와 성소수자 인권",
+    "book_description": "성소수자 인권은 국제사회의 외교 무대에서 중요한 의제로 부상하고 있다. 이러한 흐름을 심층적으로 분석한 책인 『퀴어 디플로머시』는 캐나다 외교관인 저자의 외교 업무 수행 경험을 비롯해, 29명의 외교관, 인권 전문가, 유엔 관계자들과의 인터뷰 내용을 담고 있다.",
+    "book_ISBN13": "9791192455686",
+    "book_cover_img": "books/book_covers/퀴어_디플로머시_-_cover.jpg",
+    "book_publisher": "한티재",
+    "book_pub_date": "2025-05-26",
+    "book_customer_review_rank": null,
+    "book_ranking": 8,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 9,
+  "fields": {
+    "category": 6,
+    "author": 8,
+    "book_title": "어쩌다 좋은 일이 생길지도",
+    "book_description": "‘볼로냐 라가치상 특별상’, ‘일본 그림책 서점 대상’, ‘뉴욕 타임즈 최우수 그림책상’을 수상하며 전 세계에서 사랑받는 그림책 작가 요시타케 신스케의 신작으로, 마음이 지치고 힘들 때 소소하고 엉뚱한 행동을 하는 것만으로 우리 삶에 좋은 일이 생길 거라고 속삭여 주는 다정한 이야기다.",
+    "book_ISBN13": "9791173321771",
+    "book_cover_img": "books/book_covers/어쩌다_좋은_일이__cover.jpg",
+    "book_publisher": "주니어김영사",
+    "book_pub_date": "2025-05-23",
+    "book_customer_review_rank": null,
+    "book_ranking": 9,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 10,
+  "fields": {
+    "category": 1,
+    "author": 9,
+    "book_title": "모순 - 개정판",
+    "book_description": "작가 양귀자가 1998년 펴낸 세 번째 장편소설로, 책이 나온 지 한 달 만에 무서운 속도로 베스트셀러 1위에 진입, 출판계를 놀라게 하고 그해 최고의 베스트셀러로 자리 잡으면서 ‘양귀자 소설의 힘’을 다시 한 번 유감없이 보여준 소설이다.",
+    "book_ISBN13": "9788998441012",
+    "book_cover_img": "books/book_covers/모순_-_개정판_cover.jpg",
+    "book_publisher": "쓰다",
+    "book_pub_date": "2013-04-01",
+    "book_customer_review_rank": null,
+    "book_ranking": 10,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 11,
+  "fields": {
+    "category": 4,
+    "author": 10,
+    "book_title": "결국 국민이 합니다 : 이재명의 인생과 정치철학",
+    "book_description": "2024년 12월 3일 ‘내란의 밤’부터 윤석열 대통령 탄핵소추안 가결, 2025년 4월 4일 헌재의 파면 선고까지 숨가빴던 순간들의 ‘막전막후’를 이재명의 시선으로 들여다본다.",
+    "book_ISBN13": "9788997780624",
+    "book_cover_img": "books/book_covers/결국_국민이_합니다_cover.jpg",
+    "book_publisher": "오마이북",
+    "book_pub_date": "2025-04-15",
+    "book_customer_review_rank": null,
+    "book_ranking": 11,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 12,
+  "fields": {
+    "category": 5,
+    "author": 11,
+    "book_title": "길고양이와 늑대 5 (더블특전판) - 네컷 사진 + 빅 폴라로이드",
+    "book_description": "",
+    "book_ISBN13": "9791141134655",
+    "book_cover_img": "books/book_covers/길고양이와_늑대_5_cover.jpg",
+    "book_publisher": "학산문화사(만화)",
+    "book_pub_date": "2025-05-22",
+    "book_customer_review_rank": null,
+    "book_ranking": 12,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 13,
+  "fields": {
+    "category": 4,
+    "author": 12,
+    "book_title": "위버멘쉬 - 누구의 시선도 아닌, 내 의지대로 살겠다는 선언",
+    "book_description": "니체가 주장한 ‘초인(&#220;bermensch)’의 철학을 현대적으로 풀어낸 책이다. 위버멘쉬란 기존의 도덕과 사회적 관습을 그대로 따르는 대신, 자신의 의지로 새로운 가치를 창조하며 스스로의 삶을 개척하는 존재를 의미한다.",
+    "book_ISBN13": "9791192372730",
+    "book_cover_img": "books/book_covers/위버멘쉬_-_누구의_cover.jpg",
+    "book_publisher": "RISE(떠오름)",
+    "book_pub_date": "2025-03-14",
+    "book_customer_review_rank": null,
+    "book_ranking": 13,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 14,
+  "fields": {
+    "category": 1,
+    "author": 13,
+    "book_title": "첫 여름, 완주",
+    "book_description": "세심한 온정의 세계를 빚어내는 우리 시대의 작가 김금희의 장편소설. 돈을 갚지 않고 사라진 선배 고수미의 고향 완주 마을을 찾은 성우 손열매는 그곳에서 합동 장의사 겸 매점을 운영하는 수미 어머니의 집에 머물게 된다. 오갈 데 없는 처지에 목소리에까지 이상이 생긴 열매는 수미 어머니의 매점을 지키며 각양각색의 동네 사람들을 만난다.",
+    "book_ISBN13": "9791197221989",
+    "book_cover_img": "books/book_covers/첫_여름_완주_cover.jpg",
+    "book_publisher": "무제",
+    "book_pub_date": "2025-05-08",
+    "book_customer_review_rank": null,
+    "book_ranking": 14,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 15,
+  "fields": {
+    "category": 4,
+    "author": 14,
+    "book_title": "이로운 보수 의로운 진보 - 최강 형제가 들려주는 최소한의 정치 교양",
+    "book_description": "보수 성향의 ‘봉수 씨’와 진보 성향의 ‘진봉 씨’라는 50대 동갑내기 가상 인물이 등장한다. 이들의 대비되는 삶의 모습과 가치관은 보수와 진보의 세계관, 정치적 입장 차이를 극명하게 드러내 준다.",
+    "book_ISBN13": "9791172132477",
+    "book_cover_img": "books/book_covers/이로운_보수_의로운_cover.jpg",
+    "book_publisher": "한겨레출판",
+    "book_pub_date": "2025-05-15",
+    "book_customer_review_rank": null,
+    "book_ranking": 15,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 16,
+  "fields": {
+    "category": 3,
+    "author": 15,
+    "book_title": "행동은 불안을 이긴다 - 의지박약과 만성적 미루기에서 벗어나는 아주 작은 행동 설계",
+    "book_description": "아주 작은 행동 설계에 필요한 딱 두 가지의 핵심을 전한다. 존재하지 않는 공포와 불안에 속아 현실에 안주하는 마음을 버릴 것. 그리고 몸이 먼저 움직이는 행동 자동화 패턴을 익힐 것. 책에서 제시하는 방법들을 하나씩 완수하고, 몸으로 익힐 때 비로소 의지박약과 만성적 미루기에서 벗어나 행동하는 인생으로 나아갈 수 있을 것이다.",
+    "book_ISBN13": "9791193904152",
+    "book_cover_img": "books/book_covers/행동은_불안을_이긴_cover.jpg",
+    "book_publisher": "서삼독",
+    "book_pub_date": "2025-04-16",
+    "book_customer_review_rank": null,
+    "book_ranking": 16,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 17,
+  "fields": {
+    "category": 5,
+    "author": 16,
+    "book_title": "언플러그드 보이 1 - 개정판",
+    "book_description": "힙합을 좋아하고 과감한 패션을 구사하는, 자유로운 소년 강현겸. 그는 소꿉친구인 채지율의 요구에 따라 매일 교문 앞에서 지율의 하교를 기다린다. 현겸이 학교에 나타나는 날이면 여학생들은 환호하며 그의 뒤꽁무니를 쫓곤 한다. 변성기도, 사춘기도 아직인 현겸을 보며 지율은 과연 현겸도 자신에게 이성으로서 호감을 느끼는지 불안해하는데...",
+    "book_ISBN13": "9791141608040",
+    "book_cover_img": "books/book_covers/언플러그드_보이_1_cover.jpg",
+    "book_publisher": "문학동네",
+    "book_pub_date": "2025-05-23",
+    "book_customer_review_rank": null,
+    "book_ranking": 17,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 18,
+  "fields": {
+    "category": 1,
+    "author": 17,
+    "book_title": "2025 제16회 젊은작가상 수상작품집",
+    "book_description": "한국문학의 새로운 미래를 함께하고자 2010년 제정된 젊은작가상이 올해로 어느덧 16회를 맞이했다. 데뷔 십 년 이내의 젊은 작가들이 한 해 동안 발표한 소설 가운데, 지금 여기에서 창발하는 문제의식을 가장 예리한 시선으로 포착해낸 작품에 주목하고자 한다.",
+    "book_ISBN13": "9791141602024",
+    "book_cover_img": "books/book_covers/2025_제16회__cover.jpg",
+    "book_publisher": "문학동네",
+    "book_pub_date": "2025-04-02",
+    "book_customer_review_rank": null,
+    "book_ranking": 18,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 19,
+  "fields": {
+    "category": 5,
+    "author": 16,
+    "book_title": "언플러그드 보이 2 - 개정판, 완결",
+    "book_description": "힙합을 좋아하고 과감한 패션을 구사하는, 자유로운 소년 강현겸. 그는 소꿉친구인 채지율의 요구에 따라 매일 교문 앞에서 지율의 하교를 기다린다. 현겸이 학교에 나타나는 날이면 여학생들은 환호하며 그의 뒤꽁무니를 쫓곤 한다. 변성기도, 사춘기도 아직인 현겸을 보며 지율은 과연 현겸도 자신에게 이성으로서 호감을 느끼는지 불안해하는데...",
+    "book_ISBN13": "9791141610289",
+    "book_cover_img": "books/book_covers/언플러그드_보이_2_cover.jpg",
+    "book_publisher": "문학동네",
+    "book_pub_date": "2025-05-23",
+    "book_customer_review_rank": null,
+    "book_ranking": 19,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 20,
+  "fields": {
+    "category": 4,
+    "author": 18,
+    "book_title": "초역 부처의 말 - 2500년 동안 사랑받은",
+    "book_description": "2500년 동안 사람들에게 사랑받으며 회자되어 온 부처의 말을 코이케 류노스케 스님이 현대어로 재해석해 책으로 출간했다. 간결하게 축약된 핵심만을 담은 부처의 메시지는, 마음이 약해지고 어려움에 처한 사람들에게 힘과 용기를 불어넣어 준다.",
+    "book_ISBN13": "9791193506516",
+    "book_cover_img": "books/book_covers/초역_부처의_말_-_cover.jpg",
+    "book_publisher": "포레스트북스",
+    "book_pub_date": "2024-05-30",
+    "book_customer_review_rank": null,
+    "book_ranking": 20,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 21,
+  "fields": {
+    "category": 5,
+    "author": 19,
+    "book_title": "최애의 아이 16 (특별판) - 초판한정 포토카드 + 호시노 아이 어나더 포토카드 + 루비&아쿠아 홀로그램 일러스트 카드 + 호시노 아이 홀로그램 아크릴보드, 완결",
+    "book_description": "",
+    "book_ISBN13": "9791142316869",
+    "book_cover_img": "books/book_covers/최애의_아이_16__cover.jpg",
+    "book_publisher": "대원씨아이(만화)",
+    "book_pub_date": "2025-05-30",
+    "book_customer_review_rank": null,
+    "book_ranking": 21,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 22,
+  "fields": {
+    "category": 6,
+    "author": 20,
+    "book_title": "흔한남매 19",
+    "book_description": "태권도를 배우는 으뜸이와 에이미, 흔식이와의 첫 만남, 씁아저씨 집에 놀러 간 흔한남매, 소파에서 오래 버티기 대결, 흔한 일상 속 공감 포인트, 공포의 학교 안내 방송, 엄마와 우리의 흔한 차이점 등 활기찬 흔한남매의 일상을 통해 스트레스를 날려 보자.",
+    "book_ISBN13": "9791173473968",
+    "book_cover_img": "books/book_covers/흔한남매_19_cover.jpg",
+    "book_publisher": "미래엔아이세움",
+    "book_pub_date": "2025-04-18",
+    "book_customer_review_rank": null,
+    "book_ranking": 22,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 23,
+  "fields": {
+    "category": 4,
+    "author": 21,
+    "book_title": "근대 괴물 사기극 (저자 친필 사인 수록) - 거짓말, 실수, 착각, 그리고 괴물 퇴치의 연대기",
+    "book_description": "2024년에 출간한 『미싱 스페이스 바닐라』에서 “과학적 엄밀성을 바탕으로 서로 다른 성격의 장르적 서사를 펼쳐내는 데 탁월하다”고 평가받은 이산화 작가가 이번에는 동서양 문헌 자료를 수년간 탐독하며 구상한 『근대 괴물 사기극』을 선보인다.",
+    "book_ISBN13": "9791191842876",
+    "book_cover_img": "books/book_covers/근대_괴물_사기극__cover.jpg",
+    "book_publisher": "갈매나무",
+    "book_pub_date": "2025-05-26",
+    "book_customer_review_rank": null,
+    "book_ranking": 23,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 24,
+  "fields": {
+    "category": 5,
+    "author": 22,
+    "book_title": "사카모토 홀리데이즈 1",
+    "book_description": "전직 전설의 킬러 사카모토가 운영하는 사카모토 상점. 여러 가게가 즐비해 있는 이코라이자카 상점가의 분위기는 뭔가 좀 흉흉한데…. 사랑하는 가족과, 최강의 휴일을 지키기 위해 사카모토는 이코라이자카 상점가를 동네 최고의 평화로운 상점가로 만들기 위한 동네 부흥 미션에 돌입한다.",
+    "book_ISBN13": "9791142316746",
+    "book_cover_img": "books/book_covers/사카모토_홀리데이즈_cover.jpg",
+    "book_publisher": "대원씨아이(만화)",
+    "book_pub_date": "2025-05-30",
+    "book_customer_review_rank": null,
+    "book_ranking": 24,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 25,
+  "fields": {
+    "category": 1,
+    "author": 23,
+    "book_title": "고래눈이 내리다",
+    "book_description": "한국 SF를 대표하는 작가 중 한 명이자 세계 독자에게 각별한 사랑을 받아온 소설가 김보영이 《얼마나 닮았는가》 이후로 5년 만에 신작 소설집을 펴냈다. 그간 초기작을 복원하고 기존 작품에 결말을 내는 등의 작업을 이어왔지만, 이 책은 대부분 2020년대에 발표한 작품들로 묶인 신작들이 담겨 독자들에게 반가움을 안긴다.",
+    "book_ISBN13": "9791168342880",
+    "book_cover_img": "books/book_covers/고래눈이_내리다_cover.jpg",
+    "book_publisher": "래빗홀",
+    "book_pub_date": "2025-05-19",
+    "book_customer_review_rank": null,
+    "book_ranking": 25,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 26,
+  "fields": {
+    "category": 4,
+    "author": 24,
+    "book_title": "예술이라는 일 - 현대예술을 이끈 48인의 창작 노트",
+    "book_description": "생각은 어떻게 작품이 되는가? 무엇을 더하고 무엇을 덜어낼 것인가? 창작의 시작과 끝은 어디인가? 길을 잃을 땐 무엇을 해야 하는가? 창작자의 영원한 질문에 답하기 위해 40년 경력의 세계적인 저널리스트이자 화가인 애덤 모스가 현대예술의 최전선에 자리한 48명의 예술가와 전방위적인 대화를 나눈다.",
+    "book_ISBN13": "9791167742025",
+    "book_cover_img": "books/book_covers/예술이라는_일_-__cover.jpg",
+    "book_publisher": "어크로스",
+    "book_pub_date": "2025-05-30",
+    "book_customer_review_rank": null,
+    "book_ranking": 26,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 27,
+  "fields": {
+    "category": 5,
+    "author": 25,
+    "book_title": "카구라바치 5 (더블특전판) - 일러스트 시네마 티켓 + 일러스트 PP 스탠드",
+    "book_description": "'쿠레구모'의 헌신 덕에 '엔텐'을 되찾은 치히로. '광'속에서, 공간을 자유자재로 다루는 쿄라의 맹공을 피해 하쿠리와 힘을 합쳐 갇혀있는 사람들을 구하고자 한다. 격투 끝에 벼랑까지 몰린 쿄라가 손을 뻗은 곳은...?!",
+    "book_ISBN13": "9791142316777",
+    "book_cover_img": "books/book_covers/카구라바치_5_더_cover.jpg",
+    "book_publisher": "대원씨아이(만화)",
+    "book_pub_date": "2025-05-28",
+    "book_customer_review_rank": null,
+    "book_ranking": 27,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 28,
+  "fields": {
+    "category": 2,
+    "author": 26,
+    "book_title": "엔비디아 젠슨 황, 생각하는 기계 - 전 세계 최초 공식 자서전",
+    "book_description": "현대 AI 발전의 역사를 써 내려간 엔비디아와 젠슨 황의 모든 인사이트를 담은 책이다. &lt;뉴요커&gt; 기자인 저자는 젠슨 황의 요청으로 이 책을 집필하기 시작했고, 3년간 젠슨 황을 밀착 취재하고, 엔비디아의 핵심 관계자 300여 명을 인터뷰해 엔비디아의 심장인 젠슨 황의 비전, 리더십, 경영 철학은 물론 인간적인 면모까지 속속들이 보여준다.",
+    "book_ISBN13": "9788925573762",
+    "book_cover_img": "books/book_covers/엔비디아_젠슨_황_cover.jpg",
+    "book_publisher": "알에이치코리아(RHK)",
+    "book_pub_date": "2025-05-25",
+    "book_customer_review_rank": null,
+    "book_ranking": 28,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 29,
+  "fields": {
+    "category": 5,
+    "author": 11,
+    "book_title": "봄의 폭풍과 몬스터 6",
+    "book_description": "",
+    "book_ISBN13": "9791141157944",
+    "book_cover_img": "books/book_covers/봄의_폭풍과_몬스터_cover.jpg",
+    "book_publisher": "학산문화사(만화)",
+    "book_pub_date": "2025-05-22",
+    "book_customer_review_rank": null,
+    "book_ranking": 29,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 30,
+  "fields": {
+    "category": 5,
+    "author": 19,
+    "book_title": "최애의 아이 16 - 완결",
+    "book_description": "",
+    "book_ISBN13": "9791142316852",
+    "book_cover_img": "books/book_covers/최애의_아이_16__cover_gmhy8Ow.jpg",
+    "book_publisher": "대원씨아이(만화)",
+    "book_pub_date": "2025-05-30",
+    "book_customer_review_rank": null,
+    "book_ranking": 30,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 31,
+  "fields": {
+    "category": 1,
+    "author": 27,
+    "book_title": "바움가트너",
+    "book_description": "",
+    "book_ISBN13": "9788932925042",
+    "book_cover_img": "books/book_covers/바움가트너_cover.jpg",
+    "book_publisher": "열린책들",
+    "book_pub_date": "2025-04-30",
+    "book_customer_review_rank": null,
+    "book_ranking": 31,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 32,
+  "fields": {
+    "category": 4,
+    "author": 28,
+    "book_title": "책문, 이 시대가 묻는다",
+    "book_description": "조선시대 고급공무원 선발 시험인 대과의 마지막 단계에서 출제한 시험과 답안의 한 유형인 책문 가운데에서 오늘날 사람들이 읽어도 의미가 있을 글들을 가려 뽑아서 엮은 책이다. 책문은 시대의 물음이다. 시대가 출제한 시험이다.",
+    "book_ISBN13": "9791195124480",
+    "book_cover_img": "books/book_covers/책문_이_시대가__cover.jpg",
+    "book_publisher": "현자의마을",
+    "book_pub_date": "2015-06-15",
+    "book_customer_review_rank": null,
+    "book_ranking": 32,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 33,
+  "fields": {
+    "category": 1,
+    "author": 29,
+    "book_title": "내게 남은 스물다섯 번의 계절",
+    "book_description": "평범한 비즈니스맨이자 두 아이의 아빠 ‘나’가 혼자 시골 별장에 내려갔다가 괴짜 농부 카를을 만나면서 펼쳐지는 아주 특별한 이틀을 담은 소설이다. 독일에서 출간되자마자 4주간 품절 사태를 일으키며 20만 부가 판매되었다.",
+    "book_ISBN13": "9791193904213",
+    "book_cover_img": "books/book_covers/내게_남은_스물다섯_cover.jpg",
+    "book_publisher": "서삼독",
+    "book_pub_date": "2025-05-16",
+    "book_customer_review_rank": null,
+    "book_ranking": 33,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 34,
+  "fields": {
+    "category": 4,
+    "author": 30,
+    "book_title": "기울어진 평등 - 부와 권력은 왜 불평등을 허락하는가",
+    "book_description": "2024년 5월, 세계적인 두 사상가 토마 피케티와 마이클 샌델이 파리경제대학에서 만났다. 두 사람은 불평등의 세 가지 측면, 즉 경제적 불평등, 정치적 불평등, 사회적 불평등을 다각도로 조명하면서 지금 우리를 둘러싼 세계화와 능력주의, 불평등한 기본재 접근권, 기울어진 정치 참여, 사라진 노동의 존엄성 등 다양한 문제를 심도 있게 파헤친다.",
+    "book_ISBN13": "9791173475535",
+    "book_cover_img": "books/book_covers/기울어진_평등_-__cover.jpg",
+    "book_publisher": "와이즈베리",
+    "book_pub_date": "2025-05-02",
+    "book_customer_review_rank": null,
+    "book_ranking": 34,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 35,
+  "fields": {
+    "category": 3,
+    "author": 31,
+    "book_title": "듀얼 브레인 - AI 시대의 실용적 생존 가이드",
+    "book_description": "AI 시대를 살아가기 위해 꼭 읽어야 할 필독서다. 저자 이선 몰릭은 타임에서 선정한 ‘인공지능 분야에서 가장 영향력 있는 인물’ 중 한 명이다. 여러 AI 기업에 자문을 제공하고, 와튼 스쿨에서 교육에 AI 활용을 접목하는 등 다양한 영역에서 영향력을 발휘하고 있다. 그런 저자가 생성형 AI를 둘러싼 모든 것에 관한 최고의 책을 집필했다.",
+    "book_ISBN13": "9791194368175",
+    "book_cover_img": "books/book_covers/듀얼_브레인_-_A_cover.jpg",
+    "book_publisher": "상상스퀘어",
+    "book_pub_date": "2025-03-19",
+    "book_customer_review_rank": null,
+    "book_ranking": 35,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 36,
+  "fields": {
+    "category": 1,
+    "author": 32,
+    "book_title": "스토너",
+    "book_description": "내셔널 북 어워드 수상작가 존 윌리엄스의 장편소설. 2013년 영국 최대의 체인 서점인 '워터스톤' 올해의 책으로 선정된 도서이다. 1965년 미국에서 발표된 후, 오랜 시간 동안 독자들에게 잊힌 &lt;스토너&gt;는 유럽 출판계와 평론가, 독자들의 열렬한 반응을 이끌어내며 베스트셀러가 되었다.",
+    "book_ISBN13": "9788925554990",
+    "book_cover_img": "books/book_covers/스토너_cover.jpg",
+    "book_publisher": "알에이치코리아(RHK)",
+    "book_pub_date": "2015-01-02",
+    "book_customer_review_rank": null,
+    "book_ranking": 36,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 37,
+  "fields": {
+    "category": 1,
+    "author": 6,
+    "book_title": "채식주의자 (리마스터판) - 2024 노벨문학상 수상작가",
+    "book_description": "2016년 인터내셔널 부커상을 수상하며 한국문학의 입지를 한단계 확장시킨 한강의 장편소설. 상처받은 영혼의 고통과 식물적 상상력의 강렬한 결합을 정교한 구성과 흡인력 있는 문체로 보여주며 섬뜩한 아름다움의 미학을 한강만의 방식으로 완성한 역작이다.",
+    "book_ISBN13": "9788936434595",
+    "book_cover_img": "books/book_covers/채식주의자_리마스_cover.jpg",
+    "book_publisher": "창비",
+    "book_pub_date": "2022-03-28",
+    "book_customer_review_rank": null,
+    "book_ranking": 37,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 38,
+  "fields": {
+    "category": 1,
+    "author": 33,
+    "book_title": "급류",
+    "book_description": "2020년 《한경신춘문예》에 장편소설 &lt;GV 빌런 고태경&gt;이 당선되어 작품 활동을 시작한 소설가 정대건의 두 번째 장편소설 &lt;급류&gt;가 오늘의 젊은 작가 시리즈 40번으로 출간되었다. &lt;급류&gt;는 저수지와 계곡이 유명한 지방도시 ‘진평’을 배경으로, 열일곱 살 동갑내기인 ‘도담’과 ‘해솔’의 만남과 사랑을 그린 소설이다.",
+    "book_ISBN13": "9788937473401",
+    "book_cover_img": "books/book_covers/급류_cover.jpg",
+    "book_publisher": "민음사",
+    "book_pub_date": "2022-12-22",
+    "book_customer_review_rank": null,
+    "book_ranking": 38,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 39,
+  "fields": {
+    "category": 1,
+    "author": 6,
+    "book_title": "작별하지 않는다 - 2024 노벨문학상 수상작가, 한강 장편소설",
+    "book_description": "2016년 &lt;채식주의자&gt;로 인터내셔널 부커상을 수상하고 2018년 &lt;흰&gt;으로 같은 상 최종 후보에 오른 한강 작가의 5년 만의 장편소설. 2019년 겨울부터 이듬해 봄까지 계간 &lt;문학동네&gt;에 전반부를 연재하며 큰 관심을 모은 작품이다.",
+    "book_ISBN13": "9788954682152",
+    "book_cover_img": "books/book_covers/작별하지_않는다_-_cover.jpg",
+    "book_publisher": "문학동네",
+    "book_pub_date": "2021-09-09",
+    "book_customer_review_rank": null,
+    "book_ranking": 39,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 40,
+  "fields": {
+    "category": 4,
+    "author": 34,
+    "book_title": "경험의 멸종 - 기술이 경험을 대체하는 시대, 인간은 계속 인간일 수 있을까",
+    "book_description": "문화 비평가이자 역사학자인 크리스틴 로젠은 《경험의 멸종》에서 경험이 소멸하는 21세기적 현상을 탐구하고 그 소멸이 갖는 의미를 철학적으로 분석한다. 대중문화, 과학, 정치, 법률 등 수많은 사례를 탐사하는 로젠의 작업은 인간의 조건이 되었던 경험들이 사라져가는 지금, 우리에게 이 흐름을 전복할 지적 근거를 제공한다.",
+    "book_ISBN13": "9791167742063",
+    "book_cover_img": "books/book_covers/경험의_멸종_-_기_cover.jpg",
+    "book_publisher": "어크로스",
+    "book_pub_date": "2025-05-20",
+    "book_customer_review_rank": null,
+    "book_ranking": 40,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 41,
+  "fields": {
+    "category": 3,
+    "author": 35,
+    "book_title": "어른의 품격을 채우는 100일 필사 노트",
+    "book_description": "“마흔 이후 삶의 품격은 인생을 살아가는 태도에서 나온다” 120만 독자의 멘토 김종원 작가가 전하는 삶을 관통하는 조언과 위로의 문장들을 담은 책이다.",
+    "book_ISBN13": "9791193842287",
+    "book_cover_img": "books/book_covers/어른의_품격을_채우_cover.jpg",
+    "book_publisher": "청림Life",
+    "book_pub_date": "2025-03-05",
+    "book_customer_review_rank": null,
+    "book_ranking": 41,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 42,
+  "fields": {
+    "category": 1,
+    "author": 36,
+    "book_title": "창백한 지구를 위한 시",
+    "book_description": "이 시대의 시인들이 국내에서 처음으로 지구를 살리고 싶어하는 간절한 염원을 담은 신작시와 산문이 실려있다. 스물두 명의 시인이 전하는 시와 산문은 단순한 경고가 아니다. 그것은 우리가 지금 무엇을 해야 할지, 무엇을 포기해야 할지 묻는 강렬한 질문이다.",
+    "book_ISBN13": "9791162851715",
+    "book_cover_img": "books/book_covers/창백한_지구를_위한_cover.jpg",
+    "book_publisher": "마음의숲",
+    "book_pub_date": "2025-06-05",
+    "book_customer_review_rank": null,
+    "book_ranking": 42,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 43,
+  "fields": {
+    "category": 4,
+    "author": 37,
+    "book_title": "내 꿈에 가끔만 놀러와",
+    "book_description": "첫 시집 『샤워젤과 소다수』 출간 이후 뜨겁게 주목받으며 청년 세대를 대변하는 작가로 자리매김한 고선경의 첫 산문집 『내 꿈에 가끔만 놀러와』가 출간되었다. 시인이 수년간 블로그에 연재해온 일기와 때때로 기록한 메모에 새로 쓴 원고들을 더해 엮은 이 책에는 이십대 청년으로서 그가 줄곧 그려온 알록달록한 마음의 무늬들이 담겼다.",
+    "book_ISBN13": "9791141602055",
+    "book_cover_img": "books/book_covers/내_꿈에_가끔만_놀_cover.jpg",
+    "book_publisher": "문학동네",
+    "book_pub_date": "2025-05-14",
+    "book_customer_review_rank": null,
+    "book_ranking": 43,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 44,
+  "fields": {
+    "category": 3,
+    "author": 38,
+    "book_title": "ETS 토익 정기시험 기출문제집 1000 Vol. 4 Reading (리딩) - 토익 기출문제 독점출간/ ALL NEW 최신기출 10회 수록/ 문제집+해설집+무료 동영상 강의+기출어휘 단어장(PDF)+APP 모바일 학습",
+    "book_description": "정기시험 최신 기출문제 10세트가 수록되어 있다. 시험에 나온 최신 기출문제로 실전 감각을 키워 시험에 확실하게 대비할 수 있다. 교재 내 QR코드는 해당 회차의 무료 동영상 강의로 연결된다. 오답률 높은 고난도 문항을 친절한 해설 강의와 함께 수록하였다.",
+    "book_ISBN13": "9788917239508",
+    "book_cover_img": "books/book_covers/ETS_토익_정기시_cover.jpg",
+    "book_publisher": "(주)YBM(와이비엠)",
+    "book_pub_date": "2023-12-18",
+    "book_customer_review_rank": null,
+    "book_ranking": 44,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 45,
+  "fields": {
+    "category": 5,
+    "author": 39,
+    "book_title": "루리 드래곤 3",
+    "book_description": "운동회 실행위원이 된 루리와 마에다. 처음에는 서로 마음이 맞지 않았지만, 서서히 벽이 허물어져 가다 결국 ‘위원장’까지 맡게 되는데?! 익숙하지 않은 환경, 다시 주목받는 나날――. 그러던 중, 루리의 몸에 이변이 발생한다?!",
+    "book_ISBN13": "9791142802775",
+    "book_cover_img": "books/book_covers/루리_드래곤_3_cover.jpg",
+    "book_publisher": "서울미디어코믹스(서울문화사)",
+    "book_pub_date": "2025-05-21",
+    "book_customer_review_rank": null,
+    "book_ranking": 45,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 46,
+  "fields": {
+    "category": 1,
+    "author": 40,
+    "book_title": "살아 있는 것은 아름답다",
+    "book_description": "2024년 5월 22일, 한국문학사에 위대한 발자취를 남긴 ‘작은 거인’ 고(故) 신경림 시인이 타계했다. 1956년 등단 이후 70년 가까운 세월 동안 세상에서 소외된 이들의 아픔을 어루만지며 그들과 함께 걸어온 시인은 생의 마지막 순간까지 펜을 놓지 않았다. 시인의 1주기를 맞아 출간되는 이번 시집은 생전 마지막으로 펴낸 『사진관집 이층』 이후 11년 만의 신작이다.",
+    "book_ISBN13": "9788936425180",
+    "book_cover_img": "books/book_covers/살아_있는_것은_아_cover.jpg",
+    "book_publisher": "창비",
+    "book_pub_date": "2025-05-16",
+    "book_customer_review_rank": null,
+    "book_ranking": 46,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 47,
+  "fields": {
+    "category": 1,
+    "author": 41,
+    "book_title": "2025 선재국어 지방직 대비 최우선 실전 봉투 모의고사",
+    "book_description": "인사 혁신처 예시 문제의 철저한 분석을 바탕으로 하여, 변화하는 2025 공무원 시험 출제 기조를 완벽히 반영한 신유형 문제와, 실전과 똑같은 형태의 시험지+ OMR카드로 변화하는 2025 공무원 시험에 대비한 실전 훈련과 풀이 시간 단축에 최적화된 실전 모의고사다.",
+    "book_ISBN13": "9791190302357",
+    "book_cover_img": "books/book_covers/2025_선재국어__cover.jpg",
+    "book_publisher": "수비니겨",
+    "book_pub_date": "2025-04-14",
+    "book_customer_review_rank": null,
+    "book_ranking": 47,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 48,
+  "fields": {
+    "category": 5,
+    "author": 42,
+    "book_title": "찍히지 않습니다 1 - S코믹스",
+    "book_description": "유령이나 귀신 등, 초자연적인 현상을 끌어들이는 초영매 체질 때문에 늘 외롭게 지내던 소년, ‘쿠로키리 마코토’는 새로 전학 간 학교에서 유령을 보고 싶어도 보지 못하는 영감0 소녀 ‘타치바나 미치루’에게 오컬트부 가입을 권유받는다. 처음엔 거절한 마코토지만 영감이 없어 마코토가 끌어들인 유령의 영향을 받지 않고 적극적으로 다가오는 타치바나에게 처음으로 우정을 느끼는데….",
+    "book_ISBN13": "9791138486392",
+    "book_cover_img": "books/book_covers/찍히지_않습니다_1_cover.jpg",
+    "book_publisher": "㈜소미미디어",
+    "book_pub_date": "2025-05-15",
+    "book_customer_review_rank": null,
+    "book_ranking": 48,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 49,
+  "fields": {
+    "category": 5,
+    "author": 43,
+    "book_title": "단다단 17",
+    "book_description": "",
+    "book_ISBN13": "9791142316807",
+    "book_cover_img": "books/book_covers/단다단_17_cover.jpg",
+    "book_publisher": "대원씨아이(만화)",
+    "book_pub_date": "2025-05-19",
+    "book_customer_review_rank": null,
+    "book_ranking": 49,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.book",
+  "pk": 50,
+  "fields": {
+    "category": 5,
+    "author": 22,
+    "book_title": "사카모토 홀리데이즈 1 (특별판) - 일러스트 포스트 카드(초판 부록) + 홀로그램 아크릴 영수증 + 일러스트 캔뱃지 3종 + 홀로그램 카드 4종 + 나구모의 순간포착 스티커 2종",
+    "book_description": "",
+    "book_ISBN13": "9791142316753",
+    "book_cover_img": "books/book_covers/사카모토_홀리데이즈_cover_JrRHmzQ.jpg",
+    "book_publisher": "대원씨아이(만화)",
+    "book_pub_date": "2025-05-30",
+    "book_customer_review_rank": null,
+    "book_ranking": 50,
+    "book_embedding": null
+  }
+},
+{
+  "model": "books.author",
+  "pk": 1,
+  "fields": {
+    "author_name": "유시민",
+    "author_info": "유시민(柳時敏, 1959년 7월 28일 ~ )은 대한민국의 작가, 언론인으로서 정치인으로도 활동했으며, 제44대 보건복지부 장관 및 제16·17대 국회의원을 지냈다. 그는 서울대학교 경제학 학사와 마인츠대학교 대학원 경제학 석사를 취득하였고, 민주화 운동에 참여한 경력을 가지고 있다.",
+    "author_masterpeice": "('아침으로 가는 길, 97 대선 게임의 법칙, 대한민국 개조론, 부자의 경제학 빈민의 경제학, 어떻게 살 것인가',)",
+    "author_profile_img": "books/author_images/유시민_profile.jpg",
+    "author_info_mp3": "books/audios/유시민_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 2,
+  "fields": {
+    "author_name": "마츠모토 나오야",
+    "author_info": "마츠모토 나오야(松本 直也, まつもと なおや)는 일본의 만화가로, 효고현 출신이다. 2005년부터 활동해 온 그는 소년 만화를 주로 그리며, '괴수 8호'와 '고양이 낭만사'로 알려져 있다.",
+    "author_masterpeice": "('괴수 8호, 고양이 낭만사',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/마츠모토_나오야_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 3,
+  "fields": {
+    "author_name": "김영하",
+    "author_info": "김영하(1968년 ~ )는 대한민국의 소설가이다.",
+    "author_masterpeice": "('부잣집 아들, 블랙독',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/김영하_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 4,
+  "fields": {
+    "author_name": "김지은",
+    "author_info": "김지은은 대한민국의 드라마 작가로, 2004년부터 활동을 시작하였으며, 다양한 드라마 작품을 집필하였다.",
+    "author_masterpeice": "('사랑, 비탈길에 서다, 나는 살고싶다, 결혼합시다, 순결한 당신, 청담동 스캔들, 전생에 웬수들, 거짓말의 거짓말, 원더풀 월드',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/김지은_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 5,
+  "fields": {
+    "author_name": "성해나",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 6,
+  "fields": {
+    "author_name": "한강",
+    "author_info": "한강(韓江, 1970년 11월 27일 ~ )은 대한민국의 작가로, 2024년 노벨 문학상을 수상한 최초의 한국인 작가이다. 아버지는 소설가 한승원이며, 1993년 시인으로 데뷔하고 1994년 소설가로 등단하였다.",
+    "author_masterpeice": "('채식주의자, 소년이 온다, 희랍어 시간',)",
+    "author_profile_img": "books/author_images/한강_profile.jpg",
+    "author_info_mp3": "books/audios/한강_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 7,
+  "fields": {
+    "author_name": "더글러스 재노프",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 8,
+  "fields": {
+    "author_name": "요시타케 신스케",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 9,
+  "fields": {
+    "author_name": "양귀자",
+    "author_info": "양귀자(1955년 7월 17일 ~ )는 대한민국의 소설가로, 전라북도 전주에서 태어나 원광대학교 국어국문학과를 졸업한 후 1978년 문학사상 신인상으로 등단하였다. 그는 대중적이고 이해하기 쉬운 문체로 1990년대에 유명해졌으며, 그의 작품 중 일부는 영화화되기도 했다.",
+    "author_masterpeice": "('귀머거리새, 원미동 사람들, 지구를 색칠하는 페인트공, 희망, 나는 소망한다 내게 금지된 것을, 슬픔도 힘이 된다, 길 모퉁이에서 만난 사람, 천년의 사랑, 엄마노릇 마흔일곱 가지, 비 오는 날이면 가리봉동에 가야 한다, 모순',)",
+    "author_profile_img": "books/author_images/양귀자_profile.jpg",
+    "author_info_mp3": "books/audios/양귀자_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 10,
+  "fields": {
+    "author_name": "이재명",
+    "author_info": "이재명(이재명, 1964년 12월 22일 ~ )은 대한민국의 변호사 출신 정치인으로, 제19·20대 경기도 성남시장과 제35대 경기도지사, 제6·7대 더불어민주당 당대표를 역임하였다. 현재 제21·22대 국회의원이자 더불어민주당 제21대 대통령 선거 후보이다.",
+    "author_masterpeice": "('고난을 통해 희망을 만들다, 오직 민주주의, 꼬리를 잡고 몸통을 흔들다, 이재명, 대한민국 혁명하라, 이재명은 합니다',)",
+    "author_profile_img": "books/author_images/이재명_profile.jpg",
+    "author_info_mp3": "books/audios/이재명_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 11,
+  "fields": {
+    "author_name": "미츠바치 미유키",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 12,
+  "fields": {
+    "author_name": "프리드리히 니체",
+    "author_info": "프리드리히 빌헬름 니체(독일어: Friedrich Wilhelm Nietzsche, 1844년 10월 15일 ~ 1900년 8월 25일)는 독일의 철학자이자 작가로서, 서구 전통을 깨고 새로운 가치를 세우고자 했던 '망치를 든 철학자'로 알려져 있다.",
+    "author_masterpeice": "('비극의 탄생, 차라투스트라는 이렇게 말했다, 인간적인, 너무나 인간적인, 아침놀, 안티크리스트',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/프리드리히_니체_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 13,
+  "fields": {
+    "author_name": "김금희",
+    "author_info": "김금희(1979년 10월 10일 ~ )은 대한민국의 소설가로, 2009년 한국일보 신춘문예에 당선되어 작품활동을 시작했다. 주로 인간 관계와 감정을 다룬 소설을 쓰며, 여러 문학상을 수상했다.",
+    "author_masterpeice": "('너무 한낮의 연애, 경애의 마음',)",
+    "author_profile_img": "books/author_images/김금희_profile.jpg",
+    "author_info_mp3": "books/audios/김금희_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 14,
+  "fields": {
+    "author_name": "최강욱, 최강혁",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 15,
+  "fields": {
+    "author_name": "롭 다이얼",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 16,
+  "fields": {
+    "author_name": "천계영",
+    "author_info": "천계영(1970년 12월 10일 ~ )은 대한민국의 만화가로, 이화여자대학교 법학과를 졸업하고 1996년 데뷔하였다.",
+    "author_masterpeice": "('언플러그드 보이, 오디션, 예쁜남자, 드레스코드, 좋아하면 울리는',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/천계영_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 17,
+  "fields": {
+    "author_name": "백온유, 강보라, 서장원, 성해나, 성혜령, 이희주, 현호정",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 18,
+  "fields": {
+    "author_name": "코이케 류노스케",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 19,
+  "fields": {
+    "author_name": "아카사카 아카",
+    "author_info": "아카사카 아카(赤坂 アカ, 1988년 8월 29일 ~ )는 일본의 만화가, 일러스트레이터로, 니가타현 사도시 출신이다. 다양한 만화 작품과 캐릭터 디자인에서 활발히 활동하고 있다.",
+    "author_masterpeice": "('ib 인스턴트 불릿, 카구야 님은 고백받고 싶어 ~천재들의 연애 두뇌전~, 【최애의 아이】, IA -ARIA ON THE PLANETES-',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/아카사카_아카_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 20,
+  "fields": {
+    "author_name": "흔한남매",
+    "author_info": "흔한남매는 SBS의 개그 프로그램 '웃찾사' 출신의 공채 개그맨 한으뜸과 개그우먼 장다운이 운영하는 코믹 유튜브 채널로, 2017년 11월 27일에 개설되었고 현재 약 279만 명의 구독자를 보유하고 있다.",
+    "author_masterpeice": "('흔한남매, 흔한일상, 흔한게임, 흔한스꿀, 흔한 호기심',)",
+    "author_profile_img": "books/author_images/흔한남매_profile.jpg",
+    "author_info_mp3": "books/audios/흔한남매_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 21,
+  "fields": {
+    "author_name": "이산화",
+    "author_info": "이산화(離散化, discretization)는 응용수학에서, 연속적인 함수, 모델, 변수, 방정식을 이산적인 구성요소로 변환하는 프로세스(process)이다.",
+    "author_masterpeice": "('',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/이산화_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 22,
+  "fields": {
+    "author_name": "오오카와 테츠",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 23,
+  "fields": {
+    "author_name": "김보영",
+    "author_info": "김보영(1975년 ~ )은 대한민국의 과학 소설 작가이다.",
+    "author_masterpeice": "('대표 작품 없음',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/김보영_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 24,
+  "fields": {
+    "author_name": "애덤 모스",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 25,
+  "fields": {
+    "author_name": "호카조노 타케루",
+    "author_info": "호카조노 타케루(일본어: 外薗 健, 2000년 9월 6일 ~ )는 일본의 만화가로, 대표작은 《카구라바치》가 있다. 2020년부터 활동을 시작하였으며, 제 100회 데즈카상에서 준입선하였다.",
+    "author_masterpeice": "('카구라바치',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/호카조노_타케루_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 26,
+  "fields": {
+    "author_name": "스티븐 위트",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 27,
+  "fields": {
+    "author_name": "폴 오스터",
+    "author_info": "폴 벤저민 오스터(영어: Paul Benjamin Auster, 1947년 2월 3일 ~ 2024년 4월 30일)는 미국의 소설가이다.",
+    "author_masterpeice": "('거대한 괴물, 뉴욕 3부작, 달의 궁전, 우연의 음악, 공중 곡예사',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/폴_오스터_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 28,
+  "fields": {
+    "author_name": "김태완",
+    "author_info": "김태완(1969 ~ 2023)은 대한민국의 노동운동가이며, 전국택배노동조합 수석부위원장이었다. 다른 김태완들은 각각 전 축구 선수, KBO 리그 선수 및 감독, 영화 배우, 프로게이머 등으로 활동하였다.",
+    "author_masterpeice": "('전국택배노동조합 수석부위원장, 축구 선수, KBO 리그 삼성 라이온즈 내야수, KBO 리그 넥센 히어로즈 외야수, 내야수, 지명타자, 영화 배우, 리그 오브 레전드 프로게이머',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/김태완_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 29,
+  "fields": {
+    "author_name": "슈테판 셰퍼",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 30,
+  "fields": {
+    "author_name": "토마 피케티, 마이클 샌델",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 31,
+  "fields": {
+    "author_name": "이선 몰릭",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 32,
+  "fields": {
+    "author_name": "존 윌리엄스",
+    "author_info": "존 윌리엄스(1902~1983)는 영국의 배우이다.",
+    "author_masterpeice": "('',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/존_윌리엄스_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 33,
+  "fields": {
+    "author_name": "정대건",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 34,
+  "fields": {
+    "author_name": "크리스틴 로젠",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 35,
+  "fields": {
+    "author_name": "김종원",
+    "author_info": "김종원(金宗元, 1922 ~ 1964)은 일제 강점기와 대한민국의 군인, 경찰이며, 다른 여러 인물로는 가수 배일호의 본명인 김종원(1957 ~ )과 유도 선수 김종원(1975 ~ ), 희극 배우 김종원(1985 ~ ) 등이 있다.",
+    "author_masterpeice": "('동명이인에 대한 정보는 여러 분야에 걸쳐 있지만, 특정 작품 목록은 없음',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/김종원_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 36,
+  "fields": {
+    "author_name": "이문재, 전동균, 주창윤, 정끝별, 나희덕, 문태준, 장철문, 손택수, 이재훈, 신혜정, 이혜미, 신미나, 김연덕, 정다연, 김창균, 김남극, 우은주, 권현형, 이동욱, 조온윤, 길상호, 권대웅",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 37,
+  "fields": {
+    "author_name": "고선경",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 38,
+  "fields": {
+    "author_name": "ETS (엮은이)",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 39,
+  "fields": {
+    "author_name": "신도 마사오키",
+    "author_info": "신도 마사오키(일본어: 眞藤 雅興, 1998년 8월 3일 ~ )는 일본의 만화가로, 가고시마현 게도인정 출신이며, 대표작으로는 '루리 드래곤'이 있다.",
+    "author_masterpeice": "('루리 드래곤, Twin Peach, SKY CROW, 제냉사 렌타로의 약속, COUNT OVER',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/신도_마사오키_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 40,
+  "fields": {
+    "author_name": "신경림",
+    "author_info": "신경림(申庚林, 1936년 4월 6일~2024년 5월 22일)은 대한민국의 시인으로, 충청북도 충주에서 태어나 동국대학교에서 영어영문학을 전공하였다. 1965년부터 시 창작을 시작하였으며, 후에 농민문학과 민중문학을 주제로 평론도 발표하였다. 다양한 문학적 업적을 남기며 은관문화훈장을 수상하고 2024년 암으로 세상을 떠났다.",
+    "author_masterpeice": "('갈대, 농무, 전야, 서울로 가는 길',)",
+    "author_profile_img": "books/author_images/신경림_profile.jpg",
+    "author_info_mp3": "books/audios/신경림_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 41,
+  "fields": {
+    "author_name": "이선재",
+    "author_info": "이선재(李善載, 1958년 1월 30일 ~ )는 대한민국의 언론인이다.",
+    "author_masterpeice": "('',)",
+    "author_profile_img": "",
+    "author_info_mp3": "books/audios/이선재_audio.mp3"
+  }
+},
+{
+  "model": "books.author",
+  "pk": 42,
+  "fields": {
+    "author_name": "코노시마 루카",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "books.author",
+  "pk": 43,
+  "fields": {
+    "author_name": "타츠 유키노부",
+    "author_info": "",
+    "author_masterpeice": "",
+    "author_profile_img": "",
+    "author_info_mp3": ""
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add author",
+    "content_type": 1,
+    "codename": "add_author"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change author",
+    "content_type": 1,
+    "codename": "change_author"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete author",
+    "content_type": 1,
+    "codename": "delete_author"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view author",
+    "content_type": 1,
+    "codename": "view_author"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add book",
+    "content_type": 2,
+    "codename": "add_book"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change book",
+    "content_type": 2,
+    "codename": "change_book"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete book",
+    "content_type": 2,
+    "codename": "delete_book"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view book",
+    "content_type": 2,
+    "codename": "view_book"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add category",
+    "content_type": 3,
+    "codename": "add_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change category",
+    "content_type": 3,
+    "codename": "change_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete category",
+    "content_type": 3,
+    "codename": "delete_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view category",
+    "content_type": 3,
+    "codename": "view_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add thread",
+    "content_type": 4,
+    "codename": "add_thread"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change thread",
+    "content_type": 4,
+    "codename": "change_thread"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete thread",
+    "content_type": 4,
+    "codename": "delete_thread"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view thread",
+    "content_type": 4,
+    "codename": "view_thread"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add comment",
+    "content_type": 5,
+    "codename": "add_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change comment",
+    "content_type": 5,
+    "codename": "change_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete comment",
+    "content_type": 5,
+    "codename": "delete_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view comment",
+    "content_type": 5,
+    "codename": "view_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 6,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 6,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 6,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 6,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add Token",
+    "content_type": 7,
+    "codename": "add_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change Token",
+    "content_type": 7,
+    "codename": "change_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete Token",
+    "content_type": 7,
+    "codename": "delete_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view Token",
+    "content_type": 7,
+    "codename": "view_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add Token",
+    "content_type": 8,
+    "codename": "add_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change Token",
+    "content_type": 8,
+    "codename": "change_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete Token",
+    "content_type": 8,
+    "codename": "delete_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view Token",
+    "content_type": 8,
+    "codename": "view_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 9,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 9,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 9,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 9,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 10,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 10,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 10,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 10,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 11,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 11,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 11,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 11,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 12,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 12,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 12,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 12,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 13,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 13,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 13,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 13,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add site",
+    "content_type": 14,
+    "codename": "add_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change site",
+    "content_type": 14,
+    "codename": "change_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete site",
+    "content_type": 14,
+    "codename": "delete_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view site",
+    "content_type": 14,
+    "codename": "view_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add email address",
+    "content_type": 15,
+    "codename": "add_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change email address",
+    "content_type": 15,
+    "codename": "change_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete email address",
+    "content_type": 15,
+    "codename": "delete_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view email address",
+    "content_type": 15,
+    "codename": "view_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add email confirmation",
+    "content_type": 16,
+    "codename": "add_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change email confirmation",
+    "content_type": 16,
+    "codename": "change_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete email confirmation",
+    "content_type": 16,
+    "codename": "delete_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view email confirmation",
+    "content_type": 16,
+    "codename": "view_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 65,
+  "fields": {
+    "name": "Can add social account",
+    "content_type": 17,
+    "codename": "add_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 66,
+  "fields": {
+    "name": "Can change social account",
+    "content_type": 17,
+    "codename": "change_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 67,
+  "fields": {
+    "name": "Can delete social account",
+    "content_type": 17,
+    "codename": "delete_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 68,
+  "fields": {
+    "name": "Can view social account",
+    "content_type": 17,
+    "codename": "view_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 69,
+  "fields": {
+    "name": "Can add social application",
+    "content_type": 18,
+    "codename": "add_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 70,
+  "fields": {
+    "name": "Can change social application",
+    "content_type": 18,
+    "codename": "change_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 71,
+  "fields": {
+    "name": "Can delete social application",
+    "content_type": 18,
+    "codename": "delete_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 72,
+  "fields": {
+    "name": "Can view social application",
+    "content_type": 18,
+    "codename": "view_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 73,
+  "fields": {
+    "name": "Can add social application token",
+    "content_type": 19,
+    "codename": "add_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 74,
+  "fields": {
+    "name": "Can change social application token",
+    "content_type": 19,
+    "codename": "change_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 75,
+  "fields": {
+    "name": "Can delete social application token",
+    "content_type": 19,
+    "codename": "delete_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 76,
+  "fields": {
+    "name": "Can view social application token",
+    "content_type": 19,
+    "codename": "view_socialtoken"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "books",
+    "model": "author"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "books",
+    "model": "book"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "books",
+    "model": "category"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "books",
+    "model": "thread"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "books",
+    "model": "comment"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "accounts",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "authtoken",
+    "model": "token"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "authtoken",
+    "model": "tokenproxy"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "sites",
+    "model": "site"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "account",
+    "model": "emailaddress"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "account",
+    "model": "emailconfirmation"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 17,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialaccount"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 18,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialapp"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 19,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialtoken"
+  }
+},
+{
+  "model": "sites.site",
+  "pk": 1,
+  "fields": {
+    "domain": "example.com",
+    "name": "example.com"
+  }
+}
 ]
