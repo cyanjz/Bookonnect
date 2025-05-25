@@ -1,20 +1,55 @@
 <template>
   <main>
-    <h1>프로필 페이지</h1>
-    <h3>들어갈 컴포넌트들</h3>
-    <li>사용자 정보</li>
-    <li>팔로우/팔로워 수</li>
-    <li>쓰레드/컬렉션/코멘트 수</li>
-    <li>컬렉션 썸네일</li>
+    <template v-if="isLoading">
+      <h2>로딩 중...</h2>
+    </template>
+    <template v-if="!isLoading">
+      <ProfileCard
+        :userInfo="userInfo"
+        @follow="onFollow"
+        @updateProfile="onUpdate"
+      />
+    </template>
   </main>
 </template>
 
 
 <script setup>
+import { useAccountStore } from '@/stores/accounts';
+import { ref } from 'vue';
+import ProfileCard from '@/components/profile/ProfileCard.vue';
+import axios from 'axios';
+
+import { onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute()
+const accountStore = useAccountStore()
+const userInfo = ref(null)
+const isLoading = ref(true)
+onMounted(async () => {
+    axios({
+      url: `http://127.0.0.1:8000/accounts/${route.params.userId}/`,
+      method: 'get'
+    }).then((res) => {
+      userInfo.value = res.data
+      console.log(userInfo.value)
+      console.log(isLoading.value)
+      isLoading.value = false
+    }).catch((err) => {
+      console.log(err)
+    })
+})
+
+const onFollow = (data) => {
+  userInfo.value.num_followers = data.numFollowers
+}
+
+const onUpdate = (data) => {
+  userInfo.value = data
+}
 
 </script>
 
 
-<style scoped>
-
-</style>
+<style scoped></style>

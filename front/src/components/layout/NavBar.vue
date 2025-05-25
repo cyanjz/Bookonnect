@@ -7,37 +7,38 @@
       </RouterLink>
 
       <!-- 토글 버튼(작은 화면용) -->
-      <button 
-        class="navbar-toggler" type="button" 
-        data-bs-toggle="collapse" 
-        data-bs-target="#toggleContent"
-        aria-controls="toggleContent" 
-        aria-expanded="false" 
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleContent"
+        aria-controls="toggleContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <!-- 오른쪽: [로그인X] 회원가입, 로그인, 검색 / [로그인O] 회원가입(회원도 보이는게 맞겠지?), 프로필, 검색 -->
       <div class="collapse navbar-collapse" id="toggleContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
-          <li class="nav-item">
-            <RouterLink :to="{ name: 'signup' }" class="nav-link" active-class="active">
-              회원가입
-            </RouterLink>
-          </li>
-
-          <!-- **v-if 써서 로그인 여부에 따라 "로그인or프로필" 구현해야함!! -->
-          <li class="nav-item">
-            <RouterLink :to="{ name: 'login' }" class="nav-link" active-class="active">
-              로그인
-            </RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink :to="{ name: 'profile' }" class="nav-link" active-class="active">
-              프로필
-            </RouterLink>
-          </li>
+          <template v-if="!accountStore.auth.isAuthenticated">
+            <li class="nav-item">
+              <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#signUpModal"
+                data-bs-whatever="@mdo">회원가입</button>
+            </li>
+            <!-- **v-if 써서 로그인 여부에 따라 "로그인or프로필" 구현해야함!! -->
+            <li class="nav-item">
+              <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#logInModal"
+                data-bs-whatever="@mdo">로그인</button>
+            </li>
+          </template>
+          <template v-if="accountStore.auth.isAuthenticated">
+            <li class="nav-item">
+              <RouterLink :to="{ name: 'profile', params: { userId: accountStore.auth.userPk } }" class="nav-link"
+                active-class="active">
+                내 프로필
+              </RouterLink>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="nav-link" @click="onLogOut">
+                로그아웃
+              </button>
+            </li>
+          </template>
 
           <!-- 검색 폼 (나중에 버튼 색 조정해주기) -->
           <form class="d-flex" role="search">
@@ -48,11 +49,23 @@
       </div>
     </div>
   </nav>
+
+  <!-- Login form -->
+  <LogInForm />
+  <SignUpForm />
 </template>
 
 
 <script setup>
 // 별도 스크립트 없이 router만 사용 중!
+import LogInForm from '@/components/form/LogInForm.vue'
+import SignUpForm from '@/components/form/SignUpForm.vue';
+import { useAccountStore } from '@/stores/accounts';
+const accountStore = useAccountStore()
+
+const onLogOut = () => {
+  accountStore.logOut()
+}
 </script>
 
 
