@@ -2,7 +2,7 @@
   <div id="wrap">
     <!-- footer가 항상 하단에 고정되도록 wrap 사용 -> 유일한 wrap이므로 id로 부여 -->
     <footer>
-      <img src="/src/assets/LOGO.png" alt="logo_img.png">
+      <img src="@/assets/LOGO.png" alt="logo_img.png">
       <nav>
         <a href="https://www.notion.so/isaacshin/1e4469106168806d96ccc85906cb9c1d">
           Notion</a>
