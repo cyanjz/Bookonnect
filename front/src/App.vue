@@ -3,9 +3,9 @@
     <NavBar />
     <RouterView />
     <Footer />
-
   </div>    
   </template>
+
 
 
 <script setup>
