@@ -21,8 +21,8 @@ const props = defineProps({
 })
 
 const router = useRouter()
-function goToBookDetail(id) {
-  router.push({ name: 'book-detail', params: { id }})
+function goToBookDetail(pk) {
+  router.push({ name: 'book-detail', params: { book_pk: pk }})
 }
 </script>
 
