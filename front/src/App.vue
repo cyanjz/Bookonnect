@@ -3,8 +3,9 @@
     <NavBar />
     <RouterView />
     <Footer />
-  </div>
-</template>
+  </div>    
+  </template>
+
 
 
 <script setup>
@@ -15,6 +16,5 @@ import Footer from '@/components/layout/Footer.vue'
 </script>
 
 
-<style scoped>
 
-</style>
+<style scoped></style>
