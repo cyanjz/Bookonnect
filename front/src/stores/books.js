@@ -2,6 +2,8 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
+
+// #1. MainPageView 내의 도서 store
 export const useBookStore = defineStore('book', () => {
   // 1. 상태 정의
   const books = ref([])
@@ -20,7 +22,6 @@ export const useBookStore = defineStore('book', () => {
 
 
   // 3. books 데이터 가져오기
-
   // 3-1 .백엔드 API에서 전체 책 목록 데이터를 가져와(응답받아) store의 book.value에 저장
   const getBooks = async () => {
     isLoading.value = true
@@ -61,7 +62,7 @@ export const useBookStore = defineStore('book', () => {
   }
 
 
-// 아래는 백엔드에 경로를 따로 추가해주던가 해야함!!
+  // **아래는 백엔드에 경로를 따로 추가해주던가 해야함!!
   // 4. Best Sellers
   const getBestSellers = async () => {
     axios({
@@ -147,5 +148,75 @@ export const useBookStore = defineStore('book', () => {
     getRecommendedBooks,
     getCategories,
     getHighRankBooks,
+  }
+}, { persist: true })
+
+
+
+// #2. BookDetailView 내의 도서 정보
+export const useBookDetailStore = defineStore('bookDetail', () => {
+  const book = ref(null)
+  const author = ref(null)
+  const threads = ref([])
+  const error = ref(null)
+
+  const API_URL = 'http://127.0.0.1:8000'
+
+  // 1. BookInfo: 단일 책 상세 정보
+  const getBookInfo = (bookId) => {
+    axios({
+      method: 'get',
+      url: `${API_URL}/api/v1/books/${bookId}/`
+    })
+      .then(res => {
+        book.value = res.data; 
+        return res.data
+      })
+      .catch(err => {
+        error.value = err
+      })
+  }
+
+
+  // 2. AuthorInfo: 작가 정보
+  const getAuthorInfo = (authorId) => {
+    axios({
+      method: 'get',
+      url: `${API_URL}/api/v1/authors/${authorId}/`
+    })
+      .then(res => { 
+        author.value = res.data; 
+        return res.data 
+      })
+      .catch(err => { 
+        error.value = err 
+      })
+  }
+
+
+  // 3. ThreadThumbnail: 쓰레드 목록
+  const getThreads = (bookId) => {
+    axios({
+      method: 'get',
+      url: `${API_URL}/api/v1/books/${bookId}/threads/`
+    })
+      .then(res => { 
+        threads.value = res.data; 
+        return res.data 
+      })
+      .catch(err => { 
+        error.value = err 
+      })
+  }
+
+  return {
+    book,
+    author,
+    threads,
+    error,
+
+    getBookInfo,
+    getAuthorInfo,
+    getThreads,
   }
 }, { persist: true })

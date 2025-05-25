@@ -17,7 +17,7 @@
       <CategoryBooks />
     </section>
     <br>
-    <p>컬렉션 썸네일 컴포넌트 넣어주기</p>
+    <h2>CollectionThumbnail 컴포넌트 넣어주기</h2>
     <br>
     <section>
       <h2>📈 High Ranked Books</h2>
@@ -48,4 +48,13 @@ onMounted(() => {
 </script>
 
 
-<style scoped></style>
+<style scoped>
+main {
+  margin: 50px;
+}
+
+h1,
+section {
+  margin-bottom: 50px;
+}
+</style>
