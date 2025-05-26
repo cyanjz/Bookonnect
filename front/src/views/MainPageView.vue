@@ -133,7 +133,6 @@ section br {
 
 /* 2. 스타일 2번 */
 body {
-  background: linear-gradient(to bottom, white, black);
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -146,18 +145,23 @@ main {
 }
 
 section {
-  margin-bottom: 50px;
-  padding: 20px 0;
-  border: none;           /* 테두리 없음 */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 0 40px 0;
 }
 
-/* 그라데이션 위에서 잘 보이도록 흰색 */
-/* h1, h2, h3 {
-  color: white; 
-} */
+/* 그라데이션 위에서 잘 보이도록 밝은색 */
+section * {
+  color: #ccc;
+}
 
-/* 필요하다면 섹션 내부 텍스트도 흰색으로 */
-/* section * {
-  color: white;
-} */
+h1, h2 {
+  color: white
+}
+
+h3 {
+  color: #ccc; 
+}
+
 </style>

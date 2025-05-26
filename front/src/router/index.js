@@ -21,7 +21,7 @@ const router = createRouter({
   routes: [
     // 1. NavBar Menu (메인 페이지(홈) / 회원가입 / 로그인 / 프로필)
     {
-      path: '/books',
+      path: '/',
       name: 'main-page',
       component: MainPageView,
     },

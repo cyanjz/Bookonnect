@@ -2,7 +2,7 @@
   <div id="wrap">
     <!-- footer가 항상 하단에 고정되도록 wrap 사용 -> 유일한 wrap이므로 id로 부여 -->
     <footer>
-      <img src="@/assets/LOGO.png" alt="logo_img.png">
+      <img src="@/assets/LOGO_white.png" alt="logo_img.png">
       <nav>
         <a href="https://www.notion.so/isaacshin/1e4469106168806d96ccc85906cb9c1d">
           Notion</a>
@@ -35,12 +35,11 @@
 }
 
 footer {
-  height: 200px;    /* footer 높이 일정하게 유지..가 안된다 이미지 사이즈 때문? 다시 해볼 것! */
+  height: 200px;
   width: 100%;
   bottom: 0px;
   position: absolute;
-  /* 로고가 안 보여서 일단 이 색상으로 했는데, 로고를 흰색으로도 만들면 좋을 듯? */
-  background-color: #304268;
+  background-color: transparent;
   color: #ccc;
   /* padding: 20px 40px; */
   padding: 10px 0;
