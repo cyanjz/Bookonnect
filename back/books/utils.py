@@ -38,7 +38,7 @@ class OpenAiAPI:
             감정 5개를 제외한 다른 정보를 응답해서는 안됩니다.
             응답 예시 : '슬픔, 기쁨, 행복, 만족감, 허무함'
         '''
-        client = OpenAI(api_key=API_KEYS['openai'])
+        self.client = OpenAI(api_key=API_KEYS['openai'])
 
     # 1. context를 기반으로 작가 정보 요약, 대표 작품 추출
     def get_ai_summary(self, context):
@@ -96,6 +96,7 @@ class OpenAiAPI:
         except:
             cover_image_url = ''
             print('cover image not found!')
+            return '', ''
         return cover_image_url, author_info
     
     # 3. thread cover 생성을 위한 대표 감정 추출
@@ -130,3 +131,10 @@ class OpenAiAPI:
 
         img_url = response.data[0].url
         return img_url
+
+    def get_description_embedding(self, description_list):
+        resp = self.client.embeddings.create(
+            model="text-embedding-3-small",
+            input=description_list,
+        ).data
+        return resp
