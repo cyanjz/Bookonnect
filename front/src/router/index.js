@@ -21,7 +21,7 @@ const router = createRouter({
   routes: [
     // 1. NavBar Menu (메인 페이지(홈) / 회원가입 / 로그인 / 프로필)
     {
-      path: '/books',
+      path: '/',
       name: 'main-page',
       component: MainPageView,
     },
@@ -30,11 +30,6 @@ const router = createRouter({
       name: 'profile',
       component: ProfileView,
     },
-    // {
-    //   path: '/profile/:user_pk/update',
-    //   name: 'profile-update',
-    //   component: ProfileUpdateView,
-    // },
 
 
     // 2. Book (도서 상세 / 도서 검색)

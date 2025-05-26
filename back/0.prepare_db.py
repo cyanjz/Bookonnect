@@ -1,4 +1,4 @@
-from .books.utils import OpenAiAPI
+from books.utils import OpenAiAPI
 from django.conf import settings
 from requests import request
 from pprint import pprint
@@ -12,6 +12,7 @@ from PIL import Image
 from gtts import gTTS
 import json
 from django.core.files.base import ContentFile
+from random import random
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', "bookonnect.settings")
 
@@ -138,4 +139,30 @@ def save_author(img_url, author_info, author_name):
     author.save()
     return True
 
-fetchAladin()
+
+# II. update db
+def update_embedding():
+    books = Book.objects.all()
+    ai_instance = OpenAiAPI()
+    for book in books:
+        # embedding update
+        description = book.book_description
+        if description == '':
+            pass
+        else:
+            result = ai_instance.get_description_embedding([description])
+            result = [item.embedding for item in result]
+            book.book_embedding = result[0]
+            book.save()
+
+def update_recommended():
+    books = Book.objects.all()
+    for i, book in enumerate(books):
+        if i % 5 == 0:
+            book.book_recommened = True
+            book.save()
+
+update_embedding()
+# update_recommended()
+
+# fetchAladin()
