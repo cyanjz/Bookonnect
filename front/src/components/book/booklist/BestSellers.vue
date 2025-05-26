@@ -1,12 +1,12 @@
 <template>
   <section>
     <h3>베스트셀러</h3>
-    <template v-if="books">
+    <div v-if="books">
       <BookList
         :books="books"
         :carouselId="carouselId"
       />
-    </template>
+    </div>
   </section>
 </template>
 
