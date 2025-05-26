@@ -13,6 +13,10 @@
 
 import NavBar from '@/components/layout/NavBar.vue'
 import Footer from '@/components/layout/Footer.vue'
+import { useBookStore } from '@/stores/books'
+
+const bookStore = useBookStore()
+bookStore.getCategories()
 </script>
 
 

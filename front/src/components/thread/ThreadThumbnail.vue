@@ -15,7 +15,7 @@
 
     <!-- 쓰레드 목록 -->
     <div v-else>
-      <h2 v-if="threads.length === 0" class="text-muted">쓰레드가 없어요...</h2>
+      <p v-if="threads.length === 0" class="text-muted">아직 아무도 쓰레드를 작성하지 않았습니다!</p>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" v-else>
         <ThreadThumbCard v-for="thread in threads" :key="thread.id" :thread="thread" />
       </div>
