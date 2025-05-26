@@ -3,10 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // View 경로들 import
 import MainPageView from '@/views/MainPageView.vue'
 
-import SignUpView from '@/views/accounts/SignUpView.vue'
-import LogInView from '@/views/accounts/LogInView.vue'
 import ProfileView from '@/views/accounts/ProfileView.vue'
-import ProfileUpdateView from '@/views/accounts/ProfileUpdateView.vue'
 
 import BookDetailView from '@/views/books/BookDetailView.vue'
 import BookSearchView from '@/views/books/BookSearchView.vue'
@@ -27,16 +24,6 @@ const router = createRouter({
       path: '/books',
       name: 'main-page',
       component: MainPageView,
-    },
-    {
-      path: '/signup',
-      name: 'signup',
-      component: SignUpView,
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: LogInView,
     },
     {
       path: '/profile/:userId',
