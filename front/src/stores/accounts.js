@@ -61,7 +61,6 @@ export const useAccountStore = defineStore('', () => {
       auth.value.isAuthenticated = true
       console.log('로그인 성공!')
       modal.hide()
-      router.push({ name: 'main-page' })
     }).catch(err => {
       console.log(err)
     })
