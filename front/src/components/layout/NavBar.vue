@@ -46,7 +46,6 @@
             <button class="search-btn" type="submit">
               <img 
                 :src="btnSrc" alt="Search" class="search-icon"
-                :class="{ 'fade': isFading }"
                 @mouseover="handleSearchMouseOver"
                 @mouseout="handleSearchMouseOut"
               >
@@ -68,6 +67,9 @@
 import LogInForm from '@/components/form/LogInForm.vue'
 import SignUpForm from '@/components/form/SignUpForm.vue';
 import { useAccountStore } from '@/stores/accounts';
+import { debounce } from 'lodash'
+import { ref } from 'vue'
+import axios from 'axios'
 const accountStore = useAccountStore()
 
 const onLogOut = () => {
@@ -75,17 +77,17 @@ const onLogOut = () => {
 }
 
 import { ref, onMounted, onUnmounted, watch } from 'vue'
-// 1. 검색 버튼 호버 시 이미지가 바뀌도록!
+// 검색 이미지 호버 시 이미지가 바뀌도록!
 const defaultBtn = '/src/assets/magnifier_icon.png'
 const hoverBtn = '/src/assets/magnifier_icon_red.png'
 const btnSrc = ref(defaultBtn)
 
+
 const darkDefaultBtn = '/src/assets/magnifier_icon_white.png'      // 어두운 배경에서 쓸 검색아이콘
-const darkHoverBtn = '/src/assets/magnifier_icon_red.png'    // 어두운 배경에서 호버
+const darkHoverBtn = '/src/assets/magnifier_icon_red_white.png'    // 어두운 배경에서 호버
 
 
-
-// 2. 스크롤 시 navbar의 글씨색/검색버튼 이미지가 바뀌도록!
+// 스크롤 시 navbar의 배경색/글씨색/이미지가 바뀌도록!
 // 스크롤에 따라 다크/라이트 모드
 const isDark = ref(false)
 
@@ -95,23 +97,14 @@ const handleScroll = () => {
   isDark.value = window.scrollY > getDarkThreshold()
 }
 
-// 다크모드에서 호버 후에도 흰색 이미지가 디폴트값(검은색 이미지)으로 바뀌지 않도록
-// + 호버 시 좀 더 부드럽게 전환되도록
-const isFading = ref(false)
-const fadeBtnImg = (newSrc) => {
-  isFading.value = true
-  setTimeout(() => {
-    btnSrc.value = newSrc
-    isFading.value = false
-  }, 120)
-}
-
+// 다크모드에서 호버 후에도 흰색 이미지가 디폴트값(검은색 이미지)으로 바뀌지 앟도록
 const handleSearchMouseOver = () => {
-  fadeBtnImg( isDark.value ? darkHoverBtn : hoverBtn )
+  btnSrc.value = isDark.value ? darkHoverBtn : hoverBtn
 }
 const handleSearchMouseOut = () => {
-  fadeBtnImg(isDark.value ? darkDefaultBtn : defaultBtn) 
+  btnSrc.value = isDark.value ? darkDefaultBtn : defaultBtn
 }
+
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
@@ -124,15 +117,30 @@ onUnmounted(() => {
 })
 
 watch(isDark, (val) => {
-  fadeBtnImg(val ? darkDefaultBtn : defaultBtn)
+  btnSrc.value = val ? darkDefaultBtn : defaultBtn
 })
+
+//99. 검색 관련 기능
+const cache = new Map()
+const query = ref('')
+suggestions = ref([])
+const fetchSuggestions = debounce((query) => {
+  if (cache.has(query)) {
+    suggestions.value = cache.get(query)
+  } else {
+    axios({
+      
+    })
+  }
+})
+
 </script>
 
 
 <style scoped>
 nav {
   position: sticky;
-  /* sticky 상태에서 위쪽에 고정되도록 */
+  /* sticky 상태에서 위쪽에 고정하려면 */
   top: 0;
   /* 스크롤 시 다른 컴포넌트보다는 앞에 오도록 + 회원가입/로그인 모달 창보다는 뒤에 오도록 */
   z-index: 20;
@@ -150,7 +158,6 @@ nav {
   padding-right: 0.5rem;
 }
 
-
 .search-icon {
   height: 40px;
   width: auto;
@@ -162,10 +169,11 @@ nav {
   background-color: transparent;
 }
 
-
 /* 현재 선택된 메뉴 빨간색 강조 */
 .nav-link.active {
+  /* color: #dc3545; */
   color: #FF0000;
+  /* 로고랑 통일하고 싶어서 추출한 빨간색(#FF0000)인데 너무 쨍한가.. 응아니야하나도안쨍해*/
 }
 
 /* 비활성 상태일 때 hover 효과 */
@@ -176,32 +184,19 @@ nav {
 }
 
 
-/* 스크롤 시 네비게이션 바 메뉴들 글씨 색 변경 */
-/* 기본(라이트) 모드 */
+
+
+/* 네비게이션 바 메뉴들 스크롤 시 글씨 색 변경 */
+/* 기본(라이트) 모드: 검정색 */
 .nav-link,
 .form-control {
   color: #222;
   transition: color 0.3s;
 }
 
-/* 다크 모드 */
+/* 다크 모드: 흰색 */
 nav.dark .nav-link,
 nav.dark .form-control {
   color: #fff;
-}
-
-
-/* 스크롤 시 네비게이션 바 색상 변경 */
-/* 기본(라이트) 모드 */
-.navbar {
-  background-color: transparent;
-  transition: background-color 0.4s, box-shadow 0.4s;
-  box-shadow: none;
-}
-
-/* 다크 모드 */
-.navbar.dark {
-  background-color: #111;
-  /* box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08); */
 }
 </style>

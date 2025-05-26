@@ -7,7 +7,7 @@ import axios from 'axios'
 export const useBookStore = defineStore('book', () => {
   // 1. 상태 정의
   const books = ref([])
-  const categories = ref([])
+  const categories = ref(null)
 
   const bestSellers = ref([])
   const recommendedBooks = ref([])
