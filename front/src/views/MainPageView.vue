@@ -2,9 +2,13 @@
   <main>
     <h1>📚 BooKonnect Main Page</h1>
 
+    <BookList />
+
     <section>
       <h2>🔥 Best Sellers</h2>
-      <BestSellers />
+      <BestSellers 
+        :carouselId="bestSellersCarousel"
+      />
     </section>
     <br>
     <section>
@@ -30,6 +34,8 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useBookStore } from '@/stores/books';
+
+import BookList from '@/components/book/BookList.vue'
 
 import BestSellers from '@/components/book/booklist/BestSellers.vue';
 import RecommendedBooks from '@/components/book/booklist/RecommendedBooks.vue';
