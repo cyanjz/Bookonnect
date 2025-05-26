@@ -25,6 +25,7 @@ import BookList from '@/components/book/BookList.vue'
 const props = defineProps({
   categories: Array,
   books: Array,
+  carouselId: String
 })
 
 const selectedCategory = ref(0)           // 선택된 카테고리: id로 구분, 0은 전체 의미

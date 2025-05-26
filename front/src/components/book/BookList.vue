@@ -1,6 +1,6 @@
 <template>
   <!-- 책 데이터가 있을 때만 캐러셀 렌더링 / id는 캐러셀 컨트롤과 연결 -->
-  <div v-if="books.length" :id="carouselId" class="carousel slide">
+  <div v-if="books && books.length" :id="carouselId" class="carousel slide">
     <!-- 캐러셀 내부 영역 -->
     <div class="carousel-inner">
       <!-- 첫번째 슬라이드 덩어리(idx===0)에만 active를 붙여서 기본으로 첫 덩어리만 보이도록 함. -->
@@ -44,7 +44,10 @@ import BookCardVer from '@/components/card/BookCardVer.vue'
 const store = useBookStore()
 
 const props = defineProps({
-  books: Array,
+  books: {
+    type: Array,
+    default: () => []
+  },
   carouselId: {
     type: String,
     required: true
