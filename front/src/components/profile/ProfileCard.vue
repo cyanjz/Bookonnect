@@ -23,7 +23,7 @@
       <div class="d-flex justify-content-between m-3 align-items-center">
         <p class="m-0">팔로워 {{ userInfo.num_followers }}</p>
         <p class="m-0">팔로잉 {{ userInfo.num_followings }}</p>
-        <button class="btn btn-outline-primary" @click="onFollow">
+        <button class="btn btn-outline-primary" @click="onFollow" v-if="route.params.userId !== accountStore.auth.userPk">
           팔로우
         </button>
       </div>

@@ -42,7 +42,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'num_comments',
             'num_threads',
             ]
-        
+
+
 class UserUpdateSerializer(serializers.ModelSerializer):
     user_profile_img = serializers.ImageField(required=False)
     user_banner_img = serializers.ImageField(required=False)

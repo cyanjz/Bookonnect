@@ -12,7 +12,7 @@ from .serializers import (BookListSerializer,
                           CommentListSerializer, 
                           CommentCreateSerializer, 
                           CommentUpdateSerializer)
-from .models import (Book, Thread, Comment)
+from .models import (Book, Thread, Comment, Category)
 
 
 # Create your views here.
@@ -20,7 +20,15 @@ from .models import (Book, Thread, Comment)
 @api_view(['GET'])
 def book_list_create(request):
     if request.method == 'GET':
-        books = get_list_or_404(Book)
+        query = request.GET.get('q', None)
+        if query == None:
+            books = get_list_or_404(Book)
+        elif query == 'bestsellers':
+            books = Book.objects.filter(book_ranking__lte=10).order_by('book_ranking')
+        elif query == 'category':
+            category_pk = int(request.GET.get('cId', None))
+            category = get_object_or_404(Category, pk=category_pk)
+            books = Book.objects.filter(category=category)
         serializer = BookListSerializer(books, many=True)
         return Response(serializer.data)
 

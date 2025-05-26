@@ -33,8 +33,6 @@ onMounted(async () => {
       method: 'get'
     }).then((res) => {
       userInfo.value = res.data
-      console.log(userInfo.value)
-      console.log(isLoading.value)
       isLoading.value = false
     }).catch((err) => {
       console.log(err)

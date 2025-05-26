@@ -5,7 +5,7 @@ import axios from 'axios'
 
 export const useAccountStore = defineStore('', () => {
   const router = useRouter()
-  const API_URL = 'http://127.0.0.1:8000/'
+  const API_URL = 'http://127.0.0.1:8000'
 
   // 0. states
   const auth = ref({
@@ -17,7 +17,7 @@ export const useAccountStore = defineStore('', () => {
   // 1. SignUp
   const signUp = ({ username, email, password1, password2, modal }) => {
     axios({
-      url: API_URL + 'accounts/signup/',
+      url: API_URL + '/accounts/signup/',
       method: 'post',
       data: {
         username, email, password1, password2
@@ -34,7 +34,7 @@ export const useAccountStore = defineStore('', () => {
   // 2. logIn
   const logIn = ({ email, password, modal }) => {
     axios({
-      url: API_URL + 'accounts/login/',
+      url: API_URL + '/accounts/login/',
       method: 'post',
       data: {
         email, password
@@ -51,7 +51,7 @@ export const useAccountStore = defineStore('', () => {
   // 3. get my info
   const getMyInfo = (modal) => {
     axios({
-      url: API_URL + 'accounts/myinfo/',
+      url: API_URL + '/accounts/myinfo/',
       method: 'get',
       headers: {
         Authorization: `Token ${auth.value.token}`
@@ -70,7 +70,7 @@ export const useAccountStore = defineStore('', () => {
   // 4. logout
   const logOut = () => {
     axios({
-      url: API_URL + 'accounts/logout/',
+      url: API_URL + '/accounts/logout/',
       method: 'post',
       headers: {
         Authorization: `Token ${auth.value.token}`

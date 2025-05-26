@@ -73,7 +73,7 @@ class OpenAiAPI:
         try:
             data = resp.json()['parse']['text']['*']
         except:
-            return False, False
+            return '', ''
         soup = BeautifulSoup(data, 'html.parser')
         
         # for ai summary
