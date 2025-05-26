@@ -2,15 +2,13 @@
   <main>
     <h1>📚 BooKonnect Main Page</h1>
 
-    <BookList 
-      :books="books"
-      :carouselId="carouselId"
-    />
+    <!-- 왜 얘는 안될까... -->
+    <!-- <BookList :books="store.books" :carouselId="carouselId"/> -->
 
     <section>
       <h2>🔥 Best Sellers</h2>
       <BestSellers 
-        :books="books"  
+        :books="store.books"  
         :carouselId="bestSellersCarousel"
       />
     </section>
@@ -18,7 +16,7 @@
     <section>
       <h2>✨ Recommended by Editors</h2>
       <RecommendedBooks 
-        :books="books"
+        :books="store.books"
         :carouselId="recommendedCarousel"
       />
     </section>
@@ -36,7 +34,7 @@
     <section>
       <h2>📈 High Ranked Books</h2>
       <HighRankBooks 
-        :books="books"
+        :books="store.books"
         :carouselId="highRankCarousel"
       />
     </section>
@@ -74,12 +72,92 @@ onMounted(() => {
 
 
 <style scoped>
-main {
-  margin: 50px;
+/*  1. 스타일 1번 */
+/* main {
+  margin: 50px auto;
+  max-width: 1200px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1,
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+section {
+  margin-bottom: 60px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+section h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #FF0000;
+  padding-bottom: 8px;
+}
+
+section br {
+  margin-bottom: 30px;
+} */
+
+/* 반응형 조정 */
+/* @media (max-width: 768px) {
+  main {
+    margin: 20px;
+    padding: 10px;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  section {
+    margin-bottom: 40px;
+    padding: 15px;
+  }
+  section h2 {
+    font-size: 1.5rem;
+  }
+} */
+
+
+/* 2. 스타일 2번 */
+body {
+  background: linear-gradient(to bottom, white, black);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin: 50px auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
 section {
   margin-bottom: 50px;
+  padding: 20px 0;
+  border: none;           /* 테두리 없음 */
 }
+
+/* 그라데이션 위에서 잘 보이도록 흰색 */
+/* h1, h2, h3 {
+  color: white; 
+} */
+
+/* 필요하다면 섹션 내부 텍스트도 흰색으로 */
+/* section * {
+  color: white;
+} */
 </style>
