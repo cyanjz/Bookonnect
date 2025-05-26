@@ -17,4 +17,12 @@ import Footer from '@/components/layout/Footer.vue'
 
 
 
-<style scoped></style>
+<style scoped>
+body, #app {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  /* 위는 흰색, 아래는 검정으로 자연스럽게 전환되는 그라데이션 */
+  background: linear-gradient(to bottom, #fff 0%, #111 100%);
+}
+</style>
