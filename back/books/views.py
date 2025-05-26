@@ -153,3 +153,10 @@ def comment_update_delete(request, book_pk, thread_pk, comment_pk):
     elif request.method == 'DELETE':
         comment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+# 베스트 셀러 데이터를 받아오기 위한 view 함수
+@api_view(['GET'])
+def best_sellers(request):
+    pass
