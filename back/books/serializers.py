@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Book, Author, Thread, Comment
+from .models import Book, Author, Thread, Comment, Category
 from django.contrib.auth import get_user_model
 
 
@@ -169,13 +169,21 @@ class ThreadDetailSerializer(serializers.ModelSerializer):
     comments = CommentListSerializer(read_only=True, many=True, source='comment_set')
     user = ThreadDetailUserSerializer(read_only=True)
     book = ThreadDetailBookSerialzier(read_only=True)
+    thread_likes = serializers.SerializerMethodField()
+
+    def get_thread_likes(self, obj):
+        return obj.thread_like_users.count()
 
     class Meta:
         model = Thread
-        fields = ['thread_title', 'thread_content', 'thread_book_review_rank', 'thread_updated_at', 'user', 'comments', 'book', 'thread_cover_img']
+        fields = ['thread_title', 'thread_content', 'thread_book_review_rank', 'thread_updated_at', 'user', 'comments', 'book', 'thread_cover_img', 'thread_likes']
         read_only_fields = ['thread_updated_at']
 
 
+class ThreadUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Thread
+        fields = ['thread_title', 'thread_content', 'thread_book_review_rank']
 
         
 class CommentCreateSerializer(serializers.ModelSerializer):
@@ -189,3 +197,9 @@ class CommentUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['comment_content']
+
+
+class CategoryListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'

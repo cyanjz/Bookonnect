@@ -68,7 +68,6 @@ import LogInForm from '@/components/form/LogInForm.vue'
 import SignUpForm from '@/components/form/SignUpForm.vue';
 import { useAccountStore } from '@/stores/accounts';
 import { debounce } from 'lodash'
-import { ref } from 'vue'
 import axios from 'axios'
 const accountStore = useAccountStore()
 
