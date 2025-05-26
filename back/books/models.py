@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+import json
 
 PATH = {
     'Book' : {
@@ -27,9 +28,12 @@ class Book(models.Model):
     book_cover_img = models.ImageField(upload_to=PATH['Book']['cover_image'], default='')
     book_publisher = models.CharField(max_length=50)
     book_pub_date = models.DateField()
-    book_customer_review_rank = models.IntegerField(null=True)
-    book_ranking = models.PositiveIntegerField()
-    book_embedding = models.BinaryField(blank=True, null=True)
+    book_ranking = models.PositiveIntegerField(default=100)
+    book_embedding = models.TextField(blank=True, null=True)
+    book_recommened = models.BooleanField(default=False)
+
+    def get_embedding(self):
+        return json.loads(self.book_embedding)
 
 
 class Thread(models.Model):

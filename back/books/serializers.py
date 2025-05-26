@@ -5,12 +5,40 @@ from django.contrib.auth import get_user_model
 
 # Books
 class BookListSerializer(serializers.ModelSerializer):
+    book_customer_review_rank = serializers.SerializerMethodField()
+
+    def get_book_customer_review_rank(self, obj):
+        threads = obj.thread_set.all()
+        if len(threads) == 0:
+            return 0
+        else:
+            score = 0
+            count = 0
+            for thread in threads:
+                count += 1
+                score += thread.thread_book_review_rank
+        return round(score / count, 2)
+    
     class Meta:
         model = Book
-        fields = ['book_cover_img', 'book_title', 'book_customer_review_rank']
+        fields = ['book_cover_img', 'book_title', 'book_customer_review_rank', 'pk']
 
 
 class BookDetailSerializer(serializers.ModelSerializer):
+    book_customer_review_rank = serializers.SerializerMethodField()
+
+    def get_book_customer_review_rank(self, obj):
+        threads = obj.thread_set.all()
+        if len(threads) == 0:
+            return 0
+        else:
+            score = 0
+            count = 0
+            for thread in threads:
+                count += 1
+                score += thread.thread_book_review_rank
+        return round(score / count, 2)
+
     class BookDetailAuthorSerializer(serializers.ModelSerializer):
         class Meta:
             model = Author
@@ -59,6 +87,7 @@ class ThreadListSerializer(serializers.ModelSerializer):
                   'num_comments', 
                   'liked', 
                   'user',
+                  'pk',
                   ]
         
 
@@ -81,11 +110,38 @@ class ThreadCreateSerializer(serializers.ModelSerializer):
         read_only_fields = ['user', 'book', 'thread_cover_img', 'thread', 'thread_like_users']
 
 
+
+# Comments
+class CommentListSerializer(serializers.ModelSerializer):
+
+    class CommentListUserSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = get_user_model()
+            fields = ['username', 'user_profile_img', 'pk']
+
+    
+    user = CommentListUserSerializer(read_only=True)
+    num_likes = serializers.SerializerMethodField(read_only=True)
+    
+    def get_num_likes(self, obj):
+        return obj.comment_like_users.all().count()
+    
+
+    class Meta:
+        model = Comment
+        fields = ['pk', 
+                  'comment_content', 
+                  'comment_created_at', 
+                  'comment_updated_at', 
+                  'num_likes', 
+                  'user',
+                  ]
+
 class ThreadDetailSerializer(serializers.ModelSerializer):
     class ThreadDetailUserSerializer(serializers.ModelSerializer):
         class Meta:
             model = get_user_model()
-            fields = ['username', 'user_profile_img']
+            fields = ['username', 'user_profile_img', 'pk']
 
     class ThreadDetailCommentSerializer(serializers.ModelSerializer):
         num_likes = serializers.SerializerMethodField()
@@ -110,42 +166,17 @@ class ThreadDetailSerializer(serializers.ModelSerializer):
             model = Book
             fields = ['book_title', 'book_cover_img', 'book_pub_date', 'avg_review_rank']
 
-    comments = ThreadDetailCommentSerializer(read_only=True, many=True, source='comment_set')
+    comments = CommentListSerializer(read_only=True, many=True, source='comment_set')
     user = ThreadDetailUserSerializer(read_only=True)
     book = ThreadDetailBookSerialzier(read_only=True)
 
     class Meta:
         model = Thread
-        fields = ['thread_title', 'thread_content', 'thread_book_review_rank', 'thread_updated_at', 'user', 'comments', 'book']
+        fields = ['thread_title', 'thread_content', 'thread_book_review_rank', 'thread_updated_at', 'user', 'comments', 'book', 'thread_cover_img']
         read_only_fields = ['thread_updated_at']
 
 
 
-# Comments
-class CommentListSerializer(serializers.ModelSerializer):
-
-    class CommentListUserSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = get_user_model()
-            fields = ['username', 'user_profile_img', ]
-
-    
-    user = CommentListUserSerializer(read_only=True)
-    num_likes = serializers.SerializerMethodField(read_only=True)
-    
-    def get_num_likes(self, obj):
-        return obj.comment_like_users.all().count()
-    
-
-    class Meta:
-        model = Comment
-        fields = ['pk', 
-                  'comment_content', 
-                  'comment_created_at', 
-                  'comment_updated_at', 
-                  'num_likes', 
-                  'user',
-                  ]
         
 class CommentCreateSerializer(serializers.ModelSerializer):
     class Meta:

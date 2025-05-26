@@ -12,17 +12,39 @@ from .serializers import (BookListSerializer,
                           CommentListSerializer, 
                           CommentCreateSerializer, 
                           CommentUpdateSerializer)
-from .models import (Book, Thread, Comment)
+from .models import (Book, Thread, Comment, Category)
+from .utils import OpenAiAPI
+from io import BytesIO
+import requests
+from PIL import Image
+from django.core.files.base import ContentFile
 
+ai_instance = OpenAiAPI()
 
 # Create your views here.
 # book views
 @api_view(['GET'])
 def book_list_create(request):
     if request.method == 'GET':
-        books = get_list_or_404(Book)
+        query = request.GET.get('q', None)
+        if query == None:
+            books = get_list_or_404(Book)
+        elif query == 'bestsellers':
+            books = Book.objects.filter(book_ranking__lte=10).order_by('book_ranking')
+        elif query == 'category':
+            category_pk = int(request.GET.get('cId', None))
+            category = get_object_or_404(Category, pk=category_pk)
+            books = Book.objects.filter(category=category)
+        elif query == 'recommended':
+            books = Book.objects.filter(book_recommened=True)
+        elif query == 'highranked':
+            books = get_list_or_404(Book)
+            serializer = BookListSerializer(books, many=True)
+            sorted_data = sorted(serializer.data, key=lambda x: x['book_customer_review_rank'])
+            return Response(sorted_data)
         serializer = BookListSerializer(books, many=True)
-        return Response(serializer.data)
+        sorted_data = sorted(serializer.data, key=lambda x: x['book_customer_review_rank'])
+        return Response(sorted_data)
 
 
 @api_view(['GET'])
@@ -49,7 +71,15 @@ def thread_create(request, book_pk):
     if request.method == 'POST':
         serializer = ThreadCreateSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(user=request.user, book=book)
+            cover_url = ai_instance.get_thread_image(request.data['thread_content'])
+            buffer = BytesIO()
+            response = requests.get(cover_url, stream=True)
+            image = Image.open(response.raw)
+            image.save(buffer, format='png')
+            image_bytes = buffer.getvalue()
+            thread = serializer.save(user=request.user, book=book)
+            thread.thread_cover_img.save(f"{request.data['thread_title']}cover.jpg", ContentFile(image_bytes))
+            thread.save()
             return Response(status=status.HTTP_201_CREATED)
 
 
@@ -99,6 +129,7 @@ def thread_like(request, book_pk, thread_pk):
 # comment views
 @api_view(['GET'])
 def comment_list(request, book_pk, thread_pk):
+    print(thread_pk)
     thread = get_object_or_404(Thread, pk=thread_pk)
     comments = Comment.objects.filter(thread=thread)
     if request.method == 'GET':
