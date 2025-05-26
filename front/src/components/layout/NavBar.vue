@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <!-- 왼쪽: 로고(메인 페이지) -->
       <RouterLink :to="{ name: 'main-page' }" class="nav-link" active-class="active">
@@ -43,7 +43,9 @@
           <!-- 검색 폼 (나중에 버튼 색 조정해주기) -->
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn" type="submit">
+              <img src="@/assets/magnifier_icon.png" alt="Search">
+            </button>
           </form>
         </ul>
       </div>
@@ -70,6 +72,10 @@ const onLogOut = () => {
 
 
 <style scoped>
+nav {
+  position: sticky;
+}
+
 #logo {
   height: 50px;
   width: auto;
@@ -80,6 +86,11 @@ const onLogOut = () => {
 .navbar-nav .nav-item {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.btn {
+  height: 24px;
+  width: auto;
 }
 
 
