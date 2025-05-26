@@ -81,7 +81,7 @@ section {
   margin: 50px;
 }
 
-/* 그라데이션 위에서 잘 보이도록 밝은색 */
+/* 그라데이션 위에서 잘 보이도록 글씨 밝은색 */
 section * {
   color: #ccc;
 }
@@ -92,7 +92,6 @@ h1 {
   font-family: Antic;
   font-weight: 500;
 }
-
 
 h2 {
   color: white;

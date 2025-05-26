@@ -38,9 +38,9 @@ function cutTitle(title, len = 25) {
 
 <style scoped>
 .book-card {
-  width: 150px;
-  margin: 16px 8px;
-  padding: 16px 8px 12px 8px; /* 위, 좌우, 아래 패딩(아래는 약간 줄임) */
+  width: 200px;
+  margin: 20px 10px;
+  padding: 20px 10px 14px 10px; /* 위, 좌우, 아래 패딩(아래는 약간 줄임) */
   transition: box-shadow 0.2s;
 }
 
@@ -50,8 +50,8 @@ function cutTitle(title, len = 25) {
 }
 
 .book-cover {
-  width: 120px;
-  height: 180px;
+  width: 160px;
+  height: 240px;
   background: #adb5bd;
   border-radius: 4px;
 }

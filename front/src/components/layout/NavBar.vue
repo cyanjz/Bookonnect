@@ -195,6 +195,7 @@ nav.dark .form-control {
 /* 기본(라이트) 모드 */
 .navbar {
   background-color: transparent;
+  /* 부드럽게 전환 */
   transition: background-color 0.4s, box-shadow 0.4s;
   box-shadow: none;
 }

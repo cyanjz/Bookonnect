@@ -14,18 +14,21 @@
             v-for="book in chunk" 
             :key="book.pk" 
             :book="book" 
+            class="custom-book-card"
           />
         </div>
       </div>
     </div>
 
     <!-- 캐러셀 컨트롤(좌우 이동 버튼) -->
-    <button class="carousel-control-prev" type="button" :data-bs-target="'#'+carouselId" data-bs-slide="prev">
+    <button class="carousel-control-prev custom-carousel-control" type="button" 
+      :data-bs-target="'#'+carouselId" data-bs-slide="prev">
       <span class="carousel-control-prev-icon"></span>
       <!-- 아래는 접근성을 높이기 위한 스크린 리더용 기능 -> 텍스트가 읽혀 시각장애인도 접근 가능 -->
       <span class="visually-hidden">이전</span>
     </button>
-    <button class="carousel-control-next" type="button" :data-bs-target="'#'+carouselId" data-bs-slide="next">
+    <button class="carousel-control-next custom-carousel-control" type="button" 
+      :data-bs-target="'#'+carouselId" data-bs-slide="next">
       <span class="carousel-control-next-icon"></span>
       <span class="visually-hidden">다음</span>
     </button>
@@ -66,39 +69,47 @@ const chunkedBooks = computed(() => {
 </script>
 
 
-<style scoped></style>
-
-
-
-
-<!-- <template>
-  <div>
-    <h5>북 리스트 템플릿</h5>
-    <BookCardVer 
-      v-for="book in books"
-      :key="book.pk"
-      :book="book"
-      @click-card="goToBookDetail(book.pk)"
-    />
-  </div>
-</template>
-
-
-<script setup>
-import { useRouter } from 'vue-router'
-import BookCardVer from '../card/BookCardVer.vue';
-
-const props = defineProps({
-  books: Array,
-})
-
-const router = useRouter()
-function goToBookDetail(pk) {
-  router.push({ name: 'book-detail', params: { book_pk: pk }})
-}
-</script>
-
-
 <style scoped>
+/* 화면이 작아져도 캐러셀 컨트롤 버튼이 도서 영역에 겹치지 않도록 */
+/* 캐러셀 전체에 좌우 패딩 추가 (버튼 공간 확보) */
+.custom-carousel {
+  position: relative;
+  padding: 0 60px; /* 버튼 공간 확보 */
+}
 
-</style> -->
+/* 컨트롤 버튼을 캐러셀 바깥쪽에 위치시키기 */
+.custom-carousel-control {
+  width: 48px;
+  height: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-control-prev.custom-carousel-control {
+  left: -24px; /* 캐러셀 바깥쪽으로 */
+}
+
+.carousel-control-next.custom-carousel-control {
+  right: -24px; /* 캐러셀 바깥쪽으로 */
+}
+
+/* 반응형: 화면이 작아지면 버튼이 겹치지 않도록 위치 조정 */
+@media (max-width: 768px) {
+  .custom-carousel {
+    padding: 0 20px;
+  }
+  .carousel-control-prev.custom-carousel-control,
+  .carousel-control-next.custom-carousel-control {
+    left: 0;
+    right: 0;
+  }
+}
+
+
+/* 북카드 크기 조정 */
+.custom-book-card {
+  min-width: 180px;
+  max-width: 220px;
+  flex: 1 1 180px;
+}
+</style>
