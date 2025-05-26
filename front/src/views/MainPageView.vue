@@ -7,36 +7,24 @@
 
     <section>
       <h2>🔥 Best Sellers</h2>
-      <BestSellers 
-        :books="store.books"  
-        :carouselId="bestSellersCarousel"
-      />
+      <BestSellers/>
     </section>
     <br>
     <section>
       <h2>✨ Recommended by Editors</h2>
-      <RecommendedBooks 
-        :books="store.books"
-        :carouselId="recommendedCarousel"
-      />
+      <RecommendedBooks/>
     </section>
     <br>
     <section>
       <h2>📂 Books by Category</h2>
-      <!-- <CategoryBooks 
-        :books="books"
-        :carouselId="categoriesCarousel"
-      /> -->
+      <CategoryBooks/>
     </section>
     <br>
     <h2>CollectionThumbnail 컴포넌트 넣어주기</h2>
     <br>
     <section>
       <h2>📈 High Ranked Books</h2>
-      <HighRankBooks 
-        :books="store.books"
-        :carouselId="highRankCarousel"
-      />
+      <HighRankBooks/>
     </section>
   </main>
 </template>

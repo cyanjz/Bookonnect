@@ -5,12 +5,40 @@ from django.contrib.auth import get_user_model
 
 # Books
 class BookListSerializer(serializers.ModelSerializer):
+    book_customer_review_rank = serializers.SerializerMethodField()
+
+    def get_book_customer_review_rank(self, obj):
+        threads = obj.thread_set.all()
+        if len(threads) == 0:
+            return 0
+        else:
+            score = 0
+            count = 0
+            for thread in threads:
+                count += 1
+                score += thread.thread_book_review_rank
+        return round(score / count, 2)
+    
     class Meta:
         model = Book
-        fields = ['book_cover_img', 'book_title', 'book_customer_review_rank']
+        fields = ['book_cover_img', 'book_title', 'book_customer_review_rank', 'pk']
 
 
 class BookDetailSerializer(serializers.ModelSerializer):
+    book_customer_review_rank = serializers.SerializerMethodField()
+
+    def get_book_customer_review_rank(self, obj):
+        threads = obj.thread_set.all()
+        if len(threads) == 0:
+            return 0
+        else:
+            score = 0
+            count = 0
+            for thread in threads:
+                count += 1
+                score += thread.thread_book_review_rank
+        return round(score / count, 2)
+
     class BookDetailAuthorSerializer(serializers.ModelSerializer):
         class Meta:
             model = Author

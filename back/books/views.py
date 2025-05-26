@@ -29,8 +29,16 @@ def book_list_create(request):
             category_pk = int(request.GET.get('cId', None))
             category = get_object_or_404(Category, pk=category_pk)
             books = Book.objects.filter(category=category)
+        elif query == 'recommended':
+            books = Book.objects.filter(book_recommened=True)
+        elif query == 'highranked':
+            books = get_list_or_404(Book)
+            serializer = BookListSerializer(books, many=True)
+            sorted_data = sorted(serializer.data, key=lambda x: x['book_customer_review_rank'])
+            return Response(sorted_data)
         serializer = BookListSerializer(books, many=True)
-        return Response(serializer.data)
+        sorted_data = sorted(serializer.data, key=lambda x: x['book_customer_review_rank'])
+        return Response(sorted_data)
 
 
 @api_view(['GET'])

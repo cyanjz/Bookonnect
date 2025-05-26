@@ -1,27 +1,40 @@
 <template>
   <section>
-    <h3>베스트셀러</h3>
-    <div v-if="books">
-      <BookList
-        :books="books"
-        :carouselId="carouselId"
-      />
-    </div>
+    <template v-if="books">
+      <div v-if="books">
+        <BookList
+          :books="books"
+          :carouselId="carouselId"
+        />
+      </div>
+    </template>
   </section>
 </template>
 
 
 <script setup>
+import { onMounted, ref } from 'vue';
 import BookList from '@/components/book/BookList.vue'
+import { useBookStore } from '@/stores/books';
+import axios from 'axios';
 
-const props = defineProps({
-  books: Array,
-  carouselId: String
+let books = ref(null)
+const bookStore = useBookStore()
+const carouselId = 'bestseller'
+onMounted(() => {
+  axios({
+    url: bookStore.API_URL + '/api/v1/books',
+    method: 'get',
+    params: {
+      q: 'bestsellers',
+    }
+  }).then(res => {
+    books.value = res.data
+  }).catch(err => {
+    console.log(err)
+  })
 })
 
-
-// 베스트셀러 섹션에서만 캐러셀이 작동하도록 아이디 변경하여 부여
-// const carouselId = bestSellersCarousel
 </script>
 
 

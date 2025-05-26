@@ -1,13 +1,17 @@
 <template>
   <div class="book-card d-flex flex-column align-items-center">
+    <RouterLink
+    :to="{name: 'book-detail', params: {book_pk: book.pk}}"
+    >
     <img class="book-cover" 
       :src="store.API_URL+book.book_cover_img || placeholder"
       alt="책 표지" 
     />
+    </RouterLink>
     <div class="book-info mt-2 text-center">
       <div class="book-title">{{ book.book_title || '책 제목' }}</div>
       <div class="book-rating fw-bold">
-        평균 ★ {{ book.book_customer_review_rank == null ? 0 : book.book_customer_review_rank }}
+        평균 ★ {{ book.book_customer_review_rank }}
       </div>
     </div>
   </div>
