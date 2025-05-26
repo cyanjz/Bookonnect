@@ -122,7 +122,7 @@ watch(isDark, (val) => {
 //99. 검색 관련 기능
 const cache = new Map()
 const query = ref('')
-suggestions = ref([])
+const suggestions = ref([])
 const fetchSuggestions = debounce((query) => {
   if (cache.has(query)) {
     suggestions.value = cache.get(query)
