@@ -27,7 +27,8 @@
       <!-- 작가 정보 -->
       <section class="author-card mb-5">
         <div class="author-card-img">
-          <img :src="store.API_URL + book.author.author_profile_img" alt="작가 이미지" />
+          <img :src="store.API_URL + book.author.author_profile_img" alt="작가 이미지" v-if="book.author.author_profile_img" />
+          <img :src="authordefault" alt="" v-else>
         </div>
 
         <div class="author-card-info">
@@ -63,6 +64,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useBookStore } from '@/stores/books'
+import authordefault from '@/assets/authordefault.png'
 import axios from 'axios';
 
 import ThreadThumbnail from '@/components/thread/ThreadThumbnail.vue';
