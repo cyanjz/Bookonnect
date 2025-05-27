@@ -41,8 +41,8 @@
           </template>
 
           <!-- 검색 폼 -->
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <form class="d-flex" role="search" @submit.prevent="onSearchSubmit">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="searchInput" />
             <button class="search-btn" type="submit">
               <img 
                 :src="btnSrc" alt="Search" class="search-icon"
@@ -69,6 +69,7 @@ import SignUpForm from '@/components/form/SignUpForm.vue';
 import { useAccountStore } from '@/stores/accounts';
 import { debounce } from 'lodash'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
 const accountStore = useAccountStore()
 
 const onLogOut = () => {
@@ -120,6 +121,20 @@ watch(isDark, (val) => {
 })
 
 //99. 검색 관련 기능
+// send query, router push
+const router = useRouter()
+const searchInput = ref('')
+const onSearchSubmit = () => {
+  if (searchInput.value === '') {
+    alert('검색어를 입력하세요!')
+    return
+  }
+  router.push({
+    name: 'book-search',
+    query: {'q': searchInput.value}
+  })
+}
+
 const cache = new Map()
 const query = ref('')
 const suggestions = ref([])

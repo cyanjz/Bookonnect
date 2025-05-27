@@ -62,6 +62,20 @@ class BookDetailSerializer(serializers.ModelSerializer):
                   ]
         
 
+class BookSearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['book_title', 
+                  'book_cover_img', 
+                  'book_pub_date', 
+                  'author', 
+                  'book_publisher', 
+                  'book_ISBN13', 
+                  'book_ranking', 
+                  'book_description',
+                  'category',
+                  'pk']
+
 
 # Threads
 class ThreadListSerializer(serializers.ModelSerializer):

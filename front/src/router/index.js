@@ -38,11 +38,11 @@ const router = createRouter({
       name: 'book-detail',
       component: BookDetailView,
     },
-    // {
-    //   path: '/books/search',
-    //   name: 'book-search',
-    //   component: BookSearchView,
-    // },
+    {
+      path: '/books/search',
+      name: 'book-search',
+      component: BookSearchView,
+    },
 
 
     // 3. Thread (스레드 목록 / 스레드 상세 / 스레드 생성 / 스레드 수정)

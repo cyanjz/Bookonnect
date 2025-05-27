@@ -16,7 +16,8 @@ from .serializers import (BookListSerializer,
                           CommentCreateSerializer, 
                           CommentUpdateSerializer,
                           ThreadUpdateSerializer,
-                          CategoryListSerializer)
+                          CategoryListSerializer,
+                          BookSearchSerializer)
 from .models import (Book, Thread, Comment, Category)
 from .utils import OpenAiAPI
 from io import BytesIO
@@ -37,6 +38,15 @@ def get_similarity(book_vector, user_vector):
         dot_product = np.dot(book_vector, user_vector)
         return dot_product
 
+
+@api_view(['GET'])
+def book_search_list(request):
+    query = request.GET.get('q')
+    books = Book.objects.filter(
+        Q(book_description__icontains=query) | Q(book_title__icontains=query)
+        )
+    serializer = BookSearchSerializer(books, many=True)
+    return Response(serializer.data)
 
 # Create your views here.
 # book views
@@ -135,15 +145,21 @@ def thread_create(request, book_pk):
     if request.method == 'POST':
         serializer = ThreadCreateSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            cover_url = ai_instance.get_thread_image(request.data['thread_content'])
-            buffer = BytesIO()
-            response = requests.get(cover_url, stream=True)
-            image = Image.open(response.raw)
-            image.save(buffer, format='png')
-            image_bytes = buffer.getvalue()
-            thread = serializer.save(user=request.user, book=book)
-            thread.thread_cover_img.save(f"{request.data['thread_title']}cover.jpg", ContentFile(image_bytes))
-            thread.save()
+            try:
+                cover_url = ai_instance.get_thread_image(request.data['thread_content'])
+                buffer = BytesIO()
+                response = requests.get(cover_url, stream=True)
+                image = Image.open(response.raw)
+                image.save(buffer, format='png')
+                image_bytes = buffer.getvalue()
+                thread = serializer.save(user=request.user, book=book)
+                thread.thread_cover_img.save(f"{request.data['thread_title']}cover.jpg", ContentFile(image_bytes))
+                thread.save()
+                return Response(status=status.HTTP_201_CREATED)
+            except Exception as e:
+                print('ai banner를 만드는 데에 실패했습니다.')
+                print(e)
+            serializer.save(user=request.user, book=book)
             return Response(status=status.HTTP_201_CREATED)
 
 

@@ -15,7 +15,12 @@ def get_user_info(request, user_pk):
     User = get_user_model()
     user = get_object_or_404(User, pk=user_pk)
     serializer = UserProfileSerializer(user)
-    return Response(serializer.data)
+    user_data = serializer.data
+    if request.user.is_authenticated:
+        user_data['isFollowed'] = user.followers.filter(user=request.user).exists()
+    else:
+        user_data['isFollowed'] = False
+    return Response(user_data)
 
 
 @api_view(['GET'])
