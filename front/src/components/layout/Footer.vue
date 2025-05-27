@@ -41,6 +41,7 @@ footer {
   align-items: center;
   padding: 0;
   margin: 10px;
+  margin-top: 50px;
 }
 
 .logo {

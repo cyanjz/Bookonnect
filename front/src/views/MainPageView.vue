@@ -17,13 +17,14 @@
     <br>
     <section>
       <h2>Books by Category</h2>
+      <h4>: {{ store.categories[store.selectedCategory].category_name }}</h4>
       <CategoryBooks
         v-if="store.categories"
       />
     </section>
     <br>
-    <h2>CollectionThumbnail 컴포넌트 넣어주기</h2>
-    <br>
+    <!-- <h2>CollectionThumbnail 컴포넌트 넣어주기</h2> -->
+    <!-- <br> -->
     <section>
       <h2>High Ranked Books</h2>
       <HighRankBooks />
@@ -77,7 +78,7 @@ body {
 }
 
 main {
-  margin: 50px auto;
+  margin: 50px 100px;
   /* max-width: 100%; */
   padding: 20px;
 }
@@ -107,6 +108,12 @@ h1 {
 
 h2 {
   color: white;
-  /* font-family: Antic; */
+  font-family: Antic;
+  padding-left: 150px;
+}
+
+h4 {
+  padding-left: 150px;
+  padding-top: 10px;
 }
 </style>

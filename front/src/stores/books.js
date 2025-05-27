@@ -97,6 +97,7 @@ export const useBookStore = defineStore('book', () => {
 
   // 6. Categories 
   // => 카테고리(장르?)별로 다양하므로 버튼으로 카테고리를 고르도록 할 예정
+  const selectedCategory = ref('')
   const getCategories = async () => {
     axios({
       method: 'get',
@@ -104,6 +105,8 @@ export const useBookStore = defineStore('book', () => {
     })
       .then(res => {
         categories.value = res.data
+        const idx = Math.floor(Math.random() * categories.value.length)
+        selectedCategory.value = idx
       })
       .catch(err => {
         console.log(err)
@@ -132,6 +135,7 @@ export const useBookStore = defineStore('book', () => {
   return {
     books,
     categories,
+    selectedCategory,
     bestSellers,
     recommendedBooks,
     highRankBooks,
@@ -169,7 +173,7 @@ export const useBookDetailStore = defineStore('bookDetail', () => {
       url: `${API_URL}/api/v1/books/${bookId}/`
     })
       .then(res => {
-        book.value = res.data; 
+        book.value = res.data;
         return res.data
       })
       .catch(err => {
@@ -184,12 +188,12 @@ export const useBookDetailStore = defineStore('bookDetail', () => {
       method: 'get',
       url: `${API_URL}/api/v1/authors/${authorId}/`
     })
-      .then(res => { 
-        author.value = res.data; 
-        return res.data 
+      .then(res => {
+        author.value = res.data;
+        return res.data
       })
-      .catch(err => { 
-        error.value = err 
+      .catch(err => {
+        error.value = err
       })
   }
 
@@ -200,12 +204,12 @@ export const useBookDetailStore = defineStore('bookDetail', () => {
       method: 'get',
       url: `${API_URL}/api/v1/books/${bookId}/threads/`
     })
-      .then(res => { 
-        threads.value = res.data; 
-        return res.data 
+      .then(res => {
+        threads.value = res.data;
+        return res.data
       })
-      .catch(err => { 
-        error.value = err 
+      .catch(err => {
+        error.value = err
       })
   }
 
