@@ -46,6 +46,7 @@
             <button class="search-btn" type="submit">
               <img 
                 :src="btnSrc" alt="Search" class="search-icon"
+                :class="{ 'fade': isFading }"
                 @mouseover="handleSearchMouseOver"
                 @mouseout="handleSearchMouseOut"
               >
@@ -84,7 +85,7 @@ const btnSrc = ref(defaultBtn)
 
 
 const darkDefaultBtn = '/src/assets/magnifier_icon_white.png'      // 어두운 배경에서 쓸 검색아이콘
-const darkHoverBtn = '/src/assets/magnifier_icon_red_white.png'    // 어두운 배경에서 호버
+const darkHoverBtn = '/src/assets/magnifier_icon_red.png'    // 어두운 배경에서 호버
 
 
 // 스크롤 시 navbar의 배경색/글씨색/이미지가 바뀌도록!
@@ -97,9 +98,22 @@ const handleScroll = () => {
   isDark.value = window.scrollY > getDarkThreshold()
 }
 
-// 다크모드에서 호버 후에도 흰색 이미지가 디폴트값(검은색 이미지)으로 바뀌지 앟도록
+
+
+// 다크모드에서 호버 후에도 흰색 이미지가 디폴트값(검은색 이미지)으로 바뀌지 않도록
+// + 이미지가 좀 더 부드럽게 바뀌도록
+const isFading = ref(false)
+
+const fadeBtnImg = (newSrc) => {
+  isFading.value = true
+  setTimeout(() => {
+    btnSrc.value = newSrc
+    isFading.value = false
+  }, 120) // 120ms 동안 opacity 0, 이후 src 변경
+}
+
 const handleSearchMouseOver = () => {
-  btnSrc.value = isDark.value ? darkHoverBtn : hoverBtn
+  fadeBtnImg(isDark.value ? darkHoverBtn : hoverBtn)
 }
 const handleSearchMouseOut = () => {
   btnSrc.value = isDark.value ? darkDefaultBtn : defaultBtn
@@ -117,7 +131,7 @@ onUnmounted(() => {
 })
 
 watch(isDark, (val) => {
-  btnSrc.value = val ? darkDefaultBtn : defaultBtn
+  fadeBtnImg(val ? darkDefaultBtn : defaultBtn)
 })
 
 //99. 검색 관련 기능
@@ -147,7 +161,6 @@ const fetchSuggestions = debounce((query) => {
     })
   }
 })
-
 </script>
 
 
@@ -176,6 +189,12 @@ nav {
   height: 40px;
   width: auto;
   padding: 0px;
+  transition: opacity 0.2s;
+  opacity: 1;
+}
+
+.search-icon.fade {
+  opacity: 0;
 }
 
 .search-btn {
@@ -185,9 +204,7 @@ nav {
 
 /* 현재 선택된 메뉴 빨간색 강조 */
 .nav-link.active {
-  /* color: #dc3545; */
   color: #FF0000;
-  /* 로고랑 통일하고 싶어서 추출한 빨간색(#FF0000)인데 너무 쨍한가.. 응아니야하나도안쨍해*/
 }
 
 /* 비활성 상태일 때 hover 효과 */
@@ -196,7 +213,6 @@ nav {
   color: #FF0000;
   cursor: pointer;
 }
-
 
 
 
@@ -225,7 +241,15 @@ nav.dark .form-control {
 
 /* 다크 모드 */
 .navbar.dark {
-  background-color: #111;
-  /* box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08); */
+  background-color: #0e2148;
+}
+
+/* 스크롤 시 토글 버튼 색상 변경 */
+/* 기존 스타일 아래에 추가 */
+nav.dark .navbar-toggler {
+  border-color: #fff;
+}
+nav.dark .navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 </style>
