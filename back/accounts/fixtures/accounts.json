@@ -1,0 +1,212 @@
+[
+{
+  "model": "accounts.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$usabLzXVGlpYDHYovByuA7$rvojvwnkgT1JBAbZFeZ8vcykyxpphx4K5MQPzHIuWUY=",
+    "last_login": "2025-05-25T09:59:19.105Z",
+    "is_superuser": false,
+    "username": "user1",
+    "email": "user1@naver.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-25T09:59:18.226Z",
+    "user_age": null,
+    "user_introduction": "",
+    "user_profile_img": "accounts/profiles/default_profile.png",
+    "user_banner_img": "accounts/banners/default_banner.png",
+    "groups": [],
+    "user_permissions": [],
+    "followers": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$6cnUNPdIFEvcg3bBiaREfn$9cZnLKunqWGpqw1jkxBQITobD5BkRaVG8hN/2m1nbf4=",
+    "last_login": "2025-05-25T09:59:27.863Z",
+    "is_superuser": false,
+    "username": "user2",
+    "email": "2@naver.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-25T09:59:25.719Z",
+    "user_age": null,
+    "user_introduction": "",
+    "user_profile_img": "accounts/profiles/default_profile.png",
+    "user_banner_img": "accounts/banners/default_banner.png",
+    "groups": [],
+    "user_permissions": [],
+    "followers": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$zqE3mQbXJbqnW6fGAS7DPL$sp1T763bLY1BonLjzvZt5JQ+gCqTyi2ju1MaCMEd/lQ=",
+    "last_login": "2025-05-25T09:59:32.821Z",
+    "is_superuser": false,
+    "username": "user3",
+    "email": "3@naver.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-25T09:59:32.240Z",
+    "user_age": null,
+    "user_introduction": "",
+    "user_profile_img": "accounts/profiles/default_profile.png",
+    "user_banner_img": "accounts/banners/default_banner.png",
+    "groups": [],
+    "user_permissions": [],
+    "followers": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$VxvjZMmtsKXTieV5LxZ7EF$OENwfGNqw/b3x0y3iNXkuvCyHv91zB2Q5oLOXIBRelI=",
+    "last_login": "2025-05-25T09:59:36.995Z",
+    "is_superuser": false,
+    "username": "user4",
+    "email": "4@naver.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-25T09:59:36.496Z",
+    "user_age": null,
+    "user_introduction": "",
+    "user_profile_img": "accounts/profiles/default_profile.png",
+    "user_banner_img": "accounts/banners/default_banner.png",
+    "groups": [],
+    "user_permissions": [],
+    "followers": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$lBn3NPeyYgK6Yw0xldndGx$1BzwxcBD1QjWUWhYjrcMxJhNkcN14uitKbv/u6CbcX4=",
+    "last_login": "2025-05-25T09:59:42.412Z",
+    "is_superuser": false,
+    "username": "user5",
+    "email": "5@naver.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-25T09:59:41.013Z",
+    "user_age": null,
+    "user_introduction": "",
+    "user_profile_img": "accounts/profiles/default_profile.png",
+    "user_banner_img": "accounts/banners/default_banner.png",
+    "groups": [],
+    "user_permissions": [],
+    "followers": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$djOY9ecZ6lRaPId9BjAysb$tjAGDCZBSHnpdyU0zp2GlB9aPlHBzMKD1UpXic5qL2c=",
+    "last_login": "2025-05-25T09:59:45.661Z",
+    "is_superuser": false,
+    "username": "user6",
+    "email": "6@naver.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-25T09:59:44.774Z",
+    "user_age": null,
+    "user_introduction": "",
+    "user_profile_img": "accounts/profiles/default_profile.png",
+    "user_banner_img": "accounts/banners/default_banner.png",
+    "groups": [],
+    "user_permissions": [],
+    "followers": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$rKwzM7JVt3rwvofxenl1JV$DAUkEzR2Lb1e2klecroOSvXor7knHuq/aUbAuxGM1qc=",
+    "last_login": "2025-05-25T09:59:49.728Z",
+    "is_superuser": false,
+    "username": "user7",
+    "email": "7@naver.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-25T09:59:48.415Z",
+    "user_age": null,
+    "user_introduction": "",
+    "user_profile_img": "accounts/profiles/default_profile.png",
+    "user_banner_img": "accounts/banners/default_banner.png",
+    "groups": [],
+    "user_permissions": [],
+    "followers": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$FCde9qE7yDmFFYXDhovw3n$sZreNyFioolAKO6X2dgye7pH6WpW4i1bDpjj+EjVpb0=",
+    "last_login": "2025-05-25T09:59:52.744Z",
+    "is_superuser": false,
+    "username": "user8",
+    "email": "8@naver.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-25T09:59:51.795Z",
+    "user_age": null,
+    "user_introduction": "",
+    "user_profile_img": "accounts/profiles/default_profile.png",
+    "user_banner_img": "accounts/banners/default_banner.png",
+    "groups": [],
+    "user_permissions": [],
+    "followers": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$kvamuOpSz5WRhl5HJziNxR$0iYA0m9edGuYit3dbeTANlfTnHWI+fjTvpqavIUNXrw=",
+    "last_login": "2025-05-25T09:59:57.136Z",
+    "is_superuser": false,
+    "username": "user9",
+    "email": "9@naver.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-25T09:59:56.491Z",
+    "user_age": null,
+    "user_introduction": "",
+    "user_profile_img": "accounts/profiles/default_profile.png",
+    "user_banner_img": "accounts/banners/default_banner.png",
+    "groups": [],
+    "user_permissions": [],
+    "followers": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$qlkc1IugNsJdvxE4zL3nP9$uTprFdHNiH4uLgbELthePcaG9XqTsVjdmFqUIK91Rew=",
+    "last_login": "2025-05-25T10:00:01.552Z",
+    "is_superuser": false,
+    "username": "user10",
+    "email": "10@naver.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-25T10:00:00.691Z",
+    "user_age": null,
+    "user_introduction": "",
+    "user_profile_img": "accounts/profiles/default_profile.png",
+    "user_banner_img": "accounts/banners/default_banner.png",
+    "groups": [],
+    "user_permissions": [],
+    "followers": []
+  }
+}
+]
