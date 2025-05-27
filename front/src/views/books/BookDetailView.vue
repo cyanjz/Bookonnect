@@ -13,7 +13,7 @@
           <h2 class="book-title">{{ book.book_title }}</h2>
 
           <div class="book-rating mb-2">
-            <span>평균 ★ {{ book.book_customer_review_rank }}</span>
+            <span>평균 ★{{ book.book_customer_review_rank }}</span>
           </div>
           
           <div class="book-meta">
@@ -112,9 +112,8 @@ onMounted(() => {
 .book-card, .author-card {
   display: flex;
   flex-wrap: wrap;
-  /* background: #fff; */
-  background: rgba(255, 255, 255, 0);
-  border: 1.5px solid white; 
+  background: rgba(255, 255, 255, 0.3);
+  /* border: 1.5px solid white;  */
   border-radius: 18px;
   box-shadow: 0 4px 24px 0 rgba(60, 60, 100, 0.12);
   padding: 2rem;
@@ -150,7 +149,7 @@ onMounted(() => {
 
 .book-rating {
   font-size: 1.1rem;
-  color: #fab82a;
+  color: #ff2c54;
   /* color: #ff2c54; */
   font-weight: 500;
   display: flex;
@@ -164,14 +163,13 @@ onMounted(() => {
 }
 .book-meta {
   font-size: 0.97rem;
-  color: #bbb;
+  color: whitesmoke;
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
 }
 .book-meta i {
   margin-right: 0.4em;
-  color: #ccc;
 }
 
 
@@ -189,16 +187,16 @@ onMounted(() => {
 .author-name {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #f0f0f0;
+  color: white;
   margin-bottom: 0.5rem;
 }
 .author-bio {
   font-size: 1rem;
-  color: #ccc;
+  color: whitesmoke;
   min-height: 48px;
 }
 .author-audio {
-  color: #aaa;
+  color: whitesmoke;
 }
 
 
@@ -211,7 +209,9 @@ onMounted(() => {
 }
 
 .thread-card {
-  background: transparent;
+  /* background: transparent; */
+  background: rgba(255, 255, 255, 0.2);
+  /* border: 1.5px solid white;  */
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(90, 90, 120, 0.04);
   padding: 1.5rem;

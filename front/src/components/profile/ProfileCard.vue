@@ -21,20 +21,24 @@
         <p v-else class="introduction-write">설명이 없습니다...</p>
       </div>
       <div class="follow-container d-flex justify-content-between mx-4 my-3 align-items-center">
-        <p class="m-0">팔로워 {{ userInfo.num_followers }}</p>
-        <p class="m-0">팔로잉 {{ userInfo.num_followings }}</p>
-        <div v-if="!accountStore.auth.isAuthenticated">
-          <button class="btn btn-outline-primary" @click="onFollow" v-if="!userInfo.isFollowed">
-            팔로우
-          </button>
+        <div class="d-flex flex-nowrap m-0 p-0">
+          <p class="mx-1">팔로워 {{ userInfo.num_followers }}</p>
+          <p class="mx-1">팔로잉 {{ userInfo.num_followings }}</p>
         </div>
-        <div v-else-if="Number(route.params.userId) !== accountStore.auth.userPk">
-          <button class="btn btn-outline-primary" @click="onFollow" v-if="!userInfo.isFollowed">
-            팔로우
-          </button>
-          <button class="btn btn-outline-primary" @click="onFollow" v-else>
-            언팔로우
-          </button>
+        <div class="follow-container-button">
+          <div v-if="!accountStore.auth.isAuthenticated">
+            <button class="btn follow-button" @click="onFollow" v-if="!userInfo.isFollowed">
+              팔로우
+            </button>
+          </div>
+          <div v-else-if="Number(route.params.userId) !== accountStore.auth.userPk">
+            <button class="btn follow-button" @click="onFollow" v-if="!userInfo.isFollowed">
+              팔로우
+            </button>
+            <button class="btn unfollow-button" @click="onFollow" v-else>
+              언팔로우
+            </button>
+          </div>
         </div>
       </div>
       <hr class="my-4">
@@ -217,18 +221,24 @@ const onUpdate = () => {
 }
 
 .update-button {
-  border-color: rgb(171, 173, 175);
-  color: rgb(171, 173, 175);
+  /* border-color: rgb(171, 173, 175);
+  color: rgb(171, 173, 175); */
+  background-color: transparent;
+  border-color: #ccc;
+  color: #ccc;
 }
-
 .update-button:hover {
-  box-shadow: 0 2px 12px 0 #ccc;
+  /* box-shadow: 0 2px 12px 0 #ccc; */
+  background-color: #df0c34;
+  border: #df0c34;
+  box-shadow: 0 2px 12px 0 #ccc;;
 }
 
 
 .introduction-container {
   height: 10rem;
   margin: 0px 20px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .introduction-write {
@@ -237,12 +247,19 @@ const onUpdate = () => {
 
 
 .follow-button {
-  border-color: #FF2C54;
-  color: #FF2C54;
+  background-color: #ff2c54;
+  color: white;
+}
+.follow-button:hover {
+  box-shadow: 0 2px 12px 0 #ccc;
 }
 
-.follow-button:hover {
-  box-shadow: 0 2px 12px 0 #FF2C54;
+.unfollow-button {
+  border-color: #ff2c54;
+  color: #ff2c54;
+}
+.unfollow-button:hover {
+  box-shadow: 0 2px 12px 0 #ff2c54;
 }
 
 

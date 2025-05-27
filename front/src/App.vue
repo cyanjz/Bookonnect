@@ -30,7 +30,7 @@ body, #app {
   margin: 0;
   padding: 0;
   /* 위는 흰색, 아래는 검정으로 자연스럽게 전환되는 그라데이션 */
-  background: linear-gradient(to bottom, #fff 0%, #022148 40%);
+  background: linear-gradient(to bottom, #fff 0%, #022148 50%);
   /* background-color: black; */
 }
 
@@ -39,6 +39,7 @@ body, #app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: 'Antic', 'Gowun Dodum';
 }
 
 /* RouterView가 남는 공간을 차지하도록 */

@@ -11,6 +11,11 @@
     </section>
     <br>
     <section>
+      <h2>High Ranked Books</h2>
+      <HighRankBooks />
+    </section>
+    <br>
+    <section>
       <h2>Recommended by Editors</h2>
       <RecommendedBooks />
     </section>
@@ -25,13 +30,8 @@
     <br>
     <!-- <h2>CollectionThumbnail 컴포넌트 넣어주기</h2> -->
     <!-- <br> -->
-    <section>
-      <h2>High Ranked Books</h2>
-      <HighRankBooks />
-    </section>
-    <br>
     <section v-if="accountStore.auth.isAuthenticated">
-      <h2>User Recommend</h2>
+      <h2>Recommend for User</h2>
       <userRecommended />
     </section>
   </main>
@@ -78,7 +78,7 @@ body {
 }
 
 main {
-  margin: 50px 100px;
+  margin: 100px 70px 3cqh;
   /* max-width: 100%; */
   padding: 20px;
 }
@@ -89,7 +89,7 @@ section {
   box-shadow: none !important;
   /* 패딩: 상우하좌 */
   padding: 20px 0 0 0;
-  margin: 50px;
+  margin-bottom: 50px;
 }
 
 /* 그라데이션 위에서 잘 보이도록 밝은색 */
@@ -105,9 +105,9 @@ h1 {
   text-align: center;
 }
 
-
 h2 {
   color: white;
+  font-size: 40px !important;
   font-family: Antic;
   padding-left: 150px;
 }

@@ -226,7 +226,7 @@ nav {
 
 /* 다크 모드: 흰색 */
 nav.dark .nav-link,
-nav.dark .form-control {
+nav.dark {
   color: #fff;
 }
 
