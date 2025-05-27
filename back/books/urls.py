@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = [
     path('', views.book_list_create),
-    path('search/', views.get_search_suggestions),
+    path('search/', views.book_search_list),
+    path('search/suggestions/', views.get_search_suggestions),
     path('categories/', views.get_categories),
     path('<int:book_pk>/', views.book_detail),
     path('<int:book_pk>/threads/', views.thread_list),

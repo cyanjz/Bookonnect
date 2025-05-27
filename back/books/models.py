@@ -43,7 +43,7 @@ class Thread(models.Model):
     thread_title = models.CharField(max_length=40)  # max_length 20 -> 40
     thread_content = models.TextField()
     thread_book_review_rank = models.FloatField(default=0.0)
-    thread_cover_img = models.ImageField(upload_to=PATH['Thread']['cover_image'], default='')
+    thread_cover_img = models.ImageField(upload_to=PATH['Thread']['cover_image'], default='/threads/thread_covers/default_banner.png')
     thread_created_at = models.DateTimeField(auto_now_add=True)
     thread_updated_at = models.DateTimeField(auto_now=True)
     # ThreadLikeUser -> thread_like_users
