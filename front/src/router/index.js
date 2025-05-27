@@ -47,7 +47,7 @@ const router = createRouter({
 
     // 3. Thread (스레드 목록 / 스레드 상세 / 스레드 생성 / 스레드 수정)
     {
-      path: '/books/:book_pk/threads',
+      path: '/threads/:user_pk',
       name: 'thread-list',
       component: ThreadListView,
     },

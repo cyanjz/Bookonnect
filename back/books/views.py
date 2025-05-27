@@ -41,7 +41,6 @@ def get_similarity(book_vector, user_vector):
 
 
 @api_view(['GET'])
-@authentication_classes([BasicAuthentication])
 def book_search_list(request):
     query = request.GET.get('q')
     books = Book.objects.filter(
@@ -140,6 +139,20 @@ def thread_list(request, book_pk):
         serializer = ThreadListSerializer(threads, many=True, context={'request': request})
         return Response(serializer.data)
         
+
+# @api_view(['GET'])
+# def user_thread_list(request, user_pk):
+#     User = get_user_model()
+#     user = get_object_or_404(User, pk=user_pk)
+#     threads = user.thread_set.all()
+#     serializer = ThreadListSerializer(threads, many=True)
+#     thread_list_data = serializer.data
+#     resp = {
+#         'threadData': thread_list_data,
+#         'username': user.username,
+#     }
+#     return Response(resp, status=status.HTTP_200_OK)
+
 
 @api_view(['POST'])
 @authentication_classes([BasicAuthentication])
