@@ -22,6 +22,18 @@ npm install
 npm run dev
 ```
 
+### Project 설정 - OPEN AI API KEY
+- backend open ai api key
+- 알라딘의 경우 확인이 필요한 경우에 한해 작성.
+```.env
+OPENAI_API_KEY={YOUR_KEY}
+ALADIN_API_KEY={YOUR_KEY}
+```
+- frontend open ai api key
+```.env
+VIET_API_KEY={YOUR_KEY}
+```
+
 <br/>
 
 ## I. 임무 분담
