@@ -132,4 +132,9 @@ const onClickCard = (bookPk) => {
 .book-elem {
   cursor: pointer
 }
+
+
+main {
+  margin-top: 100px;
+}
 </style>

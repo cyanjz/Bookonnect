@@ -13,7 +13,6 @@
           <h2 class="book-title">{{ book.book_title }}</h2>
 
           <div class="book-rating mb-2">
-            <i class="bi bi-star-fill text-warning"></i>
             <span>평균 ★ {{ book.book_customer_review_rank }}</span>
           </div>
           
@@ -36,16 +35,16 @@
 
           <p class="author-bio mb-2">{{ book.author.author_info }}</p>
 
-          <div class="author-audio mb-3 ms-1"><i class="bi bi-volume-up"></i>작가 음성 정보</div>
+          <div class="author-audio mb-3 ms-1"><i class="bi bi-volume-up"></i> 작가 음성 정보</div>
           <audio controls :src="store.API_URL + book.author.author_info_mp3" class="w-100 mb-2"></audio>
         </div>
       </section>
 
       <!-- 쓰레드 썸네일 -->
       <section class="thread-card">
-        <div class="thread-card-header">
+        <!-- <div class="thread-card-header">
           <h2 class="mb-0">Threads List</h2>
-        </div>
+        </div> -->
         <ThreadThumbnail :book_pk="route.params.book_pk" />
       </section>
     </template>
@@ -144,12 +143,12 @@ onMounted(() => {
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  color: #3a3a54;
+  color: #0e2148;
 }
 
 .book-rating {
   font-size: 1.1rem;
-  color: #c42441;
+  color: #fab82a;
   /* color: #ff2c54; */
   font-weight: 500;
   display: flex;
@@ -161,7 +160,6 @@ onMounted(() => {
   color: #ccc;
   margin-bottom: 1.2rem;
 }
-
 .book-meta {
   font-size: 0.97rem;
   color: #bbb;
@@ -169,10 +167,9 @@ onMounted(() => {
   flex-direction: column;
   gap: 0.3rem;
 }
-
 .book-meta i {
   margin-right: 0.4em;
-  color: #6c63ff;
+  color: #ccc;
 }
 
 
@@ -187,14 +184,12 @@ onMounted(() => {
 .author-card-info {
   flex: 1 1 200px;
 }
-
 .author-name {
   font-size: 1.2rem;
   font-weight: 600;
   color: #f0f0f0;
   margin-bottom: 0.5rem;
 }
-
 .author-bio {
   font-size: 1rem;
   color: #ccc;

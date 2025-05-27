@@ -1,10 +1,13 @@
 <template>
   <div class="container py-3">
-    <!-- 쓰레드 작성 버튼 -->
-    <div class="mb-4 text-end" v-if="accountStore.auth.isAuthenticated">
-      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#threadCreateModal">
-        쓰레드 작성
-      </button>
+    <div class="thread-card-header">
+      <h2 class="mb-0">Threads List</h2>
+      <!-- 쓰레드 작성 버튼 -->
+      <div v-if="accountStore.auth.isAuthenticated">
+        <button type="button" class="btn thread-write-button" data-bs-toggle="modal" data-bs-target="#threadCreateModal">
+          쓰레드 작성
+        </button>
+      </div>
     </div>
 
     <!-- 로딩 중 -->
@@ -15,12 +18,13 @@
 
     <!-- 쓰레드 목록 -->
     <div v-else>
-      <h2 v-if="threads.length === 0" class="text-muted">쓰레드가 없어요...첫 쓰레드를 작성해보세요!</h2>
+      <h3 v-if="threads.length === 0" class="no-thread-txt">쓰레드가 없어요...</h3>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" v-else>
         <ThreadThumbCard v-for="thread in threads" :key="thread.id" :thread="thread" />
       </div>
     </div>
   </div>
+
 
   <!-- 쓰레드 작성 모달 -->
   <div class="modal fade modal-xl" id="threadCreateModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -29,14 +33,15 @@
       <div class="modal-content p-2">
         <!-- 모달 헤더 -->
         <div class="modal-header d-flex flex-column align-items-center border-0">
-          <img src="@/assets/LOGO.png" alt="로고" class="mb-2" style="max-height: 60px;" />
-          <h1 class="modal-title fs-4">Thread 작성</h1>
+          <img src="@/assets/LOGO.png" alt="로고" class="mb-3" style="max-height: 60px;" />
+          <h1 class="modal-title fs-4">쓰레드 작성</h1>
           <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"
             aria-label="Close"></button>
         </div>
 
         <!-- 모달 바디 -->
         <div class="modal-body">
+          <hr class="mt-0">
           <form @submit.prevent="onSubmit">
             <div class="mb-3">
               <label for="thread-title" class="form-label">쓰레드 제목</label>
@@ -55,9 +60,9 @@
                 required />
             </div>
 
-            <button type="button" class="btn btn-info d-inline" @click="AIFeedBack">AI 피드백</button>
+            <button type="button" class="btn ai-button d-inline" @click="AIFeedBack">AI 피드백</button>
             <div v-if="aiVisible" class="container rounded p-2 bg-info">
-              <h3 class="text-white">AI 피드백</h3>
+              <h3>AI 피드백</h3>
               <div class="bg-white rounded mt-2">
                 <span v-for="diff in updatedDiffs"
                   :class="[{ removed: diff.removed, added: diff.added, edited: diff.edited }, 'd-inline']">
@@ -76,17 +81,13 @@
                 <button class="btn btn-outline-success" @click.stop="onAiApply">반영하기</button>
               </div>
             </div>
-
-            <div class="modal-footer border-0">
-              <button type="submit" class="btn btn-primary w-100">쓰레드 생성</button>
-            </div>
+            <button type="submit" class="btn my-3 create-finish-button">쓰레드 생성</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 
 
 <script setup>
@@ -436,20 +437,56 @@ const onAiApply = () => {
 onBeforeRouteLeave((to, from) => {
   aiVisible.value = false
 })
-
-
-
 </script>
 
 
 <style scoped>
-.thread-button {
+.thread-card-header {
+  color: #f0f0f0;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+.no-thread-txt {
+  color: #ccc;
+  padding-top: 30px;
+}
+
+.modal-title.fs-4 {
+  font-size: 1.5em !important;
+}
+.modal-content {
+  width: 1000px;
+}
+
+.thread-write-button {
+  background-color: transparent;
+  border-color: #ccc;
+  color: #ccc;
+}
+.thread-write-button:hover {
+  background-color: #df0c34;
+  border: #df0c34;
+  box-shadow: 0 2px 12px 0 #ccc;;
+}
+
+.ai-button {
+  border-color: #ff2c54;
+  color: #ff2c54;
+  width: 100%;
+}
+
+.create-finish-button {
   background-color: #ff2c54;
   border: none;
   color: white;
+  width: 100%;
 }
 
-.thread-button:active {
+.create-finish-button:active {
   background-color: #df0c34;
   color: white;
 }
