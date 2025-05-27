@@ -1,69 +1,87 @@
 <template>
   <main>
-    <h1>쓰레드 상세 페이지</h1>
-    <template v-if="threadDetail === null">
+    <!-- <Spinner v-if="ui.loading" /> -->
+    <div v-if="threadDetail === null">
       <p>로딩 중...</p>
-    </template>
+    </div>
 
-    <template v-else>
+    <div v-else>
       <div class="thread-container">
-        <!-- Book & Thread Info -->
-        <div class="card mb-4" v-if="threadDetail">
+        <h1 class="page-title">쓰레드 상세 페이지</h1>
+        <!-- #1. Book & Thread Info -->
+        <div class="card thread-card mb-4" v-if="threadDetail">
+          <!-- 1. 쓰레드 커버 이미지 -->
           <div v-if="threadDetail.thread_cover_img" class="thread-cover-wrapper">
             <img :src="accountStore.API_URL + threadDetail.thread_cover_img" alt="Thread Cover"
               class="thread-cover-img" />
           </div>
+
           <div class="row g-0">
+            <!-- 2. 책 표지 -->
             <div class="col-md-4">
               <img :src="accountStore.API_URL + threadDetail.book.book_cover_img" class="img-fluid rounded-start"
                 alt="Book Cover" style="object-fit: cover; height: 100%; width: 100%;" />
             </div>
+
+            <!-- 3. 쓰레드 카드 내부 -->
             <div class="col-md-8">
               <div class="card-body">
+                <!--3-1. 책 정보 -->
                 <h5 class="card-title">{{ threadDetail.book.book_title }}</h5>
                 <p class="card-text">
                   <small class="text-muted">출간일: {{ threadDetail.book.book_pub_date }}</small><br />
-                  평균 평점: {{ threadDetail.book.avg_review_rank }} / 5.0
+                  평균 평점: {{ Number(threadDetail.book.avg_review_rank).toFixed(1) }} / 5.0
                 </p>
-                <hr />
+                <hr>
+                <!-- 3-2. 쓰레드 작성자 프로필 -->
                 <div class="d-flex align-items-center mb-2">
+                  <!-- 3-2-1. 이미지or이름 클릭 시 해당 프로필로 이동 -->
                   <div @click="onProfileClick(threadDetail.user.pk)" class="user-info">
                     <img :src="accountStore.API_URL + threadDetail.user.user_profile_img" class="rounded-circle me-2"
                       width="40" height="40" alt="작성자 이미지" />
                     <strong>{{ threadDetail.user.username }}</strong>
                   </div>
+                  <!-- 3-2-2. 쓰레드 수정/삭제 -->
                   <div class="ms-auto" v-if="Number(threadDetail.user.pk) === Number(accountStore.auth.userPk)">
                     <button class="btn btn-sm btn-outline-secondary mx-1" @click="onEditThread" data-bs-toggle="modal"
                       data-bs-target="#thread-update-modal">수정</button>
                     <button class="btn btn-sm btn-outline-danger mx-1" @click="onDeleteThread">삭제</button>
                   </div>
                 </div>
+                <!-- 3-3. 쓰레드 제목 -->
                 <div class="d-flex align-items-center mb-2">
                   <h4 class="mb-0">{{ threadDetail.thread_title }}</h4>
-                  <button class="btn btn-sm btn-outline-danger ms-3"
+                  <!-- 3-3-1. 쓰레드 좋아요 버튼 -->
+                  <button class="btn btn-sm ms-3 like-button"
                     :class="{ disabled: !accountStore.auth.isAuthenticated || accountStore.auth.userPk === threadDetail.user.pk }"
                     @click="toggleThreadLike" style="font-size: 1.2rem; line-height: 1;">
-                    ❤️ {{ threadDetail.thread_likes }}
+                    ❤︎ {{ threadDetail.thread_likes }}
                   </button>
                 </div>
+                <!-- 3-4. 쓰레드 내용 -->
                 <p class="mb-2">{{ threadDetail.thread_content }}</p>
                 <p class="text-muted">
                   평점: {{ threadDetail.thread_book_review_rank }} / 5.0<br />
-                  작성일: {{ new Date(threadDetail.thread_updated_at).toLocaleString() }}
+                  <small class="text-muted">작성일: {{ new Date(threadDetail.thread_updated_at).toLocaleString() }}</small>
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Comments Section -->
+
+        <!-- #2. Comments Section -->
         <div v-if="threadDetail">
-          <button type="button" class="btn btn-primary" v-if="accountStore.auth.isAuthenticated" data-bs-toggle="modal"
-            data-bs-target="#commentCreate">댓글 생성</button>
-          <h5 class="mb-3">댓글 {{ threadDetail.comments.length }}개</h5>
+          <!-- 1. 댓글 생성 버튼 / 댓글 개수 -->
+          <button type="button" class="btn comment-create-button" v-if="accountStore.auth.isAuthenticated"
+            data-bs-toggle="modal" data-bs-target="#commentCreate">댓글 생성</button>
+          <h5 class="comment-count">댓글 {{ threadDetail.comments.length }}개</h5>
+
           <div class="row">
+            <!-- 2. 댓글 리스트 반복 => 내 댓글인지, 남의 댓글인지 구분 -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3" v-for="comment in threadDetail.comments"
               :key="comment.pk">
+              <!-- 2-1. 내 댓글인 경우 -->
               <div v-if="Number(comment.user.pk) === Number(accountStore.auth.userPk)" class="card h-100 comment-card"
                 @click="openCommentUpdateModal(comment)" style="cursor: pointer;">
                 <div class="card-body">
@@ -71,22 +89,26 @@
                     <img :src="accountStore.API_URL + comment.user.user_profile_img" alt="프로필 이미지"
                       class="rounded-circle me-2" width="32" height="32" />
                     <strong>{{ comment.user.username }}</strong>
+                    <!-- 2-1-1. 댓글 삭제 -->
                     <div class="ms-auto">
-                      <button class="btn btn-outline-danger" @click.stop="onCommentDelete(comment.pk)">삭제</button>
+                      <button class="btn btn-outline-danger btn-sm"
+                        @click.stop="onCommentDelete(comment.pk)">삭제</button>
                     </div>
                   </div>
                   <p class="card-text">{{ comment.comment_content }}</p>
                   <small class="text-muted">
                     {{ new Date(comment.comment_created_at).toLocaleString() }}
                   </small>
+                  <!-- 2-1-2. 내 댓글이므로 좋아요 비활성화 / 좋아요 수 표시 -->
                   <div class="mt-2 d-flex align-items-center">
-                    <button class="btn btn-sm btn-outline-danger me-1 disabled" @click.stop="">
-                      ❤️
+                    <button class="btn btn-sm me-1 disabled like-button" @click.stop="">
+                      ❤︎
                     </button>
                     {{ comment.num_likes }}
                   </div>
                 </div>
               </div>
+              <!-- 2-2. 남의 댓글인 경우 -->
               <div v-else class="card h-100 comment-card">
                 <div class="card-body">
                   <div class="d-flex align-items-center mb-2">
@@ -94,25 +116,33 @@
                       class="rounded-circle me-2" width="32" height="32" />
                     <strong>{{ comment.user.username }}</strong>
                   </div>
+
                   <p class="card-text">{{ comment.comment_content }}</p>
+
                   <small class="text-muted">
                     {{ new Date(comment.comment_created_at).toLocaleString() }}
                   </small>
+
+                  <!-- 2-2-1. 남의 댓글이므로 좋아요 활성화 / 좋아요 수 표시(공통) -->
                   <div class="mt-2 d-flex align-items-center">
-                    <button class="btn btn-sm btn-outline-danger me-1" @click.stop="onCommentLike(comment.pk)">
-                      ❤️
+                    <button class="btn btn-sm me-1 like-button" @click.stop="onCommentLike(comment.pk)">
+                      ❤︎
                     </button>
                     {{ comment.num_likes }}
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
+
         </div>
       </div>
-    </template>
+    </div>
   </main>
 
+
+  <!-- #3. Comment Create (modal form) -->
   <div class="modal fade" id="commentCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -130,7 +160,7 @@
               <textarea class="form-control" id="commet-create-text" v-model="commentContent"></textarea>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn w-100 comment-create-button">생성</button>
+              <button type="submit" class="btn w-100 create-finish-button">생성</button>
             </div>
           </form>
         </div>
@@ -138,6 +168,8 @@
     </div>
   </div>
 
+
+  <!-- #4. Comment Update (modal form) -->
   <div class="modal fade" id="commentUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -163,20 +195,21 @@
     </div>
   </div>
 
-  <!-- 쓰레드 업데이트 모달 -->
+
+  <!-- #5. Thread Update (modal form + AI) -->
   <div class="modal fade modal-xl" id="thread-update-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content p-2">
-        <!-- 모달 헤더 -->
+        <!-- 1. 모달 헤더 -->
         <div class="modal-header d-flex flex-column align-items-center border-0">
           <img src="@/assets/LOGO.png" alt="로고" class="mb-2" style="max-height: 60px;" />
-          <h1 class="modal-title fs-4">Thread 작성</h1>
+          <h1 class="modal-title fs-4">Thread 수정</h1>
           <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"
             aria-label="Close"></button>
         </div>
 
-        <!-- 모달 바디 -->
+        <!-- 2. 모달 바디 -->
         <div class="modal-body">
           <form @submit.prevent="onThreadUpdate">
             <div class="mb-3">
@@ -188,11 +221,23 @@
               <textarea class="form-control fixed-textarea" id="thread-text" v-model="threadContent" rows="4"
                 required></textarea>
             </div>
+            <div class="mb-3">
+              <label for="thread-score" class="form-label">쓰레드 점수 (0 ~ 5)</label>
+              <input type="number" class="form-control" id="thread-score" v-model="threadScore" min="0" max="5"
+                step="0.5" required />
+            </div>
+            <!-- 2-1. AI 피드백 -->
+            <button type="button" class="btn d-inline ai-button" @click="AIFeedBack">AI 피드백</button>
 
-            <button type="button" class="btn btn-info d-inline" @click="AIFeedBack">AI 피드백</button>
-            <div v-if="aiVisible" class="container rounded p-2 bg-info">
-              <h3 class="text-white">AI 피드백</h3>
-              <div class="bg-white rounded mt-2">
+            <!-- 오버레이 + Bootstrap Spinner -->
+            <div v-if="loading" class="bootstrap-spinner-overlay">
+              <div class="spinner-border text-danger" style="width: 4rem; height: 4rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <div v-if="aiVisible" class="container ai-feedback-container rounded mt-3 mb-1 p-3">
+              <h3 class="ai-feedback-title">AI 피드백</h3>
+              <div class="ai-result rounded mt-2">
                 <span v-for="diff in updatedDiffs"
                   :class="[{ removed: diff.removed, added: diff.added, edited: diff.edited }, 'd-inline']">
                   {{ (diff.selected) ? diff.selectedValue : diff.unselectedValue }}
@@ -207,19 +252,11 @@
                 </template>
               </div>
               <div>
-                <button class="btn btn-outline-success" @click.stop="onAiApply">반영하기</button>
+                <button class="btn apply-button" @click.stop="onAiApply">반영하기</button>
               </div>
             </div>
 
-            <div class="mb-3">
-              <label for="thread-score" class="form-label">쓰레드 점수 (0 ~ 5)</label>
-              <input type="number" class="form-control" id="thread-score" v-model="threadScore" min="0" max="5"
-                step="0.5" required />
-            </div>
-
-            <div class="modal-footer border-0">
-              <button type="submit" class="btn btn-primary w-100">쓰레드 업데이트</button>
-            </div>
+            <button type="submit" class="btn thread-update-button my-3">쓰레드 수정 완료</button>
           </form>
         </div>
       </div>
@@ -245,6 +282,7 @@ const threadDetail = ref(null)
 const threadTitle = ref(null)
 const threadContent = ref(null)
 const threadScore = ref(null)
+const loading = ref(false)
 
 let modal = null
 let updateModal = null
@@ -427,7 +465,7 @@ const AIFeedBack = async () => {
     window.alert('Thread를 작성해주세요!')
     return
   }
-
+  loading.value = true
   const systemRole = `
   당신은 작성된 글의 문법적 오류 및 잘못된 표현을 수정하는 AI입니다.
   입력받은 text를 기반으로 수정된 글을 반환해주세요.
@@ -459,6 +497,7 @@ const AIFeedBack = async () => {
     AIFeedBackListup()
   } catch (err) {
     console.error('API 호출 오류:', err)
+    loading.value = false
   }
 }
 
@@ -568,8 +607,10 @@ const AIFeedBackListup = async () => {
     aiVisible.value = true
     console.log(diffReason.value)
     console.log(updatedDiffs.value)
+    loading.value=false
   } catch (err) {
     console.error('API 호출 오류:', err)
+    loading.value=false
   }
 }
 
@@ -690,17 +731,98 @@ const onAiApply = () => {
 onBeforeRouteLeave((to, from) => {
   aiVisible.value = false
 })
+
+
+// 00. AI 피드백 버튼 클릭 시 로딩
+// import { useUiStore } from '@/stores/ui.js'
+// import Spinner from '@/components/layout/Spinner.vue'
+
+// const ui = useUiStore()
+
+// async function runAIFeedback() {
+//   await new Promise(res => setTimeout(res, 2000))
+// }
+
+// async function AIFeedBackLoad() {
+//   ui.setLoading(true)
+//   try {
+//     await runAIFeedback()
+//   } finally {
+//     ui.setLoading(false)
+//   }
+// }
 </script>
 
 
 <style scoped>
+main {
+  margin: 100px 200px 70px;
+  padding-top: 100px 50px;
+}
+
+.page-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: white;
+  text-align: left;
+}
+
+.thread-container {
+  width: 1000px;
+  min-width: 1000px;
+  max-width: 1000px;
+  margin: 40px auto 0 auto;
+  padding: 0;
+}
+
+.thread-card {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* .card-text {
+  출간일, 평균 평점 있는 쪽!
+} */
+hr {
+  margin: 8px 0px 16px;
+}
+
+
+.like-button {
+  background-color: transparent;
+  border-color: #ff2c54;
+  color: #ff2c54;
+}
+
+
 .comment-create-button {
+  background-color: transparent;
+  border-color: #ff2c54;
+  color: #ff2c54;
+}
+
+.comment-create-button:hover {
+  background-color: #ff2c54;
+  border: #ff2c54;
+  color: white;
+  box-shadow: 0 2px 12px 0 #ccc;
+  ;
+}
+
+.comment-count {
+  color: whitesmoke;
+  margin: 10px 2px;
+  font-size: medium;
+}
+
+
+.create-finish-button {
   background-color: #ff2c54;
   border: none;
   color: white;
 }
 
-.comment-create-button:active {
+.create-finish-button:active {
   background-color: #df0c34;
   color: white;
 }
@@ -726,6 +848,24 @@ onBeforeRouteLeave((to, from) => {
   display: block;
 }
 
+.ai-button {
+  border-color: #ff2c54;
+  color: #ff2c54;
+  width: 100%;
+}
+
+.thread-update-button {
+  background-color: #ff2c54;
+  border: none;
+  color: white;
+  width: 100%;
+}
+
+.thread-update-button:active {
+  background-color: #df0c34;
+  color: white;
+}
+
 .added {
   color: green;
 }
@@ -745,5 +885,38 @@ onBeforeRouteLeave((to, from) => {
 
 .user-info {
   cursor: pointer;
+}
+
+.ai-feedback-container {
+  border: 1px solid #ff2c54;
+}
+
+.ai-feedback-title {
+  color: #ff2c54;
+}
+
+.ai-result {
+  background-color: blanchedalmond;
+  /* border-bottom: 1px solid #ff2c54; */
+  padding: 5px 10px 5px 15px;
+}
+
+.apply-button {
+  background-color: #ff2c54;
+  border: none;
+  color: white;
+}
+
+.bootstrap-spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
