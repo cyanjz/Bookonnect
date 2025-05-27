@@ -13,7 +13,7 @@
         {{ cutTitle(book.book_title, 25) }}
       </div>
       <div class="book-rating fw-bold">
-        평균 ★ {{ book.book_customer_review_rank }}
+        평균 ★{{ book.book_customer_review_rank }}
       </div>
     </div>
   </div>
@@ -43,9 +43,8 @@ function cutTitle(title, len = 25) {
   padding: 20px 10px 14px 10px; /* 위, 좌우, 아래 패딩(아래는 약간 줄임) */
   transition: box-shadow 0.2s;
 }
-
 .book-card:hover {
-  box-shadow: 0 0 10px #aaa;
+  box-shadow: 0 0 10px #ccc;
   /* box-shadow: 0 8px 24px rgba(0,0,0,0.13); */
 }
 
@@ -56,17 +55,18 @@ function cutTitle(title, len = 25) {
   border-radius: 4px;
 }
 
-
 .book-info {
   font-size: 0.95em;
 }
 
 .book-title {
+  color: whitesmoke;
   margin-bottom: 2px;
   word-break: keep-all;
 }
 
 .book-rating {
+  color: #ccc;
   font-size: 1em;
 }
 </style>

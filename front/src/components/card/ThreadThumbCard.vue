@@ -10,21 +10,23 @@
       }"
       class="text-decoration-none text-dark"
     >
-      <div class="card h-100 shadow-sm thread-card">
+      <div class="card shadow-sm thread-card">
         <div class="card-body">
           <h5 class="card-title mb-2">{{ thread.thread_title }}</h5>
+          <hr>
           <p class="card-text text-muted truncated-content">
             {{ truncateContent(thread.thread_content) }}
           </p>
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center bg-white border-top-0">
-          <small class="text-muted">평점: ★ {{ thread.thread_book_review_rank }}</small>
+          <small class="text-muted">평점 ★{{ thread.thread_book_review_rank }}</small>
           <small class="text-muted">{{ formatDate(thread.created_at) }}</small>
         </div>
       </div>
     </RouterLink>
   </div>
 </template>
+
 
 <script setup>
 import { useRoute } from 'vue-router'
@@ -54,16 +56,21 @@ function formatDate(datetimeStr) {
 }
 </script>
 
+
 <style scoped>
 .thread-card {
   transition: transform 0.2s ease;
   border-radius: 12px;
   overflow: hidden;
+  height: 200px;
 }
-
 .thread-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+hr {
+  margin-top: 10px;
 }
 
 .truncated-content {

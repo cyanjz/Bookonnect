@@ -1,7 +1,8 @@
 <template>
   <section>
-    <h1 v-if="success">좋아할만한 책들입니다!</h1>
-    <h1 v-else>아래 책들은 어떠세요?</h1>
+    <!-- <h1>User Recommended</h1> -->
+    <h4 v-if="success">"좋아하실만한 책들입니다!"</h4>
+    <h4 v-else>"아래 책들은 어떠세요?"</h4>
     <template v-if="books">
       <div v-if="books">
         <BookList
@@ -48,5 +49,7 @@ onMounted(() => {
 
 
 <style scoped>
-
+h4 {
+  padding-left: 150px;
+}
 </style>

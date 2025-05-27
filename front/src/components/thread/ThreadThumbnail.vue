@@ -4,16 +4,17 @@
       <h2 class="mb-0">Threads List</h2>
       <!-- 쓰레드 작성 버튼 -->
       <div v-if="accountStore.auth.isAuthenticated">
-        <button type="button" class="btn thread-write-button" data-bs-toggle="modal" data-bs-target="#threadCreateModal">
+        <button type="button" class="btn thread-write-button" data-bs-toggle="modal"
+          data-bs-target="#threadCreateModal">
           쓰레드 작성
         </button>
       </div>
     </div>
 
-    <!-- 로딩 중 -->
+    <!-- 로딩 중 => 사용자에게 보이도록 맨 앞으로 이동 -->
     <div v-if="isLoading" class="text-center py-5">
       <div class="spinner-border text-primary mb-3" role="status"></div>
-      <h2 class="text-muted">로딩 중...</h2>
+      <!-- <h2 class="text-muted">로딩 중...</h2>   -->
     </div>
 
     <!-- 쓰레드 목록 -->
@@ -61,9 +62,15 @@
             </div>
 
             <button type="button" class="btn ai-button d-inline" @click="AIFeedBack">AI 피드백</button>
-            <div v-if="aiVisible" class="container rounded p-2 bg-info">
-              <h3>AI 피드백</h3>
-              <div class="bg-white rounded mt-2">
+            <div v-if="loading" class="bootstrap-spinner-overlay">
+              <div class="spinner-border text-danger" style="width: 4rem; height: 4rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <!-- AI 피드백 실행 시 -->
+            <div v-if="aiVisible" class="container ai-feedback-container rounded my-3 p-3">
+              <h3 class="ai-feedback-title">AI 피드백</h3>
+              <div class="ai-result rounded">
                 <span v-for="diff in updatedDiffs"
                   :class="[{ removed: diff.removed, added: diff.added, edited: diff.edited }, 'd-inline']">
                   {{ (diff.selected) ? diff.selectedValue : diff.unselectedValue }}
@@ -78,9 +85,11 @@
                 </template>
               </div>
               <div>
-                <button class="btn btn-outline-success" @click.stop="onAiApply">반영하기</button>
+                <button class="btn apply-button" @click.stop="onAiApply">반영하기</button>
               </div>
             </div>
+
+            <!-- 쓰레드 작성 완료 버튼 -->
             <button type="submit" class="btn my-3 create-finish-button">쓰레드 생성</button>
           </form>
         </div>
@@ -162,6 +171,7 @@ const onAIReview = () => {
 }
 
 // 99. AI
+const loading = ref(false)
 const aiResponse = ref('')
 const aiVisible = ref(false)
 const diffs = ref(null)
@@ -174,6 +184,8 @@ const AIFeedBack = async () => {
     window.alert('Thread를 작성해주세요!')
     return
   }
+
+  loading.value=true
 
   const systemRole = `
   당신은 작성된 글의 문법적 오류 및 잘못된 표현을 수정하는 AI입니다.
@@ -206,6 +218,7 @@ const AIFeedBack = async () => {
     AIFeedBackListup()
   } catch (err) {
     console.error('API 호출 오류:', err)
+    loading.value = false
   }
 }
 
@@ -315,7 +328,9 @@ const AIFeedBackListup = async () => {
     aiVisible.value = true
     console.log(diffReason.value)
     console.log(updatedDiffs.value)
+    loading.value = false
   } catch (err) {
+    loading.value = false
     console.error('API 호출 오류:', err)
   }
 }
@@ -450,6 +465,7 @@ onBeforeRouteLeave((to, from) => {
   align-items: center;
   border-bottom: 1px solid #ccc;
 }
+
 .no-thread-txt {
   color: #ccc;
   padding-top: 30px;
@@ -458,6 +474,7 @@ onBeforeRouteLeave((to, from) => {
 .modal-title.fs-4 {
   font-size: 1.5em !important;
 }
+
 .modal-content {
   width: 1000px;
 }
@@ -467,10 +484,12 @@ onBeforeRouteLeave((to, from) => {
   border-color: #ccc;
   color: #ccc;
 }
+
 .thread-write-button:hover {
   background-color: #df0c34;
   border: #df0c34;
-  box-shadow: 0 2px 12px 0 #ccc;;
+  box-shadow: 0 2px 12px 0 #ccc;
+  ;
 }
 
 .ai-button {
@@ -500,5 +519,39 @@ onBeforeRouteLeave((to, from) => {
   width: 100%;
   height: 200px;
   resize: none;
+}
+
+
+.ai-feedback-container {
+  border: 1px solid #ff2c54;
+}
+
+.ai-feedback-title {
+  color: #ff2c54;
+}
+
+.ai-result {
+  background-color: blanchedalmond;
+  /* border-bottom: 1px solid #ff2c54; */
+  padding: 5px 10px 5px 15px;
+}
+
+.apply-button {
+  background-color: #ff2c54;
+  border: none;
+  color: white;
+}
+
+.bootstrap-spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
