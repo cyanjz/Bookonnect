@@ -23,9 +23,14 @@
       <div class="d-flex justify-content-between m-3 align-items-center">
         <p class="m-0">팔로워 {{ userInfo.num_followers }}</p>
         <p class="m-0">팔로잉 {{ userInfo.num_followings }}</p>
-        <button class="btn btn-outline-primary" @click="onFollow" v-if="route.params.userId !== accountStore.auth.userPk">
-          팔로우
-        </button>
+        <div v-if="Number(route.params.userId) !== accountStore.auth.userPk">
+          <button class="btn btn-outline-primary" @click="onFollow" v-if="userInfo.isFollowed">
+            팔로우
+          </button>
+          <button class="btn btn-outline-primary" @click="onFollow" v-else>
+            언팔로우
+          </button>
+        </div>
       </div>
       <hr>
       <div class="d-flex justify-content-between m-3">
@@ -131,10 +136,10 @@ const onUpdate = () => {
   formData.append('user_banner_img', user_banner_img.value)
   formData.append('user_profile_img', user_profile_img.value)
   axios({
-    url: accountStore.API_URL + `accounts/${route.params.userId}/update/`,
+    url: accountStore.API_URL + `/accounts/${route.params.userId}/update/`,
     data: formData,
     method: 'put',
-    headers : {
+    headers: {
       Authorization: `Token ${accountStore.auth.token}`,
       "Content-Type": 'multipart/form-data'
     }
