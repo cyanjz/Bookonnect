@@ -4,9 +4,10 @@ from django.http import JsonResponse
 from django.db.models import Q, Case, When, IntegerField
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.decorators import permission_classes
+from rest_framework.decorators import permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
-from rest_framework import status, generics
+from rest_framework.authentication import BasicAuthentication
+from rest_framework import status
 from .serializers import (BookListSerializer, 
                           BookDetailSerializer, 
                           ThreadListSerializer, 
@@ -40,6 +41,7 @@ def get_similarity(book_vector, user_vector):
 
 
 @api_view(['GET'])
+@authentication_classes([BasicAuthentication])
 def book_search_list(request):
     query = request.GET.get('q')
     books = Book.objects.filter(
@@ -140,12 +142,15 @@ def thread_list(request, book_pk):
         
 
 @api_view(['POST'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def thread_create(request, book_pk):
     book = get_object_or_404(Book, pk=book_pk)
     if request.method == 'POST':
         serializer = ThreadCreateSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             try:
+                raise()
                 cover_url = ai_instance.get_thread_image(request.data['thread_content'])
                 buffer = BytesIO()
                 response = requests.get(cover_url, stream=True)
@@ -173,9 +178,13 @@ def thread_detail(request, book_pk, thread_pk):
 
 
 @api_view(['PUT', 'DELETE'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def thread_update_delete(request, book_pk, thread_pk):
     book = get_object_or_404(Book, pk=book_pk)
     thread = get_object_or_404(Thread, pk=thread_pk)
+    if request.user == thread.user:
+        return Response(status=status.HTTP_403_FORBIDDEN)
     if request.method == 'PUT':
         serializer = ThreadUpdateSerializer(thread, data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -187,9 +196,13 @@ def thread_update_delete(request, book_pk, thread_pk):
 
 
 @api_view(['POST'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def thread_like(request, book_pk, thread_pk):
     book = get_object_or_404(Book, pk=book_pk)
     thread = get_object_or_404(Thread, pk=thread_pk)
+    if request.user == thread.user:
+        return Response(status=status.HTTP_403_FORBIDDEN)
     if request.method == 'POST':
         if (request.user in thread.thread_like_users.all()):
             thread.thread_like_users.remove(request.user)
@@ -223,6 +236,8 @@ def comment_list(request, book_pk, thread_pk):
 
 
 @api_view(['POST'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def comment_create(request, book_pk, thread_pk):
     thread = get_object_or_404(Thread, pk=thread_pk)
     if request.method == 'POST':
@@ -233,8 +248,12 @@ def comment_create(request, book_pk, thread_pk):
 
 
 @api_view(['POST'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def comment_like(request, book_pk, thread_pk, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
+    if comment.user == request.user:
+        return Response(status=status.HTTP_403_FORBIDDEN)
     if request.method == 'POST':
         if (request.user in comment.comment_like_users.all()):
             comment.comment_like_users.remove(request.user)
@@ -254,8 +273,12 @@ def comment_like(request, book_pk, thread_pk, comment_pk):
 
 
 @api_view(['PUT', 'DELETE'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def comment_update_delete(request, book_pk, thread_pk, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
+    if (request.user != comment.user):
+        return Response(status=status.HTTP_403_FORBIDDEN)
     if request.method == 'PUT':
         serializer = CommentUpdateSerializer(comment, data=request.data)
         if (serializer.is_valid(raise_exception=True)):
@@ -271,6 +294,7 @@ def get_categories(request):
     categories = Category.objects.all()
     serializer = CategoryListSerializer(categories, many=True)
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 def get_search_suggestions(request):
