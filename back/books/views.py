@@ -1,4 +1,7 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
+from django.contrib.auth import get_user_model
+from django.http import JsonResponse
+from django.db.models import Q, Case, When, IntegerField
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.decorators import permission_classes
@@ -11,15 +14,29 @@ from .serializers import (BookListSerializer,
                           ThreadDetailSerializer, 
                           CommentListSerializer, 
                           CommentCreateSerializer, 
-                          CommentUpdateSerializer)
+                          CommentUpdateSerializer,
+                          ThreadUpdateSerializer,
+                          CategoryListSerializer)
 from .models import (Book, Thread, Comment, Category)
 from .utils import OpenAiAPI
 from io import BytesIO
 import requests
 from PIL import Image
 from django.core.files.base import ContentFile
+import json
+import numpy as np
 
 ai_instance = OpenAiAPI()
+
+def get_similarity(book_vector, user_vector):
+    # book_vector, user_vector must be normalized before the function is called
+    if book_vector is None:
+        return 0
+    else:
+        book_vector = np.array(json.loads(book_vector))
+        dot_product = np.dot(book_vector, user_vector)
+        return dot_product
+
 
 # Create your views here.
 # book views
@@ -40,8 +57,55 @@ def book_list_create(request):
         elif query == 'highranked':
             books = get_list_or_404(Book)
             serializer = BookListSerializer(books, many=True)
-            sorted_data = sorted(serializer.data, key=lambda x: x['book_customer_review_rank'])
+            sorted_data = sorted(serializer.data, key=lambda x: x['book_customer_review_rank'], reverse=True)
             return Response(sorted_data)
+        elif query == 'userRecommended':
+            user = request.user
+            # thread 별로 작성된 점수로 weighted avg 계산
+            threads = user.thread_set.all()
+            total_weights = 0
+            embedding = None
+            if user.thread_set.count() != 0:
+                for thread in threads:
+                    weight = thread.thread_book_review_rank + 1
+                    raw_embedding = thread.book.book_embedding
+                    if raw_embedding:
+                        temp = np.array(json.loads(raw_embedding))
+                        if embedding is None:
+                            embedding = weight * temp
+                        else:
+                            embedding = np.add(embedding, weight * temp)
+                        total_weights += weight
+                if total_weights == 0:
+                    print('유효한 embedding이 없습니다...')
+                    books = get_list_or_404(Book)
+                    serializer = BookListSerializer(books, many=True)
+                    sorted_data = sorted(serializer.data, key=lambda x: x['book_customer_review_rank'])
+                    resp = {
+                        'data': sorted_data,
+                        'success': False,
+                    }
+                    return Response(resp)
+                embedding /= total_weights
+                books = get_list_or_404(Book)
+                recommended_books = sorted(books, key=lambda x: get_similarity(x.book_embedding, embedding), reverse=True)
+                print(recommended_books)
+                serializer = BookListSerializer(recommended_books[:10], many=True)
+                resp = {
+                    'data': serializer.data,
+                    'success': True,
+                }
+                return Response(resp)
+            else:
+                books = get_list_or_404(Book)
+                serializer = BookListSerializer(books, many=True)
+                sorted_data = sorted(serializer.data, key=lambda x: x['book_customer_review_rank'])
+                resp = {
+                    'data': sorted_data,
+                    'success': False,
+                }
+                return Response(resp)
+            
         serializer = BookListSerializer(books, many=True)
         sorted_data = sorted(serializer.data, key=lambda x: x['book_customer_review_rank'])
         return Response(sorted_data)
@@ -97,7 +161,7 @@ def thread_update_delete(request, book_pk, thread_pk):
     book = get_object_or_404(Book, pk=book_pk)
     thread = get_object_or_404(Thread, pk=thread_pk)
     if request.method == 'PUT':
-        serializer = ThreadDetailSerializer(thread, data=request.data)
+        serializer = ThreadUpdateSerializer(thread, data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
@@ -186,8 +250,29 @@ def comment_update_delete(request, book_pk, thread_pk, comment_pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
-# 베스트 셀러 데이터를 받아오기 위한 view 함수
 @api_view(['GET'])
-def best_sellers(request):
-    pass
+def get_categories(request):
+    categories = Category.objects.all()
+    serializer = CategoryListSerializer(categories, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_search_suggestions(request):
+    query = request.GET.get('query', '')
+
+    if not query:
+        return JsonResponse([], safe=False)
+
+    books = Book.objects.filter(
+        Q(book_title__icontains=query) | Q(book_author__icontains=query)
+    ).annotate(
+        rank=Case(
+            When(book_title__icontains=query, then=1),
+            When(book_author__icontains=query, then=2),
+            default=3,
+            output_field=IntegerField()
+        )
+    ).order_by('rank', 'book_title')[:10]  # 필요하면 개수 제한
+
+    results = [{'title': book.book_title, 'author': book.book_author} for book in books]
+    return JsonResponse(results, safe=False)
