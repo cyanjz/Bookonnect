@@ -1,10 +1,10 @@
 <template>
   <main class="container py-4">
-    <h1 class="mb-4 page-title">{{ book.book_title }}</h1>
-
+    
     <template v-if="!isLoading">
+      <h1 class="mb-4 page-title">{{ book.book_title }}</h1>
       <!-- 책 정보 -->
-            <section class="book-card mb-5">
+      <section class="book-card mb-5">
         <div class="book-card__img">
           <img :src="store.API_URL + book.book_cover_img" alt="책 표지" />
         </div>
@@ -40,7 +40,7 @@
       </section> -->
 
       <!-- 작가 정보 -->
-        <section class="author-card mb-5">
+      <section class="author-card mb-5">
         <div class="author-card__img">
           <img :src="store.API_URL + book.author.author_profile_img" alt="작가 이미지" />
         </div>
@@ -66,7 +66,7 @@
       </section> -->
 
       <!-- 쓰레드 썸네일 -->
-       <section class="thread-card">
+      <section class="thread-card">
         <div class="thread-card__header">
           <h2 class="mb-0">💬 Threads List</h2>
         </div>
@@ -80,7 +80,7 @@
         <p class="text-muted">도서 정보를 불러오는 중입니다...</p>
       </div>
     </template>
-      <!-- <section class="card shadow-sm">
+    <!-- <section class="card shadow-sm">
         <div class="card-body">
           <h2 class="h6 fw-bold mb-3">관련 쓰레드 목록</h2>
           <ThreadThumbnail :book_pk="route.params.book_pk" />
@@ -96,7 +96,7 @@
         <p class="text-muted">도서 정보를 불러오는 중입니다...</p>
       </div>
     </template> -->
-  </main> 
+  </main>
 </template>
 
 
@@ -117,12 +117,14 @@ const isLoading = ref(true)
 const book = ref(null)
 
 onMounted(() => {
+  console.log('book detail mounted')
   const bookId = route.params.book_pk
   console.log(store.API_URL + '/books/' + bookId)
   axios({
     url: store.API_URL + '/api/v1/books/' + bookId,
     method: 'get'
   }).then(res => {
+    console.log(res.data)
     book.value = res.data
     isLoading.value = false
   }).catch(err => {
@@ -147,7 +149,9 @@ onMounted(() => {
 }
 
 /* 카드 스타일 */
-.book-card, .author-card, .thread-card {
+.book-card,
+.author-card,
+.thread-card {
   display: flex;
   flex-wrap: wrap;
   background: #fff;
@@ -158,7 +162,10 @@ onMounted(() => {
   align-items: flex-start;
   transition: box-shadow 0.2s;
 }
-.book-card:hover, .author-card:hover, .thread-card:hover {
+
+.book-card:hover,
+.author-card:hover,
+.thread-card:hover {
   box-shadow: 0 8px 32px 0 rgba(60, 60, 100, 0.16);
 }
 
@@ -176,12 +183,14 @@ onMounted(() => {
 .book-card__info {
   flex: 1 1 240px;
 }
+
 .book-title {
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: #3a3a54;
 }
+
 .book-rating {
   font-size: 1.1rem;
   color: #fbbf24;
@@ -190,11 +199,13 @@ onMounted(() => {
   align-items: center;
   gap: 0.5rem;
 }
+
 .book-desc {
   font-size: 1.06rem;
   color: #444;
   margin-bottom: 1.2rem;
 }
+
 .book-meta {
   font-size: 0.97rem;
   color: #6c757d;
@@ -202,6 +213,7 @@ onMounted(() => {
   flex-direction: column;
   gap: 0.3rem;
 }
+
 .book-meta i {
   margin-right: 0.4em;
   color: #6c63ff;
@@ -216,15 +228,18 @@ onMounted(() => {
   background: #e9ecef;
   border: 3px solid #b1a7f8;
 }
+
 .author-card__info {
   flex: 1 1 200px;
 }
+
 .author-name {
   font-size: 1.2rem;
   font-weight: 600;
   color: #4f4fa5;
   margin-bottom: 0.5rem;
 }
+
 .author-bio {
   font-size: 1rem;
   color: #555;
@@ -237,6 +252,7 @@ onMounted(() => {
   margin-bottom: 1rem;
   padding-bottom: 0.6rem;
 }
+
 .thread-card {
   background: transparent;
   border-radius: 16px;
@@ -251,16 +267,21 @@ onMounted(() => {
 
 /* 반응형 */
 @media (max-width: 768px) {
-  .book-card, .author-card {
+
+  .book-card,
+  .author-card {
     flex-direction: column;
     align-items: stretch;
     padding: 1.2rem;
     gap: 1.2rem;
   }
-  .book-card__img img, .author-card__img img {
+
+  .book-card__img img,
+  .author-card__img img {
     margin: 0 auto;
   }
 }
+
 /* .container {
   color: #ccc;
 }
