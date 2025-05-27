@@ -17,7 +17,9 @@
     <br>
     <section>
       <h2>📂 Books by Category</h2>
-      <CategoryBooks />
+      <CategoryBooks 
+      v-if="store.categories"
+      />
     </section>
     <br>
     <h2>CollectionThumbnail 컴포넌트 넣어주기</h2>
