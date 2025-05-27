@@ -155,8 +155,8 @@ def thread_list(request, book_pk):
 
 
 @api_view(['POST'])
-@authentication_classes([BasicAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([BasicAuthentication])
+# @permission_classes([IsAuthenticated])
 def thread_create(request, book_pk):
     book = get_object_or_404(Book, pk=book_pk)
     if request.method == 'POST':
@@ -191,12 +191,12 @@ def thread_detail(request, book_pk, thread_pk):
 
 
 @api_view(['PUT', 'DELETE'])
-@authentication_classes([BasicAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([BasicAuthentication])
+# @permission_classes([IsAuthenticated])
 def thread_update_delete(request, book_pk, thread_pk):
     book = get_object_or_404(Book, pk=book_pk)
     thread = get_object_or_404(Thread, pk=thread_pk)
-    if request.user == thread.user:
+    if request.user != thread.user:
         return Response(status=status.HTTP_403_FORBIDDEN)
     if request.method == 'PUT':
         serializer = ThreadUpdateSerializer(thread, data=request.data)
@@ -209,8 +209,8 @@ def thread_update_delete(request, book_pk, thread_pk):
 
 
 @api_view(['POST'])
-@authentication_classes([BasicAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([BasicAuthentication])
+# @permission_classes([IsAuthenticated])
 def thread_like(request, book_pk, thread_pk):
     book = get_object_or_404(Book, pk=book_pk)
     thread = get_object_or_404(Thread, pk=thread_pk)
@@ -249,8 +249,8 @@ def comment_list(request, book_pk, thread_pk):
 
 
 @api_view(['POST'])
-@authentication_classes([BasicAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([BasicAuthentication])
+# @permission_classes([IsAuthenticated])
 def comment_create(request, book_pk, thread_pk):
     thread = get_object_or_404(Thread, pk=thread_pk)
     if request.method == 'POST':
@@ -261,8 +261,8 @@ def comment_create(request, book_pk, thread_pk):
 
 
 @api_view(['POST'])
-@authentication_classes([BasicAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([BasicAuthentication])
+# @permission_classes([IsAuthenticated])
 def comment_like(request, book_pk, thread_pk, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
     if comment.user == request.user:
@@ -286,8 +286,8 @@ def comment_like(request, book_pk, thread_pk, comment_pk):
 
 
 @api_view(['PUT', 'DELETE'])
-@authentication_classes([BasicAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([BasicAuthentication])
+# @permission_classes([IsAuthenticated])
 def comment_update_delete(request, book_pk, thread_pk, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
     if (request.user != comment.user):
