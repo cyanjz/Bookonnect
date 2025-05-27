@@ -919,4 +919,15 @@ hr {
   justify-content: center;
   align-items: center;
 }
+
+.comment-update-button {
+  background-color: #ff2c54;
+  border: none;
+  color: white;
+}
+
+.comment-update-button:active {
+  background-color: #df0c34;
+  color: white;
+}
 </style>
