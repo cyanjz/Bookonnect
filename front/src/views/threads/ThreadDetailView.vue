@@ -30,9 +30,11 @@
                   <img :src="accountStore.API_URL + threadDetail.user.user_profile_img" class="rounded-circle me-2"
                     width="40" height="40" alt="작성자 이미지" />
                   <strong>{{ threadDetail.user.username }}</strong>
-                  <button v-if="Number(threadDetail.user.pk) === Number(accountStore.auth.userPk)"
-                    class="btn btn-sm btn-outline-secondary ms-auto" @click="onEditThread" data-bs-toggle="modal"
-                    data-bs-target="#thread-update-modal">쓰레드 수정</button>
+                  <div class="ms-auto" v-if="Number(threadDetail.user.pk) === Number(accountStore.auth.userPk)">
+                    <button class="btn btn-sm btn-outline-secondary mx-1" @click="onEditThread" data-bs-toggle="modal"
+                      data-bs-target="#thread-update-modal">수정</button>
+                    <button class="btn btn-sm btn-outline-danger mx-1" @click="onDeleteThread">삭제</button>
+                  </div>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <h4 class="mb-0">{{ threadDetail.thread_title }}</h4>
@@ -67,6 +69,9 @@
                     <img :src="accountStore.API_URL + comment.user.user_profile_img" alt="프로필 이미지"
                       class="rounded-circle me-2" width="32" height="32" />
                     <strong>{{ comment.user.username }}</strong>
+                    <div class="ms-auto">
+                      <button class="btn btn-outline-danger" @click.stop="onCommentDelete(comment.pk)">삭제</button>
+                    </div>
                   </div>
                   <p class="card-text">{{ comment.comment_content }}</p>
                   <small class="text-muted">
@@ -223,13 +228,14 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { useRoute, onBeforeRouteLeave } from 'vue-router';
+import { useRoute, onBeforeRouteLeave, useRouter } from 'vue-router';
 import { useBookStore } from '@/stores/books';
 import axios from 'axios';
 import { useAccountStore } from '@/stores/accounts';
 import { diffChars } from 'diff'
 
 
+const router = useRouter()
 const route = useRoute()
 const bookStore = useBookStore()
 const accountStore = useAccountStore()
@@ -363,7 +369,39 @@ const toggleThreadLike = () => {
   })
 }
 
-// 3. AI feature
+// 3. thread delete
+const onDeleteThread = () => {
+  axios({
+    url: bookStore.API_URL + `/api/v1/books/${route.params.book_pk}/threads/${route.params.thread_pk}/update/`,
+    method: 'DELETE',
+    headers: {
+      Authorization: `Token ${accountStore.auth.token}`
+    }
+  }).then(res => {
+    router.push({name: 'book-detail', params: {book_pk: route.paramsbook_pk}})
+    console.log(res)
+  }).catch(err => {
+    console.log(err)
+  })
+}
+
+//4. comment delete
+const onCommentDelete = (comment_pk) => {
+  axios({
+    url: accountStore.API_URL + `/api/v1/books/${route.params.book_pk}/threads/${route.params.thread_pk}/comments/${comment_pk}/`,
+    method: 'DELETE',
+    headers: {
+      Authorization: `Token ${accountStore.auth.token}`
+    }
+  }).then(res => {
+    console.log(res)
+    getThreadInfo()
+  }).catch(err => {
+    console.log(err)
+  })
+}
+
+// 99. AI feature
 const aiResponse = ref('')
 const aiVisible = ref(false)
 const diffs = ref(null)
