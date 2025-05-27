@@ -163,7 +163,6 @@ def thread_create(request, book_pk):
         serializer = ThreadCreateSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             try:
-                raise()
                 cover_url = ai_instance.get_thread_image(request.data['thread_content'])
                 buffer = BytesIO()
                 response = requests.get(cover_url, stream=True)
@@ -196,8 +195,6 @@ def thread_detail(request, book_pk, thread_pk):
 def thread_update_delete(request, book_pk, thread_pk):
     book = get_object_or_404(Book, pk=book_pk)
     thread = get_object_or_404(Thread, pk=thread_pk)
-    if request.user != thread.user:
-        return Response(status=status.HTTP_403_FORBIDDEN)
     if request.method == 'PUT':
         serializer = ThreadUpdateSerializer(thread, data=request.data)
         if serializer.is_valid(raise_exception=True):

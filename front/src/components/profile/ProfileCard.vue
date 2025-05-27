@@ -21,20 +21,24 @@
         <p v-else class="introduction-write">설명이 없습니다...</p>
       </div>
       <div class="follow-container d-flex justify-content-between mx-4 my-3 align-items-center">
-        <p class="m-0">팔로워 {{ userInfo.num_followers }}</p>
-        <p class="m-0">팔로잉 {{ userInfo.num_followings }}</p>
-        <div v-if="!accountStore.auth.isAuthenticated">
-          <button class="btn follow-button" @click="onFollow" v-if="!userInfo.isFollowed">
-            팔로우
-          </button>
+        <div class="d-flex flex-nowrap m-0 p-0">
+          <p class="mx-1">팔로워 {{ userInfo.num_followers }}</p>
+          <p class="mx-1">팔로잉 {{ userInfo.num_followings }}</p>
         </div>
-        <div v-else-if="Number(route.params.userId) !== accountStore.auth.userPk">
-          <button class="btn follow-button" @click="onFollow" v-if="!userInfo.isFollowed">
-            팔로우
-          </button>
-          <button class="btn unfollow-button" @click="onFollow" v-else>
-            언팔로우
-          </button>
+        <div class="follow-container-button">
+          <div v-if="!accountStore.auth.isAuthenticated">
+            <button class="btn follow-button" @click="onFollow" v-if="!userInfo.isFollowed">
+              팔로우
+            </button>
+          </div>
+          <div v-else-if="Number(route.params.userId) !== accountStore.auth.userPk">
+            <button class="btn follow-button" @click="onFollow" v-if="!userInfo.isFollowed">
+              팔로우
+            </button>
+            <button class="btn unfollow-button" @click="onFollow" v-else>
+              언팔로우
+            </button>
+          </div>
         </div>
       </div>
       <hr class="my-4">
