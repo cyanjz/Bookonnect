@@ -198,4 +198,19 @@ nav.dark .nav-link,
 nav.dark .form-control {
   color: #fff;
 }
+
+/* 스크롤 시 네비게이션 바 색상 변경 */
+/* 기본(라이트) 모드 */
+.navbar {
+  background-color: transparent;
+  /* 부드럽게 전환 */
+  transition: background-color 0.4s, box-shadow 0.4s;
+  box-shadow: none;
+}
+
+/* 다크 모드 */
+.navbar.dark {
+  background-color: #111;
+  /* box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08); */
+}
 </style>

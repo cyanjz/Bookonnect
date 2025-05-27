@@ -32,7 +32,7 @@
 
 <style scoped>
 #wrap {
-  min-height: 100vh;
+  min-height: 25vh;
   width: 100%;
   position: relative;
 }
