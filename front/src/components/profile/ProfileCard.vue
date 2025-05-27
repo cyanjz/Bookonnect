@@ -24,7 +24,7 @@
         <p class="m-0">팔로워 {{ userInfo.num_followers }}</p>
         <p class="m-0">팔로잉 {{ userInfo.num_followings }}</p>
         <div v-if="Number(route.params.userId) !== accountStore.auth.userPk">
-          <button class="btn btn-outline-primary" @click="onFollow" v-if="userInfo.isFollowed">
+          <button class="btn btn-outline-primary" @click="onFollow" v-if="!userInfo.isFollowed">
             팔로우
           </button>
           <button class="btn btn-outline-primary" @click="onFollow" v-else>
@@ -99,7 +99,7 @@ const emits = defineEmits(['follow', 'updateProfile'])
 
 const onFollow = () => {
   axios({
-    url: 'http://127.0.0.1:8000/accounts/1/follow/',
+    url: `http://127.0.0.1:8000/accounts/${route.params.userId}/follow/`,
     method: 'post',
     headers: {
       Authorization: `Token ${accountStore.auth.token}`

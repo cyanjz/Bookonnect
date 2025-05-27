@@ -378,7 +378,7 @@ const onDeleteThread = () => {
       Authorization: `Token ${accountStore.auth.token}`
     }
   }).then(res => {
-    router.push({name: 'book-detail', params: {book_pk: route.paramsbook_pk}})
+    router.push({ name: 'book-detail', params: { book_pk: route.paramsbook_pk } })
     console.log(res)
   }).catch(err => {
     console.log(err)

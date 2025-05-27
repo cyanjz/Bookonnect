@@ -94,6 +94,7 @@ import { ref, onMounted } from 'vue';
 import { useRoute, onBeforeRouteLeave } from 'vue-router';
 import { useBookStore } from '@/stores/books';
 import { useAccountStore } from '@/stores/accounts';
+import { diffChars } from 'diff'
 import axios from 'axios';
 import ThreadThumbCard from '../card/ThreadThumbCard.vue';
 
