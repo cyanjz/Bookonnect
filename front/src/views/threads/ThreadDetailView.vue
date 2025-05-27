@@ -6,7 +6,7 @@
     </template>
 
     <template v-else>
-      <div class="container py-4">
+      <div class="thread-container">
         <!-- Book & Thread Info -->
         <div class="card mb-4" v-if="threadDetail">
           <div v-if="threadDetail.thread_cover_img" class="thread-cover-wrapper">
@@ -639,8 +639,6 @@ const onAiApply = () => {
 onBeforeRouteLeave((to, from) => {
   aiVisible.value = false
 })
-
-
 </script>
 
 

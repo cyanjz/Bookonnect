@@ -50,4 +50,8 @@ const onUpdate = (data) => {
 </script>
 
 
-<style scoped></style>
+<style scoped>
+main {
+  padding-top: 100px;
+}
+</style>

@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <div id="app-layout">
     <NavBar />
-    <RouterView />
+    <div class="main-content">
+      <RouterView />
+    </div>    
     <Footer />
-  </div>    
+  </div>
 </template>
 
 
@@ -27,6 +29,19 @@ body, #app {
   margin: 0;
   padding: 0;
   /* 위는 흰색, 아래는 검정으로 자연스럽게 전환되는 그라데이션 */
-  background: linear-gradient(to bottom, #fff 0%, #111 20%);
+  background: linear-gradient(to bottom, #fff 0%, #022148 40%);
+  /* background-color: black; */
+}
+
+/* 전체 레이아웃을 flex column으로 */
+#app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* RouterView가 남는 공간을 차지하도록 */
+.main-content {
+  flex: 1 1 auto;
 }
 </style>

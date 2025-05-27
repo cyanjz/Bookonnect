@@ -1,22 +1,22 @@
 <template>
   <main>
-    <h1>📚 BooKonnect Main Page</h1>
+    <h1>Welcome to BooKonnect</h1>
 
     <!-- 왜 얘는 안될까... -->
     <!-- <BookList :books="store.books" :carouselId="carouselId"/> -->
 
     <section>
-      <h2>🔥 Best Sellers</h2>
+      <h2>Best Sellers</h2>
       <BestSellers />
     </section>
     <br>
     <section>
-      <h2>✨ Recommended by Editors</h2>
+      <h2>Recommended by Editors</h2>
       <RecommendedBooks />
     </section>
     <br>
     <section>
-      <h2>📂 Books by Category</h2>
+      <h2>Books by Category</h2>
       <CategoryBooks
         v-if="store.categories"
       />
@@ -25,12 +25,12 @@
     <h2>CollectionThumbnail 컴포넌트 넣어주기</h2>
     <br>
     <section>
-      <h2>📈 High Ranked Books</h2>
+      <h2>High Ranked Books</h2>
       <HighRankBooks />
     </section>
     <br>
     <section v-if="accountStore.auth.isAuthenticated">
-      <h2>📈 User Recommend</h2>
+      <h2>User Recommend</h2>
       <userRecommended />
     </section>
   </main>
@@ -97,10 +97,11 @@ section * {
 }
 
 h1 {
-  color: white;
+  color: #0e2148;
   margin: 50px;
   font-family: Antic;
-  font-weight: 500;
+  font-weight: 600;
+  text-align: center;
 }
 
 
