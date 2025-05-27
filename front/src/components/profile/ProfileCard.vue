@@ -23,9 +23,14 @@
       <div class="follow-container d-flex justify-content-between mx-4 my-3 align-items-center">
         <p class="m-0">팔로워 {{ userInfo.num_followers }}</p>
         <p class="m-0">팔로잉 {{ userInfo.num_followings }}</p>
-        <button class="btn follow-button" @click="onFollow" v-if="route.params.userId !== accountStore.auth.userPk">
-          팔로우
-        </button>
+        <div v-if="Number(route.params.userId) !== accountStore.auth.userPk">
+          <button class="btn btn-outline-primary" @click="onFollow" v-if="!userInfo.isFollowed">
+            팔로우
+          </button>
+          <button class="btn btn-outline-primary" @click="onFollow" v-else>
+            언팔로우
+          </button>
+        </div>
       </div>
       <hr class="my-4">
       <div class="d-flex justify-content-between mx-4 mb-3">
@@ -94,7 +99,7 @@ const emits = defineEmits(['follow', 'updateProfile'])
 
 const onFollow = () => {
   axios({
-    url: 'http://127.0.0.1:8000/accounts/1/follow/',
+    url: `http://127.0.0.1:8000/accounts/${route.params.userId}/follow/`,
     method: 'post',
     headers: {
       Authorization: `Token ${accountStore.auth.token}`
@@ -134,7 +139,7 @@ const onUpdate = () => {
     url: accountStore.API_URL + `/accounts/${route.params.userId}/update/`,
     data: formData,
     method: 'put',
-    headers : {
+    headers: {
       Authorization: `Token ${accountStore.auth.token}`,
       "Content-Type": 'multipart/form-data'
     }

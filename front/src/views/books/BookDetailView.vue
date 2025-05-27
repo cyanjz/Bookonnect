@@ -77,12 +77,14 @@ const isLoading = ref(true)
 const book = ref(null)
 
 onMounted(() => {
+  console.log('book detail mounted')
   const bookId = route.params.book_pk
   console.log(store.API_URL + '/books/' + bookId)
   axios({
     url: store.API_URL + '/api/v1/books/' + bookId,
     method: 'get'
   }).then(res => {
+    console.log(res.data)
     book.value = res.data
     isLoading.value = false
   }).catch(err => {
@@ -137,12 +139,14 @@ onMounted(() => {
 .book-card-info {
   flex: 1 1 240px;
 }
+
 .book-title {
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: #3a3a54;
 }
+
 .book-rating {
   font-size: 1.1rem;
   color: #c42441;
@@ -157,6 +161,7 @@ onMounted(() => {
   color: #ccc;
   margin-bottom: 1.2rem;
 }
+
 .book-meta {
   font-size: 0.97rem;
   color: #bbb;
@@ -164,6 +169,7 @@ onMounted(() => {
   flex-direction: column;
   gap: 0.3rem;
 }
+
 .book-meta i {
   margin-right: 0.4em;
   color: #6c63ff;
@@ -181,12 +187,14 @@ onMounted(() => {
 .author-card-info {
   flex: 1 1 200px;
 }
+
 .author-name {
   font-size: 1.2rem;
   font-weight: 600;
   color: #f0f0f0;
   margin-bottom: 0.5rem;
 }
+
 .author-bio {
   font-size: 1rem;
   color: #ccc;
@@ -204,6 +212,7 @@ onMounted(() => {
   margin-bottom: 1rem;
   padding-bottom: 0.6rem;
 }
+
 .thread-card {
   background: transparent;
   border-radius: 16px;
@@ -220,7 +229,9 @@ onMounted(() => {
 
 /* 반응형 */
 @media (max-width: 768px) {
-  .book-card, .author-card {
+
+  .book-card,
+  .author-card {
     flex-direction: column;
     align-items: stretch;
     padding: 1.2rem;

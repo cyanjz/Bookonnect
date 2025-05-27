@@ -30,8 +30,12 @@ const isLoading = ref(true)
 onMounted(async () => {
     axios({
       url: `http://127.0.0.1:8000/accounts/${route.params.userId}/`,
-      method: 'get'
+      method: 'get',
+      headers: {
+        Authorization: `Token ${accountStore.auth.token}`
+      }
     }).then((res) => {
+      console.log(res.data)
       userInfo.value = res.data
       isLoading.value = false
     }).catch((err) => {
@@ -41,6 +45,7 @@ onMounted(async () => {
 
 const onFollow = (data) => {
   userInfo.value.num_followers = data.numFollowers
+  userInfo.value.isFollowed = !data.removed
 }
 
 const onUpdate = (data) => {
