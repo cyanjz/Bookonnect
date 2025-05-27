@@ -23,7 +23,12 @@
       <div class="follow-container d-flex justify-content-between mx-4 my-3 align-items-center">
         <p class="m-0">팔로워 {{ userInfo.num_followers }}</p>
         <p class="m-0">팔로잉 {{ userInfo.num_followings }}</p>
-        <div v-if="Number(route.params.userId) !== accountStore.auth.userPk">
+        <div v-if="!accountStore.auth.isAuthenticated">
+          <button class="btn btn-outline-primary" @click="onFollow" v-if="!userInfo.isFollowed">
+            팔로우
+          </button>
+        </div>
+        <div v-else-if="Number(route.params.userId) !== accountStore.auth.userPk">
           <button class="btn btn-outline-primary" @click="onFollow" v-if="!userInfo.isFollowed">
             팔로우
           </button>
@@ -98,6 +103,9 @@ const props = defineProps({
 const emits = defineEmits(['follow', 'updateProfile'])
 
 const onFollow = () => {
+  if (!accountStore.auth.isAuthenticated) {
+    alert('로그인 해주세요!')
+  }
   axios({
     url: `http://127.0.0.1:8000/accounts/${route.params.userId}/follow/`,
     method: 'post',
@@ -160,7 +168,8 @@ const onUpdate = () => {
   width: 1000px;
   min-width: 1000px;
   max-width: 1000px;
-  margin: 40px auto 0 auto;  /* 가운데 정렬 및 상단 여백 */
+  margin: 40px auto 0 auto;
+  /* 가운데 정렬 및 상단 여백 */
   box-shadow: 0 4px 24px #666565;
   border-radius: 18px;
   padding: 0;
@@ -211,6 +220,7 @@ const onUpdate = () => {
   border-color: rgb(171, 173, 175);
   color: rgb(171, 173, 175);
 }
+
 .update-button:hover {
   box-shadow: 0 2px 12px 0 #ccc;
 }
@@ -230,6 +240,7 @@ const onUpdate = () => {
   border-color: #FF2C54;
   color: #FF2C54;
 }
+
 .follow-button:hover {
   box-shadow: 0 2px 12px 0 #FF2C54;
 }

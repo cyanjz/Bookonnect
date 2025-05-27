@@ -27,9 +27,11 @@
                 </p>
                 <hr />
                 <div class="d-flex align-items-center mb-2">
-                  <img :src="accountStore.API_URL + threadDetail.user.user_profile_img" class="rounded-circle me-2"
-                    width="40" height="40" alt="작성자 이미지" />
-                  <strong>{{ threadDetail.user.username }}</strong>
+                  <div @click="onProfileClick(threadDetail.user.pk)" class="user-info">
+                    <img :src="accountStore.API_URL + threadDetail.user.user_profile_img" class="rounded-circle me-2"
+                      width="40" height="40" alt="작성자 이미지" />
+                    <strong>{{ threadDetail.user.username }}</strong>
+                  </div>
                   <div class="ms-auto" v-if="Number(threadDetail.user.pk) === Number(accountStore.auth.userPk)">
                     <button class="btn btn-sm btn-outline-secondary mx-1" @click="onEditThread" data-bs-toggle="modal"
                       data-bs-target="#thread-update-modal">수정</button>
@@ -401,6 +403,17 @@ const onCommentDelete = (comment_pk) => {
   })
 }
 
+// 5. router push to profile
+const onProfileClick = (userPk) => {
+  router.push({
+    name: 'profile',
+    params: {
+      userId: userPk
+    }
+  })
+}
+
+
 // 99. AI feature
 const aiResponse = ref('')
 const aiVisible = ref(false)
@@ -728,5 +741,9 @@ onBeforeRouteLeave((to, from) => {
 
 .thread-submit {
   background-color: lightgrey;
+}
+
+.user-info {
+  cursor: pointer;
 }
 </style>

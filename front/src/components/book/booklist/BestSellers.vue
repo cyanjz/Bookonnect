@@ -30,7 +30,6 @@ onMounted(() => {
     }
   }).then(res => {
     books.value = res.data
-    console.log(res.data)
   }).catch(err => {
     console.log(err)
   })
